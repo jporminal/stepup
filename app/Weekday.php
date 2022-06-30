@@ -1,0 +1,14 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Weekday extends Model
+{
+    protected $table = 'weekdays';
+
+    protected $primaryKey = 'weekid';
+
+    public $timestamps = false;
+}

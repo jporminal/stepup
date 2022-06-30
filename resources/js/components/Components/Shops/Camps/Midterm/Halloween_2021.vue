@@ -1,0 +1,189 @@
+<template>
+  <v-card flat>
+    <snackbar />
+    <v-card-text>
+      <v-row justify="center">
+        <v-col cols="12" md="3">
+          <v-card>
+            <v-img
+              src="/img/camps/Midterm/2021/halloween-midterm-camp.jpg"
+              alt="Halloween Camp"
+              name="Stepup Halloween Camp"
+            />
+          </v-card>
+        </v-col>
+        <v-col cols="12" md="5">
+          <p class="display-1">Halloween Mid-Term Camp</p>
+          
+          <v-autocomplete
+            label="Select Age"
+            :items="options"
+            v-model="$store.state.winter.winter_workshop_filter.stat"
+            @change="selected_age"
+            solo
+            disable-lookup
+          />
+          
+            <v-checkbox
+              v-for="(item, index) in $store.state.winter.winter_workshop_prices"
+              :key="index"
+              :value="item.id"
+              v-model="$store.state.winter.winter_workshop_selected"
+              :label="`${item.serviceName} - available ${item.quantity}`"
+            >
+            </v-checkbox>
+          
+          <v-btn
+            :disabled="
+              $store.state.winter.winter_workshop_selected.length > 0
+                ? false
+                : true
+            "
+            class="text-none primary"
+            large
+            @click="add_to_cart"
+          >
+            Add to Cart
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-card-text>
+  </v-card>
+</template>
+<script>
+export default {
+  name: "rad-classes",
+
+  data() {
+    return {
+      qty: 1,
+      options: ["3-6yrs old", "7-11yrs old"],
+      my_product: [],
+    };
+  },
+
+  components: {
+    snackbar: () => import("../../../Snackbar/Global_view"),
+  },
+
+  methods: {
+    
+    selected_age(e) {
+      var data = {
+          stat: e,
+            service_id: {
+                id: 584,
+                product: ""
+            },
+            selected: []
+      }
+      this.$store.commit(
+        "WINTER_WORKSHOP_FILTER", data);
+
+      this.$store.commit("WINTER_WORKSHOP_PRICES", {});
+      this.$store.commit("WINTER_WORKSHOP_SELECTED", []);
+      this.$store.dispatch(
+        "WINTER_WORKSHOP_FILTER", data);
+    },
+
+    add_to_cart() {
+      this.$store
+        .dispatch("WINTER_WORKSHOP_SELECTED", {
+          selected: this.$store.state.winter.winter_workshop_selected,
+        })
+        .then((result) => {
+          //   this.add_carts(result.data);
+          var prods = result.data;
+          prods.forEach((product) => {
+
+            var quantity = this.qty;
+            var price = product.price;
+            var price_excl = price / 1.05;
+            var total_incl = quantity * price;
+            var total_excl = total_incl / 1.05;
+            var vat = total_excl * 0.05;
+
+            var cart = {
+              product_id: 584,
+              product_image: "halloween-midterm-camp.jpg",
+              product_name: 'Halloween Mid-Term Camp',
+              product_category: "Service",
+              product_quantity: product.quantity,
+              product_xero: 230,
+              notes: "",
+              type: "Camps",
+              product_option: {
+                selected_id: product.id,
+
+                option_id: product.id,
+                option_name: `Halloween Mid-Term Camp (${product.serviceName})`,
+                // price: product.price,
+                // name: product.serviceName,
+                id: 3407,
+                price: price,
+                quantity,
+                discount: 0.0,
+                discountPercent: 0.0,
+                price_excl: price_excl,
+                total_incl: total_incl,
+                total_excl: total_excl,
+                vat: vat,
+                date_start: '2021-10-17',
+                date_end: '2021-10-21',
+                week_id: 7,
+                cid: {
+                  id: 0,
+                  name: "",
+                },
+              },
+            };
+            this.$store.commit("CARTS", cart);
+          });
+
+          localStorage.setItem(
+            "traesdhes",
+            JSON.stringify(this.$store.state.Carts.carts)
+          );
+          var snackbar = {
+            snackbar: true,
+            vertical: true,
+            timeout: 2000,
+            color: "blue lighten-2",
+            dark: true,
+            top: true,
+            bottom: false,
+            centered: true,
+            left: false,
+            right: false,
+            text: `Item successfully added to your cart!`,
+          };
+
+          this.$store.commit("SNACKBAR", snackbar);
+        })
+        .catch((err) => {});
+    },
+  },
+
+  metaInfo() {
+    return {
+      title: "RAD Classes",
+      titleTemplate: "%s - StepUp Academy",
+      htmlAttrs: {
+        lang: "en",
+      },
+    };
+  },
+};
+</script>
+<style lang="scss" scoped>
+.v-text-field.v-text-field--enclosed {
+  margin: 0;
+  padding: 0;
+  width: 50%;
+}
+.v-input--selection-controls {
+  margin: 0px;
+  padding: 0px;
+  margin-top: -15px;
+}
+</style>
