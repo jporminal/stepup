@@ -322,7 +322,7 @@ export const routes = [{
     },
 
     {
-        path: "/shop-damac-hills-2",
+        path: "/shop-spring-souq",
         name: "shop-damac-hills-2",
         component: Shop_akoyas
     },
@@ -363,17 +363,17 @@ export const routes = [{
 
     {
         path: "/camps/summer/multi-skills",
-        name: "MultiSkills",
+        name: "SummerMultiSkills",
         component: summer_camps_multi_skills
     },
     {
         path: "/camps/summer/performing-arts",
-        name: "PerformingArts",
+        name: "SummerPerformingArts",
         component: summer_performing_arts_skills
     },
     {
         path: "/camps/summer/sports",
-        name: "Sports",
+        name: "SummerSports",
         component: summer_sports_skills
     },
 

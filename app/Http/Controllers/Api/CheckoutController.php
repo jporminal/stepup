@@ -154,8 +154,8 @@ class CheckoutController extends Controller
                 break;
             case 'Camps':
                 $this->service_price($product);
-                // $is_exist = $this->enroll_student($product);
-                // $this->save_attendance($product, $is_exist);
+                $is_exist = $this->enroll_student($product);
+                $this->save_attendance($product, $is_exist);
                 break;
             case 'Fitness':
                 $this->service_price($product);

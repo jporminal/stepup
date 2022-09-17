@@ -1,21 +1,22 @@
 <template>
-  <v-card flat>
+  <v-card>
     <snackbar />
     <v-card-text>
       <v-row justify="center">
         <v-col cols="12" md="3">
-          <v-card flat>
+          <v-card>
             <v-img
-              src="/img/camps/winter/2021/sports-winter-camps.jpg"
-              alt="Sports Winter camps"
+              src="/img/camps/summer/2022/sports-camp.jpeg"
+              alt="Sports Camp"
             />
           </v-card>
         </v-col>
-        <v-col cols="12" md="7" lg="5">
-          <p class="display-1">Sports Winter Camp</p>
-          <p class="title">7yrs - 15yrs</p>
-          <v-select
-            label="Select Age"
+        <v-col cols="12" md="5">
+          <p class="display-1">Sports Camp</p>
+          <p class="title">8-30AM - 3:30PM</p>
+          <p class="title">7yrs - 13yrs</p>
+          <v-autocomplete
+            label="Select Option"
             :items="$store.state.winter.winter_camps"
             v-model="$store.state.winter.winter_workshop_filter.service_id"
             @change="selected_age"
@@ -25,7 +26,7 @@
             disable-lookup
             return-object
           />
-          <v-select
+          <v-autocomplete
             label="Select Option"
             v-if="$store.state.winter.winter_workshop_filter.service_id.id > 0"
             :items="options"
@@ -33,39 +34,48 @@
             @change="selected_age"
             solo
             disable-lookup
-            return-object
           />
-            <div :class="$vuetify.breakpoint.mdAndUp ? 'd-flex flex-row justify-md-space-between flex-wrap' : ''">
-
-                <v-checkbox
-                v-for="(item, index) in $store.state.winter.winter_workshop_prices"
-                :key="index"
-                :value="item"
-                v-model="$store.state.winter.winter_workshop_selected"
-                hide-details
-                multiple
-                >
-                  <template v-slot:label>
-                      <table width="100%">
-                        <tr>
-                          <td width="60%">
-                            {{ item.serviceName }}
-                          </td>
-                          <td width="40%">
-                            <v-combobox
-                              class="quantity"
-                                :items="getQty(item.quantity)"
-                                v-model="item.qty"
-                                label="Quantity"
-                                hide-details
-                            ></v-combobox>
-                          </td>
-                        </tr>
-                      </table>
-                  </template>
-                </v-checkbox>
-
-            </div>
+          <template
+            v-if="$store.state.winter.winter_workshop_filter.stat == 'Daily'"
+          >
+            <v-checkbox
+              v-for="(item, index) in $store.state.winter.winter_workshop_prices
+                .daily"
+              :key="index"
+              :value="item.id"
+              v-model="$store.state.winter.winter_workshop_selected"
+              :label="`${item.serviceName} - available ${item.quantity}`"
+            >
+            </v-checkbox>
+          </template>
+          <template
+            v-if="$store.state.winter.winter_workshop_filter.stat == 'Weekly'"
+          >
+            <v-checkbox
+              v-for="(item, index) in $store.state.winter.winter_workshop_prices
+                .weekly"
+              :key="index"
+              :value="item.id"
+              v-model="$store.state.winter.winter_workshop_selected"
+              :label="`${item.serviceName} - available ${item.quantity}`"
+            >
+            </v-checkbox>
+          </template>
+          <template
+            v-if="
+              $store.state.winter.winter_workshop_filter.stat == 'Full Term'
+            "
+          >
+            <v-checkbox
+              v-for="(item, index) in $store.state.winter.winter_workshop_prices
+                .full_term"
+              :key="index"
+              :value="item.id"
+              v-model="$store.state.winter.winter_workshop_selected"
+              :label="`${item.serviceName} - available ${item.quantity}`"
+            >
+            </v-checkbox>
+          </template>
           <v-btn
             :disabled="
               $store.state.winter.winter_workshop_selected.length > 0
@@ -85,17 +95,18 @@
 </template>
 <script>
 export default {
-  name: "winter-multi-skills",
-
-  components: {
-    snackbar: () => import("../../../Snackbar/Global_view"),
-  },
+  name: "winter-workshop",
 
   data() {
     return {
       qty: 1,
       options: ["Daily", "Weekly", "Full Term"],
+      my_product: [],
     };
+  },
+
+  components: {
+    snackbar: () => import("../../../Snackbar/Global_view"),
   },
 
   created() {
@@ -105,7 +116,7 @@ export default {
   methods: {
     filter() {
       var class_ids = {
-        class_ids: "sports",
+        class_ids: "workshops",
       };
       this.$store.dispatch("WINTER_CAMPS", class_ids);
     },
@@ -124,18 +135,16 @@ export default {
       );
     },
 
-    getQty(e) {
-        var qty = []
-        for(var i = 0; i < e; i++) {
-            qty.push(i + 1)
-        }
-        return qty;
-    },
-
     add_to_cart() {
-      this.$store.state.winter.winter_workshop_selected.forEach((product) => {
-
-            var quantity = product.qty;
+      this.$store
+        .dispatch("WINTER_WORKSHOP_SELECTED", {
+          selected: this.$store.state.winter.winter_workshop_selected,
+        })
+        .then((result) => {
+          //   this.add_carts(result.data);
+          var prods = result.data;
+          prods.forEach((product) => {
+            var quantity = this.qty;
             var price = product.price;
             var price_excl = price / 1.05;
             var total_incl = quantity * price;
@@ -145,14 +154,14 @@ export default {
             var cart = {
               product_id: this.$store.state.winter.winter_workshop_filter
                 .service_id.id,
-              product_image: "sports-winter-camp.jpg",
+              product_image: "summer-sports-camp.jpeg",
               product_name: this.$store.state.winter.winter_workshop_filter
                 .service_id.product,
               product_category: "Service",
               product_quantity: product.quantity,
               product_xero: this.$store.state.winter.winter_workshop_filter
                 .service_id.xero,
-              notes: this.$store.state.winter.winter_multi_skill_price.notes,
+              notes: "",
               type: "Camps",
               product_option: {
                 selected_id: product.id,
@@ -161,7 +170,8 @@ export default {
                 option_name: `${this.$store.state.winter.winter_workshop_filter.service_id.product} (${product.serviceName})`,
                 // price: product.price,
                 // name: product.serviceName,
-                id: 3408,
+                id: this.$store.state.winter.winter_workshop_filter.service_id
+                  .id,
                 price: price,
                 quantity,
                 discount: 0.0,
@@ -170,9 +180,12 @@ export default {
                 total_incl: total_incl,
                 total_excl: total_excl,
                 vat: vat,
-                date_start: '2021-11-12',
-                date_end: '2021-11-12',
-                week_id: 7,
+                date_start: this.$store.state.winter.winter_workshop_filter
+                  .service_id.date_start,
+                date_end: this.$store.state.winter.winter_workshop_filter
+                  .service_id.date_end,
+                week_id: this.$store.state.winter.winter_workshop_filter
+                  .service_id.week_id,
                 cid: {
                   id: 0,
                   name: "",
@@ -181,52 +194,35 @@ export default {
             };
             this.$store.commit("CARTS", cart);
           });
-      
-      localStorage.setItem(
-        "traesdhes",
-        JSON.stringify(this.$store.state.Carts.carts)
-      );
-      var snackbar = {
-        snackbar: true,
-        vertical: true,
-        timeout: 2000,
-        color: "blue lighten-2",
-        dark: true,
-        top: true,
-        bottom: false,
-        centered: true,
-        left: false,
-        right: false,
-        text: `Item successfully added to your cart!`,
-      };
 
-      this.$store.commit("SNACKBAR", snackbar);
-    },
-  },
+          localStorage.setItem(
+            "traesdhes",
+            JSON.stringify(this.$store.state.Carts.carts)
+          );
+          var snackbar = {
+            snackbar: true,
+            vertical: true,
+            timeout: 2000,
+            color: "blue lighten-2",
+            dark: true,
+            top: true,
+            bottom: false,
+            centered: true,
+            left: false,
+            right: false,
+            text: `Item successfully added to your cart!`,
+          };
 
-  computed: {
-    quantities() {
-      var qty = [];
-      for (
-        var i = 0;
-        i <
-        this.$store.state.winter.winter_multi_skill_price.service_price
-          .quantity;
-        i++
-      ) {
-        qty.push(i + 1);
-      }
-      return this.$store.state.winter.winter_multi_skill_price.service_price
-        .quantity > 0
-        ? qty
-        : 0;
+          this.$store.commit("SNACKBAR", snackbar);
+        })
+        .catch((err) => {});
     },
   },
 
   metaInfo() {
     return {
       title: "Camps",
-      titleTemplate: "%s - Winter Multi Skills",
+      titleTemplate: "%s - Winter Workshop",
       htmlAttrs: {
         lang: "en",
       },
@@ -235,15 +231,14 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
-@media (min-width: 960px) {
-    .v-input {
-      width: 50%;
-    }
+.v-text-field.v-text-field--enclosed {
+  margin: 0;
+  padding: 0;
+  width: 50%;
 }
-
 .v-input--selection-controls {
-    margin-top: 0px;
-    padding-top: 0;
+  margin: 0px;
+  padding: 0px;
+  margin-top: -15px;
 }
 </style>

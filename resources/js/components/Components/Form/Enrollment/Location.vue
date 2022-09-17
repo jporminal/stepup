@@ -31,11 +31,13 @@ export default {
       locations: [
         "Motor City",
         "Fitness First - Lakes",
-        "Fitness First - Arabian Ranches",
-        "Arcadia Preparatory School",
+        // "Fitness First - Arabian Ranches",
+        // "Arcadia Preparatory School",
         "Repton Al Barsha School",
         "SAFA Community School",
-        "DAMAC Hills",
+        "Springs Souk",
+        "South View School",
+        // "DAMAC Hills",
         "Victory Heights Primary School"
       ],
     };

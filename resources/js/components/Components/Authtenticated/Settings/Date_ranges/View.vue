@@ -108,7 +108,7 @@ export default {
         daterangename: "",
         daterangefrom: new Date().toISOString().substr(0, 10),
         daterangeto: new Date().toISOString().substr(0, 10),
-        daterangeclasses: "",
+        daterangeclasses: " ",
       };
       this.$store.commit("DATE_RANGE", schedule);
       this.$store.commit("DATE_RANGE_OPEN", true);

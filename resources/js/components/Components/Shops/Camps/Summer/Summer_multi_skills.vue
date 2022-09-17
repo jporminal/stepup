@@ -16,7 +16,7 @@
           <p class="title">8-30AM - 3:00PM</p>
           <p class="title">3yrs - 11yrs</p>
           <v-select
-            label="Select Age"
+            label="Select Option"
             :items="$store.state.winter.winter_camps"
             v-model="$store.state.winter.winter_workshop_filter.service_id"
             @change="selected_age"
@@ -95,7 +95,7 @@ export default {
   data() {
     return {
       qty: 1,
-      options: ["Daily", "Weekly", "Full Term"],
+      options: ["Daily", "Weekly","Monthly","Full Camp"],
     };
   },
 
@@ -146,7 +146,7 @@ export default {
             var cart = {
               product_id: this.$store.state.winter.winter_workshop_filter
                 .service_id.id,
-              product_image: "camps-multi-skills.jpg",
+              product_image: "summer-multi-skills.jpeg",
               product_name: this.$store.state.winter.winter_workshop_filter
                 .service_id.product,
               product_category: "Service",
@@ -162,7 +162,7 @@ export default {
                 option_name: `${this.$store.state.winter.winter_workshop_filter.service_id.product} (${product.serviceName})`,
                 // price: product.price,
                 // name: product.serviceName,
-                id: 3408,
+                 id: 3955,
                 price: price,
                 quantity,
                 discount: 0.0,
@@ -171,7 +171,7 @@ export default {
                 total_incl: total_incl,
                 total_excl: total_excl,
                 vat: vat,
-                date_start: '2021-11-12',
+                date_start: '202-11-12',
                 date_end: '2021-11-12',
                 week_id: 7,
                 cid: {

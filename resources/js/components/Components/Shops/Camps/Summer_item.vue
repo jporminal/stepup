@@ -42,12 +42,12 @@ export default {
           alt: "Performing Arts",
           to: "/camps/summer/performing-arts",
         },
-        {
-          text: "Sports Summer Camp",
-          image: "/img/camps/summer/2022/sports-camp.jpeg",
-          alt: "Sports Summer Camp",
-          to: "/camps/summer/sports-winter-camp",
-        },
+        // {
+        //   text: "Sports Summer Camp",
+        //   image: "/img/camps/summer/2022/sports-camp.jpeg",
+        //   alt: "Sports Summer Camp",
+        //   to: "/camps/summer/sports",
+        // },
       ],
     };
   },

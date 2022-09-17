@@ -20,7 +20,6 @@
     </v-card-text>
 
     <v-card-text>
-      <v-container>
         <v-row align="center" justify="center">
           <v-col cols="12" md="4" v-for="camp in camps" :key="camp.title">
             
@@ -36,6 +35,7 @@
                   $vuetify.breakpoint.mdAndUp
                     ? '500' : '325'
                 "
+                 :to="camp.to"
               ></v-card>
               <!-- <v-card
                 flat
@@ -56,7 +56,6 @@
               ></v-card> -->
           </v-col>
         </v-row>
-      </v-container>
     </v-card-text>
   </v-card>
 </template>
@@ -73,31 +72,31 @@ export default {
 
     camps: [
       {
-        title: "Spring Multi-Skills Camp",
+        title: "Summer Multi-Skills Camp",
         age: "3yrs - 11yrs",
-        date: "27<sup>th</sup> March - 7<sup>th</sup> April 2022",
-        src: "/img/camps/Spring/2022/hr/multi-skill.jpg",
-        lazy: "/img/camps/Spring/2022/lr/multi-skill.jpg",
+        date: "11<sup>th</sup> July - 26<sup>th</sup> Aug 2022",
+        src: "/img/camps/summer/2022/multi-skills.jpeg",
+        lazy: "/img/camps/summer/2022/lr/multi-skills.jpeg",
         alt: "Spring Break Multi Skills Camp",
-        to: {name: 'MultiSkills'},
+        to: {name: 'SummerMultiSkills'},
       },
       {
-        title: "Spring Performing Arts Camp",
+        title: "Summer Performing Arts Camp",
         age: "7yrs - 15yrs",
-        date: "27<sup>th</sup> March - 7<sup>th</sup> April 2022",
-        src: "/img/camps/Spring/2022/hr/performing-arts.jpg",
-        lazy: "/img/camps/Spring/2022/lr/performing-arts.jpg",
+        date: "11<sup>th</sup> July - 26<sup>th</sup> Aug 2022",
+        src: "/img/camps/summer/2022/performing-arts.jpeg",
+        lazy: "/img/camps/summer/2022/lr/performing-arts.jpeg",
         alt: "Spring Break Performing Arts Camp",
-        to: {name: 'PerformingArts'},
+        to: {name: 'SummerPerformingArts'},
       },
       {
-        title: "Spring Sport Camp",
+        title: "Summer Sport Camp",
         age: "6yrs - 11yrs",
-        date: "27<sup>th</sup> March - 7<sup>th</sup> April 2022",
-        src: "/img/camps/Spring/2022/hr/sports-camp.jpg",
-        lazy: "/img/camps/Spring/2022/lr/sports-camp.jpg",
+        date: "11<sup>th</sup> July - 26<sup>th</sup> Aug 2022",
+        src: "/img/camps/summer/2022/sports-camp.jpeg",
+        lazy: "/img/camps/summer/2022/lr/sports-camp.jpeg",
         alt: "Spring Break Sport Camp",
-        to: {name: 'Sports'},
+        to: '',
       },
       
     ],

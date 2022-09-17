@@ -317,8 +317,8 @@ export default {
               tohref: true,
             },
             {
-              to: "/shop-damac-hills-2",
-              text: "DAMAC HILLS 2",
+              to: "/shop-spring-souq",
+              text: "Springs Souk",
               tohref: true,
             },
             {
@@ -326,11 +326,11 @@ export default {
               text: "Victory Heights",
               tohref: true,
             },
-            {
-              to: "/camps",
-              text: "Spring Camp",
-              tohref: true,
-            },
+            // {
+            //   to: "/shop-camps",
+            //   text: "Summer Camps",
+            //   tohref: true,
+            // },
           ],
         },
       ],

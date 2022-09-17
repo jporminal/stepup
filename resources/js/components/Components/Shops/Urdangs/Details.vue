@@ -25,7 +25,7 @@
               @change="selected_option"
             >
             </v-select>
-            <v-select
+            <!-- <v-select
               :items="$store.state.Urdangs.product.service_price"
               item-text="serviceName"
               label="Select Option"
@@ -34,9 +34,17 @@
               @change="selected_price"
               v-if="Object.keys(option).length > 4 ? true : false"
             >
-            </v-select>
-            <p>Price: {{ price.price | currency }}</p>
+            </v-select> -->
+            <template v-if="Object.keys(option).length > 4">
+              <p>Price: {{ option.price | currency }}</p>
+              <p>Available: {{ option.max_limit > 0 ? option.max_limit : 'FULL' }}</p>
+              <p>Number of weeks: {{ option.max_qty }}</p>
+            </template>
+          </v-col>
+            <!-- <p>Price: {{ price.price | currency }}</p>
             <p>Available: {{ price.quantity }}</p>
+             <p>Number of weeks: {{ option.max_qty }}</p> -->
+            <!-- <p>Number of weeks: {{ option.max_qty }}</p> -->
             <!-- <v-select
               label="Select Quantity"
               :items="quantities(price.quantity)"
@@ -58,7 +66,7 @@
           class="text-none primary"
           large
           @click="add_cart"
-          :disabled="Object.keys(price).length > 2 ? false : true"
+          :disabled="!is_valid(option)"
         >
           <v-icon> mdi-cart </v-icon>
           Add to cart
@@ -89,13 +97,12 @@ export default {
 
   methods: {
     selected_option(e) {
+       e.max_qty > 0 ? (e.order_quantity = 1) : (e.order_quantity = 0);
       this.option = e;
     },
     selected_price(e) {
-      e.quantity > 0
-        ? (this.option.order_quantity = 1)
-        : (this.option.order_quantity = 0);
-      this.price = e;
+      e.max_qty > 0 ? (e.order_quantity = 1) : (e.order_quantity = 0);
+      this.option = e;
     },
     close() {
       this.$store.commit("URDANG", {});
@@ -103,7 +110,7 @@ export default {
     },
     add_cart() {
       var price = this.option.price;
-      var quantity = this.option.order_quantity;
+      var quantity = this.option.max_qty;
       var vat = 5;
       var tax = vat / 100;
       var price_excl = price / (tax + 1);
@@ -122,7 +129,7 @@ export default {
         product_limit: this.option.max_limit,
         product_name: this.$store.state.Urdangs.product.classname,
         product_xero: this.$store.state.Urdangs.product.xero,
-        product_quantity: this.price.quantity,
+        product_quantity: this.option.max_qty,
         product_option: {
           cid: {
             id: 0,
@@ -182,6 +189,14 @@ export default {
       }
       return qty;
     },
+      is_valid(e) {
+          var valid = Object.keys(e).length > 4
+          if(valid) {
+              e.max_limit > 0 ? valid = true : valid = false
+          }
+          return valid
+      }
+    
   },
 };
 </script>

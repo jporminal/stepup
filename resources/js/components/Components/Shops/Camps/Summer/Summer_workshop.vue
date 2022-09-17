@@ -6,17 +6,17 @@
         <v-col cols="12" md="3">
           <v-card>
             <v-img
-              src="/img/camps/winter/2020/winter-workshop.jpg"
-              alt="Winter Workshop"
+              src="/img/camps/summer/2022/sports-camp.jpeg"
+              alt="Sports Camp"
             />
           </v-card>
         </v-col>
         <v-col cols="12" md="5">
-          <p class="display-1">Winter Workshop</p>
+          <p class="display-1">Sports Camp</p>
           <p class="title">8-30AM - 3:30PM</p>
-          <p class="title">6-9yrs - 10yrs</p>
+          <p class="title">7yrs - 13yrs</p>
           <v-autocomplete
-            label="Select Age"
+            label="Select Option"
             :items="$store.state.winter.winter_camps"
             v-model="$store.state.winter.winter_workshop_filter.service_id"
             @change="selected_age"
@@ -100,7 +100,7 @@ export default {
   data() {
     return {
       qty: 1,
-      options: ["Daily", "Weekly", "Full Term"],
+      options: ["Daily", "Weekly","Monthly","Full Camp"],
       my_product: [],
     };
   },

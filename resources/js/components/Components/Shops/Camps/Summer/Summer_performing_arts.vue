@@ -6,17 +6,17 @@
         <v-col cols="12" md="3">
           <v-card flat>
             <v-img
-              src="/img/camps/winter/2021/performing-arts.jpg"
-              alt="Winter multi-skills camps"
+              src="/img/camps/summer/2022/performing-arts.jpeg"
+              alt="Summer multi-skills camps"
             />
           </v-card>
         </v-col>
         <v-col cols="12" md="5">
           <p class="display-1">Performing Arts Camp</p>
-          <p class="title">8-30AM - 3:30PM</p>
-          <p class="title">6yrs - 16yrs</p>
+          <p class="title">8-30AM - 3:00PM</p>
+          <p class="title">7yrs - 15yrs</p>
           <v-select
-            label="Select Age"
+            label="Select Option"
             :items="$store.state.winter.winter_camps"
             v-model="$store.state.winter.winter_workshop_filter.service_id"
             @change="selected_age"
@@ -95,7 +95,7 @@ export default {
   data() {
     return {
       qty: 1,
-      options: ["Daily", "Weekly", "Full Term"],
+      options: ["Daily", "Weekly","Monthly","Full Camp"],
     };
   },
 
@@ -146,7 +146,7 @@ export default {
             var cart = {
               product_id: this.$store.state.winter.winter_workshop_filter
                 .service_id.id,
-              product_image: "camps-performing-arts.jpg",
+              product_image: "summer-performing-arts.jpeg",
               product_name: this.$store.state.winter.winter_workshop_filter
                 .service_id.product,
               product_category: "Service",
@@ -162,7 +162,7 @@ export default {
                 option_name: `${this.$store.state.winter.winter_workshop_filter.service_id.product} (${product.serviceName})`,
                 // price: product.price,
                 // name: product.serviceName,
-                id: 3408,
+                id: 3957,
                 price: price,
                 quantity,
                 discount: 0.0,

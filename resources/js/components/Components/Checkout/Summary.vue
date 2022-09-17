@@ -35,7 +35,7 @@
               </v-list-item-title>
               <v-list-item-subtitle>
                 <v-select
-                  v-if="item.type !== 'Product' && item.type !== 'Fitness' && item.type !== 'Camps'"
+                  v-if="item.type !== 'Product' && item.type !== 'Fitness' "
                   v-model="item.product_option.cid"
                   item-value="cid"
                   item-text="firstname"

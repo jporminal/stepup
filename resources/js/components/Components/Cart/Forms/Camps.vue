@@ -16,8 +16,8 @@
         </v-row>
       </v-toolbar>
       <p class="text-h6 text-center mt-2">
-        Spring Camp <br />
-        (27<sup>th</sup> March – 7<sup>th</sup> April 2022)
+        Summer Camp <br />
+        (11<sup>th</sup> July – 26<sup>th</sup> August 2022)
       </p>
       <!-- <p class="text-h6 text-center mt-2">
         Winter Wonderland Multi-Skills Camp <br />

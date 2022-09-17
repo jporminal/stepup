@@ -50,7 +50,7 @@ class ShopController extends Controller
         return Category_value::select('poscategories.CategoryName AS name', 'settings.Setting_value AS id')
             ->leftJoin('poscategories', 'poscategories.CategoryID', '=', 'settings.Setting_value')
             ->where('poscategories.type', $type)
-            ->whereNotIn('poscategories.CategoryID', [24, 23, 27, 31, 13, 12, 16, 48, 56, 47, 38, 54])
+            ->whereNotIn('poscategories.CategoryID', [23, 27, 31, 13, 12, 16, 48, 56, 47, 38, 54,42,43, 35,58])
             ->distinct('name', 'id')
             ->orderBy('name')
             ->get();
@@ -159,7 +159,7 @@ class ShopController extends Controller
     {
         $date_range = $this->date_range('_SHOP_URDANG');
         $status = '';
-        return $this->other_offer($id, $date_range, $status);
+        return $this->services($id, $date_range, $status, 'urdang');
     }
 
     // Foremarke
@@ -363,7 +363,11 @@ class ShopController extends Controller
             $services['option_name'] = Schedule::select(
                 'schedule.scheduleid AS product_id',
                 DB::raw('CONCAT(dateranges.daterangename, "-", class.classname, "(", schedule.scheduletimestart, "-", schedule.scheduletimeend, ") ", staff.staffname , " - ", weekdays.weekname)  AS item'),
-                $max_qty == 'motor_city' ?  'weekdays.numberofweek AS max_qty' : ($max_qty == 'foremarke' ? 'weekdays.upcoming AS max_qty' : ($max_qty == 'akoya' ? 'weekdays.akoya AS max_qty' : 'weekdays.arcadia AS max_qty')),
+                $max_qty == 'motor_city' ?  
+                'weekdays.numberofweek AS max_qty' : 
+                    ($max_qty == 'foremarke' ? 'weekdays.upcoming AS max_qty' : 
+                        ($max_qty == 'akoya' ? 'weekdays.akoya AS max_qty' : 
+                            ($max_qty == 'arcadia' ? 'weekdays.arcadia AS max_qty': 'weekdays.other_time_slot AS max_qty'))),
                 DB::raw('schedule.schedulestudentlimit - COUNT(enroll.cid) AS max_limit'),
                 'class.price AS price',
                 'dateranges.daterangefrom AS date_start',
@@ -508,7 +512,10 @@ class ShopController extends Controller
     public function multi_camps(Request $request)
     {
         $class_ids = $request->class_ids;
-        $ids = $class_ids == 'multi_skills' ? [607] : ($class_ids == 'performing_arts' ? [608] : [609]);
+         //summer
+         $ids = $class_ids == 'multi_skills' ? [660,661] : ($class_ids == 'performing_arts' ? [608] : [609]);
+        //winter
+        //$ids = $class_ids == 'multi_skills' ? [607] : ($class_ids == 'performing_arts' ? [608] : [609]);
         // $ids = $class_ids == 'dtrn' ? [437, 438] : ($class_ids == 'sw' ? [439, 440] : ($class_ids == 'rad' ? [444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454] : [443]));
         // $ids = [432, 433];
         return Schedule::select(
@@ -538,7 +545,10 @@ class ShopController extends Controller
 
     public function workshop($id, Request $request)
     {
-        $daily = $id == 607 ? [1026, 1035] : ($id == 608 ? [1039, 1048] : ($id == 609 ? [1052, 1061] : ($id == 393 ? [946, 960] : [968, 982])));
+        //summer
+        $daily = $id == 660 ? [1139,1139] : ($id == 661 ? [1140, 1140] : ($id == 609 ? [1052, 1061] : ($id == 393 ? [946, 960] : [968, 982])));
+        //winter
+        //$daily = $id == 607 ? [1026, 1035] : ($id == 608 ? [1039, 1048] : ($id == 609 ? [1052, 1061] : ($id == 393 ? [946, 960] : [968, 982])));
         $weekly = $id == 607 ? [1036, 1037] : ($id == 608 ? [1049, 1050] : ($id == 609 ? [1062, 1063] : ($id == 393 ? [961, 963] : [983, 985])));
         $full = $id == 607 ? 1038 : ($id == 608 ? 1051 : ($id == 609 ? 1064 : ($id == 393 ? 964 : 986)));
         switch ($request->stat) {
