@@ -135,7 +135,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('GET-VENUES/{search}', 'Api\\SetupController@get_filtered_venues');
 
     Route::get('STAFFS', 'Api\\SetupController@get_staffs');
-    Route::get('STAFFS/{search}', 'Api\\SetupController@get_staff_filter');
+    Route::get('STAFFS/{search}', 'Api\\SeMOTOR-CITY?tupController@get_staff_filter');
     Route::get('STAFF/{id}', 'Api\\SetupController@get_staff');
     Route::post('STAFFS', 'Api\\SetupController@store_staff');
 

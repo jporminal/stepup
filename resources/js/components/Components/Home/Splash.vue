@@ -8,7 +8,7 @@
         <!-- width 1280 -->
       <v-container>
         <v-row align="center" justify="center">
-          <v-col cols="12" md="4" v-for="(img, index) in imgs" :key="index">
+          <v-col cols="12" md="8" v-for="(img, index) in imgs" :key="index">
             <v-img
               :src="img.src"
               :alt="img.alt"
@@ -48,34 +48,35 @@
 export default {
 
   created() {
-    setTimeout(() => {
-      this.$refs.video_player.play();
-    }, 1000);
+     this.$store.commit("SPLASH", false);
+    // setTimeout(() => {
+    //   this.$refs.video_player.play();
+    // }, 1000);
   },
   
   name: "splash",
   data() {
     return {
       imgs: [
+        {
+          src: "/img/splash/halloween.jpeg",
+          alt: "Halloween Dress Up Week",
+        },
         // {
-        //   src: "img/camps/Midterm/2021/halloween-midterm-camp.jpg",
-        //   alt: "Stepup Uniforms",
+        //   src: "/img/camps/Spring/2022/hr/multi-skill.jpg",
+        //   lazy: "/img/camps/Spring/2022/lr/multi-skill.jpg",
+        //   alt: "Spring Break Multi Skills Camp",
         // },
-        {
-          src: "/img/camps/Spring/2022/hr/multi-skill.jpg",
-          lazy: "/img/camps/Spring/2022/lr/multi-skill.jpg",
-          alt: "Spring Break Multi Skills Camp",
-        },
-        {
-          src: "/img/camps/Spring/2022/hr/performing-arts.jpg",
-          lazy: "/img/camps/Spring/2022/lr/performing-arts.jpg",
-          alt: "Spring Break Performing Arts Camp",
-        },
-        {
-          src: "/img/camps/Spring/2022/hr/sports-camp.jpg",
-          lazy: "/img/camps/Spring/2022/lr/sports-camp.jpg",
-          alt: "Spring Break Sport Camp",
-        }
+        // {
+        //   src: "/img/camps/Spring/2022/hr/performing-arts.jpg",
+        //   lazy: "/img/camps/Spring/2022/lr/performing-arts.jpg",
+        //   alt: "Spring Break Performing Arts Camp",
+        // },
+        // {
+        //   src: "/img/camps/Spring/2022/hr/sports-camp.jpg",
+        //   lazy: "/img/camps/Spring/2022/lr/sports-camp.jpg",
+        //   alt: "Spring Break Sport Camp",
+        // }
       ],
     };
   },

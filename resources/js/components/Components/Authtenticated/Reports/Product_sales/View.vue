@@ -25,6 +25,7 @@
         <v-list shaped>
           <v-list-item>
             <v-list-item-avatar width="20%"> Product </v-list-item-avatar>
+            <v-list-item-avatar width="20%"> Location </v-list-item-avatar>
             <v-list-item-avatar width="20%"> Discount </v-list-item-avatar>
             <v-list-item-avatar width="20%"> VAT </v-list-item-avatar>
             <v-list-item-avatar width="20%"> Taxable </v-list-item-avatar>
@@ -37,6 +38,9 @@
               <v-list-item>
                 <v-list-item-avatar tile width="20%">
                   {{ item.name }}
+                </v-list-item-avatar>
+                <v-list-item-avatar tile width="20%">
+                  {{ item.location }}
                 </v-list-item-avatar>
                 <v-list-item-avatar tile width="20%">
                   {{ item.discount | currency }}
@@ -56,6 +60,7 @@
           </template>
           <v-list-item>
             <v-list-item-avatar tile width="20%"></v-list-item-avatar>
+             <v-list-item-avatar tile width="20%"></v-list-item-avatar>
             <v-list-item-avatar tile width="20%"
               ><p class="text-h6 font-weight-bold red--text">
                 {{ total_discount | currency }}

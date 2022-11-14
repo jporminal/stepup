@@ -202,7 +202,7 @@ class ReportController extends Controller
     private function receipt($id)
     {
         $data['transaction'] = Sale::find($id);
-        $data['customer'] = Mother::find($data['transaction']->customer_id);
+       
         $data['Products'] = Sale_item::select(
             DB::raw('CONCAT(products.ProductName," ",product_options.option_name) AS item'),
             'sales_items.price AS unit_price',
@@ -279,7 +279,7 @@ class ReportController extends Controller
             ->leftJoin('weekdays', 'weekdays.weekid', '=', 'schedule.weekid')
             ->leftJoin('dateranges', 'dateranges.drid', '=', 'schedule.drid')
             ->where(['sales_items.sale_id' => $id, 'sales_items.category' => 'Trial'])->get();
-
+            $data['customer'] = Mother::find($data['transaction']->customer_id);
         return $data;
     }
 
@@ -336,8 +336,13 @@ class ReportController extends Controller
         $date = $request->dates;
         $date_from = $date[0] . ' 00:00:00';
         $date_to = $date[1] . ' 23:59:59';
+       //return $this->motor_city($date_from, $date_to);
 
-        return $this->motor_city($date_from, $date_to)->merge($this->outside_location($date_from, $date_to))->merge($this->other_services($date_from, $date_to, true));
+       //return $this->outside_location($date_from, $date_to);
+  
+        return $this->motor_city($date_from, $date_to)
+        ->merge($this->outside_location($date_from, $date_to))
+        ->merge($this->other_services($date_from, $date_to, true));
     }
 
     private function class_information($date, $enrolled, $teacher_id, $lesson_ids, $term)
@@ -523,14 +528,16 @@ class ReportController extends Controller
             DB::raw('SUM(sales_items.discount) AS discount'),
             DB::raw('SUM(sales_items.VAT) AS VAT'),
             DB::raw('SUM(sales_items.total_price - sales_items.VAT) AS Taxable'),
-            DB::raw('SUM(sales_items.total_price) AS price')
+            DB::raw('SUM(sales_items.total_price) AS price'),
+            'venue.venuename as location'
         )
             ->leftJoin('sales', 'sales.id', '=', 'sales_items.sale_id')
             ->leftJoin('product_options', 'product_options.id', '=', 'sales_items.item_id')
             ->leftJoin('products', 'products.ProductID', '=', 'product_options.product_id')
+            ->leftJoin('venue', 'sales.location_id', '=', 'venue.vid')
             ->where(['sales.Status' => 'completed', 'sales_items.category' => 'Product'])
             ->whereBetween('sales.created_at', [$date_from, $date_to])
-            ->groupBy('id', 'name');
+            ->groupBy('id', 'name','location');
 
         if (count($products) > 0) {
             $data->whereIn('products.ProductID', $products);
@@ -554,7 +561,8 @@ class ReportController extends Controller
             ->leftJoin('schedule', 'schedule.scheduleid', '=', 'sales_items.item_id')
             ->leftJoin('venue', 'venue.vid', '=', 'schedule.vid')
             ->where([
-                'sales.Status' => 'completed'
+                'sales.Status' => 'completed',
+               // 'venue.venuename' => 'Springs Souk'
             ])
             ->whereIn('sales_items.category', ['Service', 'Trial'])
             ->groupBy(['id', 'name'])
@@ -622,8 +630,9 @@ class ReportController extends Controller
     private function outside_location($date_from, $date_to)
     {
         $report = Sale_item::select(
-            'venue.vid AS id',
-            'venue.venuename AS name',
+            
+            DB::raw("CONCAT(venue.vid,'0000') AS id"),
+            DB::raw("CONCAT(venue.venuename,' - Outside Location') AS name"),
             DB::raw('SUM(sales_items.quantity) AS quantity'),
             DB::raw('SUM(sales_items.discount) AS discount'),
             DB::raw('SUM(sales_items.VAT) AS vat'),

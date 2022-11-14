@@ -2,9 +2,9 @@
   <v-card flat v-if="$store.state.Reports.other_service_reports.other_services.length > 0">
     <v-card-actions class="d-print-none">
       <v-spacer></v-spacer>
-      <!-- <v-btn class="text-none" small @click="excel">
+      <v-btn class="text-none" small @click="excel">
         <v-icon>mdi-microsoft-excel</v-icon> Excel</v-btn
-      > -->
+      >
       <v-btn class="text-none" small @click="print">
         <v-icon>mdi-printer</v-icon> Print</v-btn
       >
@@ -126,9 +126,9 @@ export default {
     print() {
       window.print();
     },
-    // excel() {
-    //   this.$excel("excel", `Other Service Reports - ${this.date_title}`);
-    // },
+    excel() {
+      this.$excel("excel", `Other Service Reports - ${this.date_title}`);
+    },
   },
 
   computed: {

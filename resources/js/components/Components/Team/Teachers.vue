@@ -117,7 +117,7 @@
                                             <h1 class="headline" :key="tab.name" v-html="tab.name"></h1>
                                             <h2 class="subtitle-2" :key="tab.name + i" v-html="teacher.position"></h2>
                                             <br :key="tab.name + i + 230">
-                                            <h3 class="body-2" v-for="detail in tab.about" :key="detail.details" v-html="detail.details"></h3>
+                                            <h3 class="body-2" v-for="detail in tab.about" :key="detail.details + i" v-html="detail.details"></h3>
                                         </template>
                                     </v-col>
 
@@ -241,54 +241,95 @@ export default {
                 tabs: [
                     {name: 'Ms. Olivia', path: 'olivia',
                     about: [
-                        {details: '', icon: ''},
-
-                        {details: '', icon: ''}
+                       
                     ], experience: ''},
                     {name: "", path: '',
                     about: [], experience: ''}
                 ], sectionId: 'Olivia'},
 
                  //Beth
-                { name: 'Ms. Beth<br>Dance Teacher', position: 'Dance Teacher', path: '/img/headshots/Beth.jpg', headshot: '/img/headshots/Beth.jpg', color: '#e5e5e5',
+                { name: 'Ms. Beth<br>Dance Teacher', position: '', path: '/img/headshots/Beth.jpg', headshot: '/img/headshots/Beth.jpg', color: '#e5e5e5',
                 tabs: [
                     {name: 'Ms. Beth', path: 'beth',
                     about: [
-                        {details: '', icon: ''},
-
-                        {details: '', icon: ''}
+                        {details: 'Beth hails from the United Kingdom originally but spent most of her childhood in Cape Town,South Africa. Here she trained in RAD Ballet and ISTD Modern Theatre and Tap. Returning to the UK for her professional training she attended the prestigious Hammond School where she gained a National Diploma in Professional Musical Theatre and Dance (accredited by Trinity College of London).<br><br>', icon: ''},
+                        {details: 'Upon graduation Beth performed in a number of shows across the world including, Santa Claus the Musical in Singapore, The world famous Irish Dance Show - Spirit of the Dance touring in Canada and the United States. Beth also took up a residency in the Kings Castle Theatre in Branson, Missouri performing several shows in her time there such as the ballroom sensation, Puttin’ on the Ritz and New Jersey Nights.<br><br>', icon: ''},
+                        {details: 'For the last 10 years Beth has traveled across all 7 continents working as Dance Captain and Show Company Manger onboard Cruise liners for companies such as P&O Cruises, Cunard Cruises and Holland America Line.<br><br>', icon: ''},
+                        {details: 'Whilst not performing Beth has worked across the UK as a Freelance Dance Instructor coaching exam students in ISTD Modern and Tap and RAD Ballet - in addition to holding ‘industry workshops’ to aspiring young performers.<br><br>', icon: ''},
+                        {details: 'In between all of her travel, performances and teaching , Beth has also additionally gained her teaching qualifications. She is a fully qualified Modern Theatre and Tap Teacher through the ISTD (Imperial Society of Teachers of Dancing). Additionally a fully qualified Ballet teacher through the IDTA and has gained Registered Teacher Status with RAD (Royal Academy of Dance). These qualifications ensure she is up to date and ready to enter Students in for annual examinations.<br><br>', icon: ''},
+                        {details: 'Beth also teaches Yoga and Pilates having gained her Diploma for both subjects in 2019. Currently Beth is working towards her Qualification to teach PBT (Progressive Ballet Technique) in order to assist her RAD Ballet Students in their further training.<br><br>' , icon: ''},
+                        {details: 'I am most definitely enjoying seeing the progress of my students at Step Up Academy and I love to dance alongside you all every week!.<br><br>' , icon: ''}
                     ], experience: ''},
                     {name: "", path: '',
                     about: [], experience: ''}
                 ], sectionId: 'Beth'},
-
-
-         
-
                 //Laura Dillon
-                { name: 'Ms. Laura<br>Dance Teacher', position: 'Dance Teacher', path: '/img/headshots/LauraDillon.jpg', headshot: '/img/headshots/LauraDillon.jpg', color: '#e5e5e5',
-                tabs: [
-                    {name: 'Ms. Laura', path: 'laura',
-                    about: [
-                        {details: '', icon: ''},
-
-                        {details: '', icon: ''}
-                    ], experience: ''},
-                    {name: "", path: '',
-                    about: [], experience: ''}
-                ], sectionId: 'Laura'},
-                       //Vitaliy
-                { name: 'Mr. Vitaliy<br>Head of Boys Dept & Dance Teacher', position: 'Head of Boys Dept & Dance Teacher', path: '/img/headshots/Vitaliy.jpg', headshot: '/img/headshots/Vitaliy.jpg', color: '#fff',
-                tabs: [
-                    {name: 'Mr. Vitaliy', path: 'vitaliy',
-                    about: [
-                        {details: '', icon: ''},
-                    ], experience: ''},
-                    {name: "", path: '',
-                    about: [
-                        {details: '', icon: ''}
-                    ], experience: ''}
-                ], sectionId: 'vitaliy'},
+                { 
+                    name: 'Ms. Laura<br>Dance Teacher', 
+                    position: 'Dance Teacher', 
+                    path: '/img/headshots/LauraDillon.jpg',
+                    headshot: '/img/headshots/LauraDillon.jpg', 
+                    color: '#e5e5e5',
+                    tabs: [
+                        {
+                            name: 'Ms. Laura', path: 'laura',
+                            about: [], 
+                            experience: ''
+                        },
+                        {
+                            name: "", 
+                            path: '',
+                            bout: [], 
+                            experience: ''
+                        }
+                    ], 
+                    sectionId: 'Laura'
+                },
+                //Vitaliy
+                { 
+                    name: 'Mr. Vitaliy<br>Head of Boys Dept & Dance Teacher', 
+                    position: 'Head of Boys Dept & Dance Teacher', 
+                    path: '/img/headshots/Vitaliy.jpg', 
+                    headshot: '/img/headshots/Vitaliy.jpg', 
+                    color: '#fff',
+                    tabs: [
+                        {
+                            name: 'Mr. Vitaliy', 
+                            path: 'vitaliy',
+                            about: [], 
+                            experience: ''
+                        },
+                        {
+                            name: "", 
+                            path: '',
+                            about: [], 
+                            experience: ''
+                        }
+                    ], 
+                    sectionId: 'vitaliy'
+                },
+                // Lucy
+                { 
+                    name: 'Ms. Lucy<br>Dance Teacher', 
+                    position: 'Dance Teacher', 
+                    path: '/img/headshots/Lucy.jpg', 
+                    headshot: '/img/headshots/Lucy.jpg', 
+                    color: '#fff',
+                    tabs: [
+                        {
+                            name: 'Ms. Lucy', 
+                            path: 'lucy',
+                            about: [
+                                {details: 'Miss Lucy, originally from Kent, UK, has been dancing since the age of 3.  She trained at Prima Stage School of Performing Arts, studying Ballet (IDTA), Street dance (IDTA), Contemporary dance, Acting (LAMDA), Ballroom and Latin (UKA) and Musical Theatre.  Miss Lucy has taught dance and performing arts for over 11 years and has put many children through their IDTA examinations with a 100% pass rate.<br><br>', icon: ''},
+                                {details: 'Miss Lucy pursued her career by attending the University of East Anglia, where she graduated by with BA Honours Degree in Drama and English Literature.  During her time here she continued her dance training as a member of an advanced hip-hop team and performed and choreographed for shows around the UK, including at the Edinburgh Fringe Festival.  After graduating, she spent 2 years working professionally for Carnival Cruise Lines in both the USA and Australia. In-between contracts she continued to teach for multiple dance schools around Kent, before moving to India where she took on the role of a Pre-Primary School Teacher at OliveMount Global School.  Alongside this she continued to teach dance classes in India, as well as running hundreds of masterclasses and specialised workshops virtually for schools around the UK.<br><br>', icon: ''},
+                                {details: 'Miss Lucy holds a full teaching license with the IDTA, having completed her Street Dance Associate Teaching Examination.  She is a qualified Level 1 Cheerleading Coach with the British Cheerleading Association and has undertaken training in All-Star Pom, Jazz and Lyrical dance with Building from the Ground Up.  She is a fully qualified AcroDance Pre-School Instructor, having completed training with Acrobatic Arts and has trained in stretch, body conditioning and flexibility with Love Flexibility.  Miss Lucy also holds a TEFL certification and has recently completed studying with The Skills Network for a Level 2 Understanding Autism Qualification.<br><br>', icon: ''},
+                                {details: 'Miss Lucy is passionate about continuing her dance education and is currently studying to become a licensed Baby Massage Instructor with To Baby and Beyond and is furthering her knowledge of teaching toddler and pre-school dance classes by training with Once Upon a Ballet.  Miss Lucy made the move over to Dubai in 2022 and is hugely excited to continue her teaching career with StepUp Academy.<br><br>', icon: ''}
+                            ], 
+                            experience: ''
+                        },
+                    ], 
+                    sectionId: 'vitaliy'
+                },
 
               
             ],
@@ -304,7 +345,8 @@ export default {
     },
     methods: {
         openDetails(teacher) {
-            this.isOpen = false
+            console.log(teacher);
+            this.isOpen = true
             this.teacher = teacher
         }
     }
