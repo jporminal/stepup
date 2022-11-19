@@ -12,4 +12,6 @@ npm-debug.log
 yarn-error.log
 /public/video
 .DS_Store
-
+/public/jsv2
+/public/js
+/public/css
