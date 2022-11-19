@@ -8,7 +8,7 @@
         <!-- width 1280 -->
       <v-container>
         <v-row align="center" justify="center">
-          <v-col cols="12" md="8" v-for="(img, index) in imgs" :key="index">
+          <v-col cols="6" md="6" v-for="(img, index) in imgs" :key="index">
             <v-img
               :src="img.src"
               :alt="img.alt"
@@ -48,10 +48,10 @@
 export default {
 
   created() {
-     this.$store.commit("SPLASH", false);
-    // setTimeout(() => {
-    //   this.$refs.video_player.play();
-    // }, 1000);
+     this.$store.commit("SPLASH", true);
+    setTimeout(() => {
+      this.$refs.video_player.play();
+    }, 1000);
   },
   
   name: "splash",
@@ -59,8 +59,12 @@ export default {
     return {
       imgs: [
         {
-          src: "/img/splash/halloween.jpeg",
-          alt: "Halloween Dress Up Week",
+          src: "/img/splash/winter-camp.jpeg",
+          alt: "Winter Camp",
+        },
+         {
+          src: "/img/splash/winter-sports-camp.jpeg",
+          alt: "Winter Camp",
         },
         // {
         //   src: "/img/camps/Spring/2022/hr/multi-skill.jpg",

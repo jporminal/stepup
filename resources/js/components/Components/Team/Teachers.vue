@@ -70,7 +70,7 @@
                         <v-card-text>
                             <v-responsive max-width="60%" class="mx-auto">
                                 <transition-group tag="v-row" class="justify-center" name="fade-transition">
-                                    <v-col v-for="admin in adminStaffs" :key="admin.name" cols="12" md="4">
+                                    <v-col v-for="admin in adminStaffs" :key="admin.name" cols="12" md="3">
                                         <v-hover>
                                         <template v-slot="{ hover }">
 
@@ -167,7 +167,7 @@ export default {
 
                         {details: 'Vicky moved to the UAE in September 2010 and started teaching full time straight away. Since teaching here she has put students through their RAD exams and has also choreographed for many shows.<br><br>', icon: ''}
                     ], experience: ''},
-                    {name: "Some of Vicky's achievements / experience", path: 'vicky-achievement',
+                    {name: "Vicky's achievements / experience", path: 'vicky-achievement',
                     about: [
                         {details: 'Annual Triple Fantasy Dance shows – Manor Pavilion, UK', icon: 'mdi-human-handsdown'},
                         {details: 'Annual Multiplicity Dance shows – Manor Pavilion, UK', icon: 'mdi-human-handsdown'},
@@ -202,7 +202,7 @@ export default {
 
                         {details: 'Caitlin went on to complete her 2 years study with the Royal Academy of Dance for her Certificate in Ballet Teaching Studies, gaining registered teacher status with the internationally recognised ballet awarding body. Before moving to Dubai to join the Step Up Team, she taught at established dance schools within the UK and also in Tenerife, Spain.<br><br>', icon: ''},
                     ], experience: ''},
-                    {name: "Her profesional dance experience includes", path: 'caitlin-achievement',
+                    {name: "Caitlin's dance experience includes", path: 'caitlin-achievement',
                     about: [
                         {details: 'Fantine – Les Miserables – BYTES Company', icon: 'mdi-human-handsdown'},
                         {details: 'Lily – Annie – BYTES Company', icon: 'mdi-human-handsdown'},
@@ -228,23 +228,29 @@ export default {
                 tabs: [
                     {name: 'Ms. Laura Davies', path: 'laura',
                     about: [
-                        {details: 'Laura is from the United Kingdom. She began dancing when she was 3 years old where she studied all styles of dance, taking RAD ballet examinations and IDTA Tap and Modern Examinations. At the age of 11, she joined Centrepointe Dance School in Manchester, continuing with examinations and participating in competitions. Laura joined the prestigious Bird College in September 2011, completing a three year diploma in Dance and Musical Theatre. Since graduating, Laura has danced professionally all over the world, choreographed for Sky Sports and many sports events, and also began teaching. Laura is delighted to have joined the team at Step Up and can’t wait to see what the future brings!<br><br>', icon: ''},
-                    ], experience: ''},
-                    {name: "", path: '',
-                    about: [
-                        {details: '~~', icon: ''}
+                        {details: 'Laura is from the United Kingdom. She began dancing when she was 3 years old where she studied all styles of dance, taking RAD ballet examinations and IDTA Tap and Modern Examinations.!<br><br>', icon: ''},
+                        {details: 'At the age of 11, she joined Centrepointe Dance School in Manchester, continuing with examinations and participating in competitions. Laura joined the prestigious Bird College in September 2011, completing a three year diploma in Dance and Musical Theatre.<br><br>', icon: ''},
+                        {details: ' Since graduating, Laura has danced professionally all over the world, choreographed for Sky Sports and many sports events, and also began teaching. Laura is delighted to have joined the team at Step Up and can’t wait to see what the future brings'}
                     ], experience: ''}
                 ], sectionId: 'laura'},
 
                 //Olivia
                 { name: 'Ms. Olivia<br>Vocal & Musical Theatre Teacher', position: 'Vocal & Musical Theatre Teacher', path: '/img/headshots/Olivia.jpg', headshot: '/img/headshots/Olivia.jpg', color: '#e5e5e5',
                 tabs: [
-                    {name: 'Ms. Olivia', path: 'olivia',
+                    {
+                    name: 'Ms. Olivia', path: 'olivia',
                     about: [
-                       
-                    ], experience: ''},
-                    {name: "", path: '',
-                    about: [], experience: ''}
+                        {details: 'Olivia Cloud was born in Johannesburg, South Africa. Olivia is a 24 year old trained and qualified Singer, Songwriter, Actress, Dancer, Performer and Trinity London College Examination Facilitator and Educator.<br><br>', icon: ''},
+                        {details: 'Olivia completed an intensive one year training course in Performing Arts and Musical Theatre at Stageworx School of Performing Arts in 2018, gaining her ATCL in Performance Arts and LTCL Diploma in Musical Theatre through Trinity Guildhall London College, both with Distinction. <br><br>', icon: ''},
+                        {details: 'In 2014, Olivia was a contestant on Idols South Africa Season 10 and made it to the Top 16, Which kick started her career as a recording artist in South Africa, where she has now released two hit singles, “Shake” and “Run” which are available on all major platforms. <br><br>', icon: ''},
+                        {details: 'In 2018, Olivia played ‘Rainbow Dash’ in the ‘My Little Pony’ live shows at Carnival City. She  also featured as a vocalist and dancer in ‘Born To Perform Shine’ at the Lyric Theatre. At the end of 2019, Olivia assisted Gemma Marinus (Director) with choreography and direction in the "Born To Perform" Production, a showcase of Youth Talent. <br><br>', icon: ''},
+                        {details: "During her trip to London in 2019, Olivia attended various singing and acting workshops through City Lit London, and worked intensively on her dancing at 'Pineapple Studios'. Olivia then began teaching Musical Theatre at Stageworx Performing Arts School, primarily working with Students who were taking their Trinity London College Examinations. 90% of Olivia’s students received distinctions for their exams. <br><br>", icon: ''},
+                        {details: 'At the end of 2019, Olivia was cast in Janice Honeyman’s 2019 Pantomime Spectacular “Jack And The Beanstalk” at the prestigious Joburg Theatre, as ensemble as well as understudy of the female Lead. <br><br>' , icon: ''},
+                        {details: 'In early 2020, Olivia appeared in the National Children’s Theatre’s anti bullying traveling show, which toured to many schools in Johannesburg. Due to COVID 19, the Theatre industry has taken a major hit, so Olivia has decided to go back to teaching Singing and Musical Theatre and is currently living in Dubai, Running the Musical Theatre and Vocal Department at Step Up Academy, Providing professional Vocal Coaching and Musical Theatre lessons. Olivia is also involved in the directing, coordinating and choreographing of shows and events of the Musical Theatre Company at Step Up Academy. <br><br>' , icon: ''},
+                        {details: 'Olivia is passionate about working with young, up-and-coming, passionate performers and helping them hone in their craft.” <br><br>' , icon: ''},
+                    ],
+                    experience: ''
+                    }
                 ], sectionId: 'Olivia'},
 
                  //Beth
@@ -273,13 +279,26 @@ export default {
                     tabs: [
                         {
                             name: 'Ms. Laura', path: 'laura',
-                            about: [], 
+                            about: [
+                                {details: 'Laura is a professional dancer and teacher from the UK and started dancing at a very young age. Her training began at her local dance school, Premier Studios before moving to Shelagh Elliott Clarke Performing Arts College in Liverpool, where she completed exams in ISTD and RAD Ballet, Tap, Modern and Street Jazz. Upon studying full time training at college, Laura continued her training in many styles of Dance, Drama and Singing. She then went on to complete further training at Edge Hill University where she choreographed and performed in a number of dance pieces, trained in Aerial skills alongside her Degree and began teaching regular Commercial, Jazz and Heels classes. She graduated with a Ba Hons Degree in Dance and Drama.<br><br>', icon: ''},
+                                {details: 'Since graduating Laura has performed professionally in several touring contracts in the UK and abroad in Cyprus, Greece and Malta and continued to teach regular open dance and fitness classes to all ages between contracts. Laura moved to Dubai in Summer 2021 and began teaching Dance at StepUp Academy. She loves working with all her students, putting them through their IDTA Street Jazz exams and is enjoying choreographing for international competitions in Florida, Paris and New York and various events in Dubai such as Expo 2020. Laura is excited to continue her journey as a dance teacher at StepUp and proud to be part of the team.<br><br>', icon: ''},
+                            ], 
                             experience: ''
                         },
                         {
-                            name: "", 
+                            name: "Laura’s achievements/experience", 
                             path: '',
-                            bout: [], 
+                            about: [
+                                  {details: 'Choreographer – Expo 2020 StepUp Academy Christmas and closing show <br>', icon: ''},
+                                  {details: 'Dancer – 5 star hotels in Corfu, Greece <br>', icon: ''},
+                                  {details: 'Dancer – 5 star hotels in Paphos, Cyprus<br>', icon: ''},
+                                  {details: 'Production Dancer – Cirkella Circus in Malta <br>', icon: ''},
+                                  {details: 'Dancer/Magicians Assistant – Charles Chipperfield Circus in the UK<br>', icon: ''},
+                                  {details: 'Dancer – Alibi Productions touring tribute shows in the UK <br>', icon: ''},
+                                  {details: 'Dance teacher – Edge Hill University Hill start company<br>', icon: ''},
+                                  {details: 'Dance teaching visiting lecturer – Edge Hill University <br>', icon: ''},
+                                  {details: 'Dance teacher – LdanceFitness <br>', icon: ''},
+                            ], 
                             experience: ''
                         }
                     ], 
@@ -288,6 +307,7 @@ export default {
                 //Vitaliy
                 { 
                     name: 'Mr. Vitaliy<br>Head of Boys Dept & Dance Teacher', 
+             
                     position: 'Head of Boys Dept & Dance Teacher', 
                     path: '/img/headshots/Vitaliy.jpg', 
                     headshot: '/img/headshots/Vitaliy.jpg', 
@@ -295,16 +315,16 @@ export default {
                     tabs: [
                         {
                             name: 'Mr. Vitaliy', 
-                            path: 'vitaliy',
-                            about: [], 
+                            path: '',
+                            about: [
+                                {details: 'Vitaliy gained his dance training in his home country at the National University of Culture in Kyiv, Ukraine. Here he gained a Masters Degree in Choreography and Contemporary Dance. Vitaliy trained using the world famous Russian Ballet VnanovA method which he still practices and teaches now.<br><br>', icon: ''},
+                                {details: "Upon graduation Vitaliy went on to perform at the National Ukrainian Musical Theatre as a Dancer and Choreographer. Simultaneously Vitally was teaching at `The School of Arts' on the Crimean peninsula - here he was responsible for training students in Jazz, Ukrainian Folk Dancing, Contemporary and Choreography. In 2006 Vitaliy took his talents abroad and went on to perform in the Xua-Xia Theater, Zhen-Zhen, China in the innovative new concept show 'Elements.' <br><br>", icon: ''},
+                                {details: 'For the last 12 years Vitaliy has been working for a number of Cruise Lines across the world including, Cunard Cruises, Celebrity Cruises and Holland America Line as a Dancer and Dance Captain. Where he performed as a soloist specialising in Contemporary, Jazz, Ballet and Commercial Dance.<br><br>', icon: ''},
+                                {details: 'In 2020 Vitaliy returned to Kyiv and began teaching in several dance schools focusing on Contemporary dance and ballet. Vitaliy also taught in many fitness centres and gyms teaching classes such as Ballet Barre Fitness, Pilates, Interval Training and Dance Based Fitness Classes. <br><br>', icon: ''},
+                                {details: 'Vitaliy is enjoying bringing his wealth, knowledge, culture and experience in the performing arts industry to all the students at Step Up Academy. <br><br>', icon: ''},
+                            ],
                             experience: ''
                         },
-                        {
-                            name: "", 
-                            path: '',
-                            about: [], 
-                            experience: ''
-                        }
                     ], 
                     sectionId: 'vitaliy'
                 },
@@ -328,7 +348,7 @@ export default {
                             experience: ''
                         },
                     ], 
-                    sectionId: 'vitaliy'
+                    sectionId: 'Lucy'
                 },
 
               
@@ -339,6 +359,7 @@ export default {
                
                 {name: 'KRISHA<br>DIGITAL MARKETING', position: 'DIGITAL MARKETING', image: '/img/headshots/Krisha.jpg'},
                 {name: 'JOEL<br>FRONT OF HOUSE', position: 'FRONT OF HOUSE', image: '/img/headshots/Joel.jpg'},
+                {name: 'MARY<br>FRONT OF HOUSE', position: 'FRONT OF HOUSE', image: '/img/headshots/Mary.png'},
                 {name: 'LIEZEL<br>HOUSE KEEPING', position: 'PA', image: '/img/headshots/Liezel.jpg'},
             ]
         }
