@@ -114,6 +114,9 @@ Route::middleware('auth:api')->group(function () {
     Route::post('POS-SERVICE-REPORT', 'Api\\ReportController@get_services');
     Route::post('POS-OTHER-SERVICE-REPORT', 'Api\\ReportController@get_toher_services');
     Route::post('POS-LOCATION-REPORT', 'Api\\ReportController@get_locations');
+    Route::post('POS-TEACHER-REPORT', 'Api\\ReportController@get_teacher_reports');
+
+   
 
     // Schedule Controller
     Route::post('SCHEDULE', 'Api\\ScheduleController@get_schedule');

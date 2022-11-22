@@ -1,4 +1,5 @@
 const mix = require("laravel-mix");
+const webpack = require('webpack');
 var LiveReloadPlugin = require("webpack-livereload-plugin");
 
 /*
@@ -16,7 +17,12 @@ mix.webpackConfig({
     output: {
         chunkFilename: "jsv2/[name].[chunkhash].js"
     },
-    plugins: [new LiveReloadPlugin()]
+    plugins: [
+        new LiveReloadPlugin(),
+        new webpack.optimize.LimitChunkCountPlugin({
+            maxChunks: 10
+        }),
+    ]
 });
 
 mix.js("resources/js/app.js", "public/js")
@@ -26,4 +32,4 @@ if (mix.inProduction()) {
     mix.version();
 }
 
-mix.browserSync("http://127.0.0.1:8001");
+// mix.browserSync("http://127.0.0.1:8000");

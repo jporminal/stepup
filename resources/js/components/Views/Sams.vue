@@ -208,6 +208,13 @@ export default {
               isdivide: false,
             },
             {
+              title: "Sales By Teacher",
+              icon: "",
+              path: "/sams-teacher-reports",
+              access: ["Admin", "Manager", "Kups", "PA"],
+              isdivide: false,
+            },
+            {
               title: "Product Reports",
               icon: "",
               path: "/sams-product-reports",

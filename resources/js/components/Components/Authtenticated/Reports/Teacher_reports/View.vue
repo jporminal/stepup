@@ -1,5 +1,5 @@
 <template>
-  <v-card flat v-if="$store.state.Reports.location_reports.length > 0">
+  <v-card flat>
     <v-card-actions class="d-print-none">
       <v-spacer></v-spacer>
       <v-btn class="text-none" small @click="excel">
@@ -15,7 +15,7 @@
           <img src="/img/logoStepUp.png" />
         </v-avatar>
       </div>
-      <p class="text-h5 font-weight-bold text-center">Location Reports</p>
+      <p class="text-h5 font-weight-bold text-center">Teacher Sales Reports</p>
       <div class="text-h6 font-weight-bold text-center">
         Date: {{ date_title }}
       </div>
@@ -24,37 +24,47 @@
       <div>
         <v-list shaped>
           <v-list-item>
-            <v-list-item-avatar width="20%"> Item </v-list-item-avatar>
-            <v-list-item-avatar width="20%"> Quantity </v-list-item-avatar>
+            <v-list-item-avatar width="10%"> Teacher </v-list-item-avatar>
+            <v-list-item-avatar width="10%"> Location </v-list-item-avatar>
+            <v-list-item-avatar width="20%"> Service </v-list-item-avatar>
+            <v-list-item-avatar width="10%"> Quantity </v-list-item-avatar>
             <v-list-item-avatar width="15%"> Taxable </v-list-item-avatar>
             <v-list-item-avatar width="15%"> Discount </v-list-item-avatar>
             <v-list-item-avatar width="15%"> VAT 5% </v-list-item-avatar>
             <v-list-item-avatar width="15%"> Total </v-list-item-avatar>
           </v-list-item>
+
           <v-divider></v-divider>
-          <v-list-item
-            v-for="(item, index) in $store.state.Reports.location_reports"
-            :key="index"
-          >
-            <v-list-item-avatar tile width="20%">
-              {{ item.name }}
-            </v-list-item-avatar>
-            <v-list-item-avatar tile width="20%">
-              {{ item.quantity }}
-            </v-list-item-avatar>
-            <v-list-item-avatar tile width="15%">
-              {{ item.taxable | currency }}
-            </v-list-item-avatar>
-            <v-list-item-avatar tile width="15%">
-              {{ item.discount | currency }}
-            </v-list-item-avatar>
-            <v-list-item-avatar tile width="15%">
-              {{ item.vat | currency }}
-            </v-list-item-avatar>
-            <v-list-item-avatar tile width="15%">
-              {{ item.price | currency }}
-            </v-list-item-avatar>
-          </v-list-item>
+            <div v-for="(item, index) in $store.state.Reports.teacher_reports" :key="index">
+              <v-list-item>
+                <v-list-item-avatar tile width="10%">
+                   {{ item.teacher }}
+                </v-list-item-avatar>
+                <v-list-item-avatar tile width="10%">
+                  {{ item.location }}
+                </v-list-item-avatar>
+                <v-list-item-avatar tile width="20%">
+                  {{ item.title }} - {{ item.name }}
+                </v-list-item-avatar>
+                <v-list-item-avatar tile width="10%">
+                  {{ item.quantity }}
+                </v-list-item-avatar>
+                <v-list-item-avatar tile width="15%">
+                  {{ item.taxable | currency }}
+                </v-list-item-avatar>
+                <v-list-item-avatar tile width="15%">
+                  {{ item.discount | currency }}
+                </v-list-item-avatar>
+                <v-list-item-avatar tile width="15%">
+                  {{ item.vat | currency }}
+                </v-list-item-avatar>
+                <v-list-item-avatar tile width="15%">
+                  {{ item.price | currency }}
+                </v-list-item-avatar>
+              </v-list-item>
+              <v-divider></v-divider>
+            </div>
+
         </v-list>
       </div>
     </v-card-text>
@@ -88,25 +98,29 @@
         </tr>
       </table>
     </v-card-text>
-    <v-card-text class="d-none">
-      <div id="excel">
+    <div style="page-break-after: always"></div>
+    <v-card-text>
+      <div id="excel" class="d-none">
         <table>
           <tr>
-            <th>Item</th>
+            <th>Teacher</th>
+            <th>Location</th>
+            <th>Service</th>
             <th>Quantity</th>
             <th>Taxable</th>
             <th>Discount</th>
-            <th>VAT 5%</th>
+            <th>VAT 5</th>
             <th>Total</th>
           </tr>
         </table>
-
         <table
-          v-for="(item, index) in $store.state.Reports.location_reports"
+          v-for="(item, index) in $store.state.Reports.teacher_reports"
           :key="index"
         >
           <tr>
-            <td>{{ item.name }}</td>
+            <td>{{ item.teacher }}</td>
+            <td>{{ item.location }}</td>
+            <td>{{ item.title }} - {{ item.name }}</td>
             <td>{{ item.quantity }}</td>
             <td>{{ item.taxable | currency }}</td>
             <td>{{ item.discount | currency }}</td>
@@ -126,7 +140,7 @@
             <th style="border: 1px solid black">Quantity</th>
             <th style="border: 1px solid black">Grand Taxable</th>
             <th style="border: 1px solid black">Grand Discount</th>
-            <th style="border: 1px solid black">Grand VAT 5%</th>
+            <th style="border: 1px solid black">Grand VAT 5</th>
             <th style="border: 1px solid black">Grand Total</th>
           </tr>
           <tr>
@@ -149,7 +163,6 @@
         </table>
       </div>
     </v-card-text>
-    <div style="page-break-after: always"></div>
   </v-card>
 </template>
 <script>
@@ -164,53 +177,63 @@ export default {
       window.print();
     },
     excel() {
-      this.$excel("excel", `Product Reports ${this.date_title}`);
+      this.$excel("excel", `Teacher Reports ${this.date_title}`);
     },
   },
 
   computed: {
     date_title() {
-      return this.$store.state.Reports.location_report_filter.dates.join(" ~ ");
+      return this.$store.state.Reports.teacher_report_filter.dates.join(" ~ ");
     },
     total_price() {
-      return this.$store.state.Reports.location_reports.reduce(
+      var services = this.$store.state.Reports.teacher_reports.reduce(
         (total, item) => {
           return total + Number(item.price);
         },
         0
       );
+
+      return services;
     },
     total_qty() {
-      return this.$store.state.Reports.location_reports.reduce(
+      var services = this.$store.state.Reports.teacher_reports.reduce(
         (total, item) => {
           return total + Number(item.quantity);
         },
         0
       );
+
+      return services;
     },
     total_discount() {
-      return this.$store.state.Reports.location_reports.reduce(
+      var services = this.$store.state.Reports.teacher_reports.reduce(
         (total, item) => {
           return total + Number(item.discount);
         },
         0
       );
+
+      return services;
     },
     total_vat() {
-      return this.$store.state.Reports.location_reports.reduce(
+      var services = this.$store.state.Reports.teacher_reports.reduce(
         (total, item) => {
           return total + Number(item.vat);
         },
         0
       );
+
+      return services;
     },
     total_taxable() {
-      return this.$store.state.Reports.location_reports.reduce(
+      var services = this.$store.state.Reports.teacher_reports.reduce(
         (total, item) => {
           return total + Number(item.taxable);
         },
         0
       );
+
+      return services;
     },
   },
 };

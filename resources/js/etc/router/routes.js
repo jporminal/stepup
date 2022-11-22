@@ -180,6 +180,11 @@ const Authenticated_location_reports = () =>
         "../../components/Components/Authtenticated/Reports/Location_reports.vue"
     );
 
+const Authenticated_teacher_sales_reports = () =>
+    import (
+        "../../components/Components/Authtenticated/Reports/Teacher_Sales_reports.vue"
+    );
+
 const Photo_video_release_form = () =>
     import ('../../components/Components/Form/others/photo_video_form.vue')
 
@@ -584,7 +589,12 @@ export const routes = [{
                 path: "/sams-receipts",
                 name: 'receipts',
                 component: Authenticated_receipts
-            }
+            },
+            {
+                path: "/sams-teacher-reports",
+                name: 'teacher-sales-reports',
+                component: Authenticated_teacher_sales_reports
+            },
         ]
     },
 

@@ -10,8 +10,8 @@ use App\User_meta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Mother;
 use App\Sale_item_service_price;
+use App\Mother;
 
 class ReportController extends Controller
 {
@@ -125,8 +125,8 @@ class ReportController extends Controller
         $others = $this->other_services_report($date_from, $date_to, $class_ids);
         $merged = collect($service)->merge($others);
 
-            // $data['services'] = $merged->toarray();
-            $data['services'] = $service;
+        $data['services'] = $merged->toarray();
+        //$data['services'] = $service;
 
         return $data;
     }
@@ -218,7 +218,8 @@ class ReportController extends Controller
 
         $data['Services'] = Sale_item::select(
             'sales_items.id AS id',
-            DB::raw('CONCAT(class.classname," - ",dateranges.daterangename, "(", schedule.scheduletimestart, "-", schedule.scheduletimeend, ") -", weekdays.weekname, " (", children.firstname , " ", children.lastname, ")") AS item'),
+            DB::raw('CONCAT(class.classname," - ",dateranges.daterangename, "(", schedule.scheduletimestart, "-", schedule.scheduletimeend, ") -", weekdays.weekname) AS item'),
+            //DB::raw('CONCAT(class.classname," - ",dateranges.daterangename, "(", schedule.scheduletimestart, "-", schedule.scheduletimeend, ") -", weekdays.weekname, " (", children.firstname , " ", children.lastname, ")") AS item'),
             'sales_items.price AS unit_price',
             'sales_items.quantity AS quantity',
             'sales_items.discount AS discount',
@@ -229,7 +230,7 @@ class ReportController extends Controller
             ->leftJoin('schedule', 'schedule.scheduleid', '=', 'sales_items.item_id')
             ->leftJoin('dateranges', 'dateranges.drid', '=', 'schedule.drid')
             ->leftJoin('class', 'class.classid', '=', 'schedule.classid')
-            ->leftJoin('children', 'children.cid', '=', 'sales_items.student_id')
+            //->leftJoin('children', 'children.cid', '=', 'sales_items.student_id')
             ->leftJoin('weekdays', 'weekdays.weekid', '=', 'schedule.weekid')
             ->where(['sales_items.sale_id' => $id, 'sales_items.category' => 'Service'])->get()
             ->transform(function ($service) {
@@ -409,6 +410,7 @@ class ReportController extends Controller
             ->leftJoin('venue', 'venue.vid', '=', 'schedule.vid')
             ->leftJoin('staff', 'staff.sid', '=', 'schedule.sid')
             ->leftJoin('dateranges', 'dateranges.drid', '=', 'schedule.drid')
+            ->where('enroll.cid', '<>', 0)
             ->where('enroll.enrollpermanent', $enrolled);
         // ->whereBetween('enroll.enrollstartdate', [$date_from, $date_to]);
 
@@ -438,8 +440,8 @@ class ReportController extends Controller
             'weekdays.weekname AS day',
             DB::raw('CONCAT(schedule.scheduletimestart, " - ", schedule.scheduletimeend) AS time'),
             'staff.staffname AS teacher',
-            'mother.motherfirstname AS firstname',
-            'mother.motherlastname AS lastname',
+            'children.firstname AS firstname',
+            'children.lastname AS lastname',
             'sales.payment_type AS payment_type',
             'sales_items.sale_id AS sale_id',
             'sales.created_at AS created_at',
@@ -451,7 +453,7 @@ class ReportController extends Controller
             ->leftJoin('weekdays', 'weekdays.weekid', '=', 'schedule.weekid')
             ->leftJoin('venue', 'venue.vid', '=', 'schedule.vid')
             ->leftJoin('staff', 'staff.sid', '=', 'schedule.sid')
-            ->leftJoin('mother', 'mother.mid', '=', 'sales.customer_id')
+            ->leftJoin('children', 'children.cid', '=', 'sales_items.student_id')
             ->where(['sales.Status' => 'completed', 'sales_items.category' => 'Service'])
             ->whereBetween('sales.created_at', [$date_from, $date_to]);
 
@@ -459,7 +461,7 @@ class ReportController extends Controller
             $data->whereIn('class.classid', $lesson_ids);
         }
 
-        return $data->orderBy('lesson')->groupBy('location', 'lesson', 'day', 'schedule.scheduletimestart', 'schedule.scheduletimeend', 'teacher', 'firstname', 'lastname', 'payment_type', 'sale_id', 'created_at')->get();
+        return $data->orderBy('sale_id')->groupBy('location', 'lesson', 'day', 'schedule.scheduletimestart', 'schedule.scheduletimeend', 'teacher', 'firstname', 'lastname', 'payment_type', 'sale_id', 'created_at')->get();
     }
 
     private function payment_by_lessons($date, $lesson_ids, $term)
@@ -485,7 +487,7 @@ class ReportController extends Controller
         if (count($lesson_ids) > 0) {
             $data->whereIn('class.classid', $lesson_ids);
         }
-
+        
         if($term > 0) {
             $data->where('dateranges.drid', $term);
         }
@@ -525,11 +527,11 @@ class ReportController extends Controller
         $data = Sale_item::select(
             'products.ProductID AS id',
             'products.ProductName AS name',
+            'venue.venuename as location',
             DB::raw('SUM(sales_items.discount) AS discount'),
             DB::raw('SUM(sales_items.VAT) AS VAT'),
             DB::raw('SUM(sales_items.total_price - sales_items.VAT) AS Taxable'),
             DB::raw('SUM(sales_items.total_price) AS price'),
-            'venue.venuename as location'
         )
             ->leftJoin('sales', 'sales.id', '=', 'sales_items.sale_id')
             ->leftJoin('product_options', 'product_options.id', '=', 'sales_items.item_id')
@@ -562,7 +564,6 @@ class ReportController extends Controller
             ->leftJoin('venue', 'venue.vid', '=', 'schedule.vid')
             ->where([
                 'sales.Status' => 'completed',
-               // 'venue.venuename' => 'Springs Souk'
             ])
             ->whereIn('sales_items.category', ['Service', 'Trial'])
             ->groupBy(['id', 'name'])
@@ -630,7 +631,6 @@ class ReportController extends Controller
     private function outside_location($date_from, $date_to)
     {
         $report = Sale_item::select(
-            
             DB::raw("CONCAT(venue.vid,'0000') AS id"),
             DB::raw("CONCAT(venue.venuename,' - Outside Location') AS name"),
             DB::raw('SUM(sales_items.quantity) AS quantity'),
@@ -728,5 +728,46 @@ class ReportController extends Controller
 
 
         return $report;
+    }
+
+    public function get_teacher_reports(Request $request)
+    {
+        $date = $request->dates;
+        $date_from = $date[0] . ' 00:00:00';
+        $date_to = $date[1] . ' 23:59:59';
+        $teacher_ids = $request->teacher_ids;
+
+        $data = Sale_item::select(
+            'class.classname AS title',
+            'venue.venuename as location',
+            'staff.staffname as teacher',
+            DB::raw('CONCAT(weekdays.weekname, " ( ", schedule.scheduletimestart, "-", schedule.scheduletimeend, " ) ") AS name'),
+            DB::raw('SUM(sales_items.quantity) AS quantity'),
+            DB::raw('SUM(sales_items.discount) AS discount'),
+            DB::raw('SUM(sales_items.VAT) AS vat'),
+            DB::raw('SUM( sales_items.total_price - sales_items.VAT) AS taxable'),
+            DB::raw('SUM(sales_items.total_price) AS price')
+        )
+            ->leftJoin('sales', 'sales.id', '=', 'sales_items.sale_id')
+            ->leftJoin('schedule', 'schedule.scheduleid', '=', 'sales_items.item_id')
+            ->leftJoin('class', 'class.classid', '=', 'schedule.classid')
+            ->leftJoin('weekdays', 'weekdays.weekid', '=', 'schedule.weekid')
+            ->leftJoin('venue', 'venue.vid', '=', 'schedule.vid')
+            ->leftJoin('staff', 'staff.sid', '=', 'schedule.sid')
+            ->groupBy(['class.classname', 'weekdays.weekname', 'schedule.scheduletimestart', 'schedule.scheduletimeend','venue.venuename','staff.staffname'])
+            ->where([
+                'sales.Status' => 'completed',
+                'sales_items.category' => 'Service'
+            ])
+            ->whereBetween('sales.created_at', [$date_from, $date_to])
+            ->orderBy('teacher')
+            ->orderBy('location');
+            if(count($teacher_ids) > 0) {
+                $data->whereIn('schedule.sid', $teacher_ids);
+            }
+           
+           $datas = $data->get();
+
+        return $datas;
     }
 }

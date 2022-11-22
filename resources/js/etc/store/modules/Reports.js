@@ -55,6 +55,7 @@ export default {
             other_services: [],
             trials: []
         },
+        teacher_reports: [],
         service_report_filter: {
             dates: [
                 new Date().toISOString().substr(0, 10),
@@ -68,6 +69,13 @@ export default {
                 new Date().toISOString().substr(0, 10)
             ],
             class_ids: []
+        },
+        teacher_report_filter: {
+            dates: [
+                new Date().toISOString().substr(0, 10),
+                new Date().toISOString().substr(0, 10)
+            ],
+            teacher_ids: []
         },
         location_reports: [],
         location_report_filter: {
@@ -121,6 +129,9 @@ export default {
         OTHER_SERVICE_REPORTS: (state, payload) => {
             state.other_service_reports = payload;
         },
+        TEACHER_REPORTS: (state, payload) => {
+            state.teacher_reports = payload;
+        },
         SERVICE_REPORT_FILTER: (state, payload) => {
             state.service_report_filter = payload;
         },
@@ -132,7 +143,10 @@ export default {
         },
         LOCATION_REPORT_FILTER: (state, payload) => {
             state.location_report_filter = payload;
-        }
+        },
+        TEACHER_REPORT_FILTER: (state, payload) => {
+            state.teacher_report_filter = payload;
+        },
     },
 
     actions: {
@@ -259,6 +273,20 @@ export default {
                 .then(result => {
                     context.commit("LOCATION_REPORTS", result.data);
                 });
-        }
+        },
+        TEACHER_REPORTS: (context, payload) => {
+            axios.defaults.headers.common[
+                "Authorization"
+            ] = `Bearer ${User.state.token}`;
+
+            axios
+                .post("/api/POS-TEACHER-REPORT", {
+                    dates: payload.dates,
+                    teacher_ids: payload.teacher_ids
+                })
+                .then(result => {
+                    context.commit("TEACHER_REPORTS", result.data);
+                });
+        },
     }
 };
