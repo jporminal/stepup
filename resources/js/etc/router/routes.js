@@ -68,12 +68,12 @@ const summer_performing_arts_skills = () =>
 const summer_sports_skills = () =>
     import ("../../components/Components/Shops/Camps/Summer/Sport_summer_camp.vue");
 
-// const Winter_camps_multi_skills = () =>
-//     import ("../../components/Components/Shops/Camps/Winter/Winter_multi_skills.vue");
+const Winter_camps_multi_skills = () =>
+    import ("../../components/Components/Shops/Camps/Winter/Winter_multi_skills.vue");
 // const Winter_camps_performing_arts = () =>
 //     import ("../../components/Components/Shops/Camps/Winter/Winter_performing_Arts.vue");
-// const Sport_winter_camp = () =>
-//     import ("../../components/Components/Shops/Camps/Winter/Sport_winter_camp.vue");
+const Sport_winter_camp = () =>
+    import ("../../components/Components/Shops/Camps/Winter/Sport_winter_camp.vue");
     
 // const Midterm_Camp = () =>
 //     import (
@@ -382,21 +382,21 @@ export const routes = [{
         component: summer_sports_skills
     },
 
-    // {
-    //     path: "/camps/winter/multi-skills",
-    //     name: "camps/winter/multi-skills",
-    //     component: Winter_camps_multi_skills
-    // },
+    {
+        path: "/camps/winter/multi-skills",
+        name: "camps/winter/multi-skills",
+        component: Winter_camps_multi_skills
+    },
     // {
     //     path: "/camps/winter/performing-arts",
     //     name: "camps/winter/performing-arts",
     //     component: Winter_camps_performing_arts
     // },
-    // {
-    //     path: "/camps/winter/sports-winter-camp",
-    //     name: "sportsWinterCamp",
-    //     component: Sport_winter_camp
-    // },
+    {
+        path: "/camps/winter/sports-winter-camp",
+        name: "sportsWinterCamp",
+        component: Sport_winter_camp
+    },
 
     // {
     //     path: "/rad-classes",

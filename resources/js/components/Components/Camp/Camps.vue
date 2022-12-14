@@ -78,6 +78,7 @@ export default {
         src: "/img/camps/winter/2022/winter-camp.jpeg",
         lazy: "/img/camps/winter/2022/winter-camp.jpeg",
         alt: "Winter Camp",
+        to: {name: 'camps/winter/multi-skills'},
       },
         {
         title: "Winter Sports Camp",

@@ -513,9 +513,9 @@ class ShopController extends Controller
     {
         $class_ids = $request->class_ids;
          //summer
-         $ids = $class_ids == 'multi_skills' ? [660,661] : ($class_ids == 'performing_arts' ? [608] : [609]);
+         //$ids = $class_ids == 'multi_skills' ? [660,661] : ($class_ids == 'performing_arts' ? [608] : [609]);
         //winter
-        //$ids = $class_ids == 'multi_skills' ? [607] : ($class_ids == 'performing_arts' ? [608] : [609]);
+        $ids = $class_ids == 'multi_skills' ? [769,770,771,772,773,774,775,776,777,778] : ($class_ids == 'performing_arts' ? [772] : [769,770,771,772,773,774,775,776,777,778]);
         // $ids = $class_ids == 'dtrn' ? [437, 438] : ($class_ids == 'sw' ? [439, 440] : ($class_ids == 'rad' ? [444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454] : [443]));
         // $ids = [432, 433];
         return Schedule::select(
@@ -546,11 +546,84 @@ class ShopController extends Controller
     public function workshop($id, Request $request)
     {
         //summer
-        $daily = $id == 660 ? [1139,1139] : ($id == 661 ? [1140, 1140] : ($id == 609 ? [1052, 1061] : ($id == 393 ? [946, 960] : [968, 982])));
+        //$daily = $id == 660 ? [1139,1139] : ($id == 661 ? [1140, 1140] : ($id == 609 ? [1052, 1061] : ($id == 393 ? [946, 960] : [968, 982])));
         //winter
-        //$daily = $id == 607 ? [1026, 1035] : ($id == 608 ? [1039, 1048] : ($id == 609 ? [1052, 1061] : ($id == 393 ? [946, 960] : [968, 982])));
-        $weekly = $id == 607 ? [1036, 1037] : ($id == 608 ? [1049, 1050] : ($id == 609 ? [1062, 1063] : ($id == 393 ? [961, 963] : [983, 985])));
-        $full = $id == 607 ? 1038 : ($id == 608 ? 1051 : ($id == 609 ? 1064 : ($id == 393 ? 964 : 986)));
+        
+        //daily
+        $daily = [];
+        $weekly = [];
+        $full = [];
+        switch ($id) {
+            case 769:
+                $daily = [1489, 1502];
+                $weekly = [1485, 1487];
+                $full = 1488;
+                break;
+            case 770:
+                $daily = [1507, 1520];
+                $weekly = [1503, 1505];
+                $full = 1506;
+                break;
+            case 771:
+                $daily = [1521, 1534];
+                $weekly = [1536, 1538];
+                $full = 1535;
+                break;
+            case 772:
+                $daily = [1539, 1552];
+                $weekly = [1554, 1556];
+                $full = 1553;
+                break;
+            case 773:
+                $daily = [1557, 1570];
+                $weekly = [1572, 1574];
+                $full = 1571;
+                break;
+            case 774:
+                $daily = [1575, 1588];
+                $weekly = [1590, 1592];
+                $full = 1589;
+                break;
+            case 775:
+                $daily = [1593, 1606];
+                $weekly = [1608, 1610];
+                $full = 1607;
+                break;
+            case 776:
+                $daily = [1611, 1624];
+                $weekly = [1626, 1628];
+                $full = 1625;
+                break;
+            case 777:
+                $daily = [1629, 1642];
+                $weekly = [1644, 1646];
+                $full = 1643;
+                break;
+            case 778:
+                $daily = [1647, 1660];
+                $weekly = [1662, 1664];
+                $full = 1661;
+                break;
+        }
+
+
+        // $daily = $id == 769 ? [1489, 1502] :
+        //  ($id == 770 ? [1507, 1520] :
+        //   ($id == 771 ? [1521, 1534] : 
+        //     ($id == 772 ? [1539, 1539] : 
+        //         ($id == 773 ? [1539, 1552] : 
+        //         ($id == 772 ? [1539, 1552] : [])));
+
+        // $weekly = $id == 769 ? [1485, 1487] : 
+        //     ($id == 770 ? [1503, 1505] : 
+        //         ($id == 771 ? [1536, 1538] : 
+        //             ($id == 772 ? [1554, 1556] : [])));
+
+        // $full = $id == 769 ? 1488 : 
+        //     ($id == 770 ? 1506 : 
+        //         ($id == 771 ? 1535 : 
+        //             ($id == 772 ? 1553 : 0)));
+
         switch ($request->stat) {
             case 'Fitness':
                     return $this->winter_workshop_daily($id, [887, 888]);

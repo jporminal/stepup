@@ -14,7 +14,7 @@ export default {
   name: "shop-products",
 
   components: {
-    product_main: () => import("../Components/Shops/Camps/Summer_item"),
+    product_main: () => import("../Components/Shops/Camps/Winter_item"),
     product_details: () => import("../Components/Shops/Camps/Details"),
     snackbar: () => import("../Components/Snackbar/Global_view"),
   },

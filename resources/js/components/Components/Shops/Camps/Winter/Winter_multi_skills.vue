@@ -6,18 +6,30 @@
         <v-col cols="12" md="3">
           <v-card flat>
             <v-img
-              src="/img/camps/winter/2021/multi-skills.jpg"
+              src="/img/camps/winter/2022/winter-camp.jpeg"
               alt="Winter multi-skills camps"
             />
           </v-card>
         </v-col>
         <v-col cols="12" md="7" lg="5">
-          <p class="display-1">Winter Multi-Skills Camp</p>
-          <p class="title">8-30AM - 3:30PM</p>
-          <p class="title">3.5yrs - 11yrs</p>
+          <p class="display-1">Winter Camp 2022</p>
+          <!-- <p class="title">8-30AM - 3:30PM</p>
+          <p class="title">3.5yrs - 11yrs</p> -->
+
           <v-select
-            label="Select Age"
-            :items="$store.state.winter.winter_camps"
+            label="Select Member Type"
+            :items="memberTypes"
+            v-model="selectedMemberType"
+             @change="memberTypeChange"
+            solo
+            disable-lookup
+            return-object
+          />
+
+          <v-select
+            v-if="selectedMemberType != ''"
+            label="Select Camp"
+            :items="filteredCamps"
             v-model="$store.state.winter.winter_workshop_filter.service_id"
             @change="selected_age"
             item-value="id"
@@ -26,6 +38,7 @@
             disable-lookup
             return-object
           />
+
           <v-select
             label="Select Option"
             v-if="$store.state.winter.winter_workshop_filter.service_id.id > 0"
@@ -95,7 +108,9 @@ export default {
   data() {
     return {
       qty: 1,
-      options: ["Daily", "Weekly", "Full Term"],
+      options: ["Daily", "Weekly", "Full Camp"],
+      memberTypes: ['Member', 'Non Member'],
+      selectedMemberType: ''
     };
   },
 
@@ -132,7 +147,21 @@ export default {
         }
         return qty;
     },
-
+    memberTypeChange(){
+      this.$store.commit(
+        "WINTER_WORKSHOP_FILTER",
+        {
+            stat: 'Daily',
+            service_id: {
+                id: 0,
+                product: ""
+            },
+            selected: []
+        }
+      );
+      this.$store.commit("WINTER_WORKSHOP_PRICES", {});
+      this.$store.commit("WINTER_WORKSHOP_SELECTED", []);
+    },
     add_to_cart() {
       this.$store.state.winter.winter_workshop_selected.forEach((product) => {
 
@@ -146,7 +175,7 @@ export default {
             var cart = {
               product_id: this.$store.state.winter.winter_workshop_filter
                 .service_id.id,
-              product_image: "camps-multi-skills.jpg",
+              product_image: "winter-camp-2022.jpeg",
               product_name: this.$store.state.winter.winter_workshop_filter
                 .service_id.product,
               product_category: "Service",
@@ -162,7 +191,7 @@ export default {
                 option_name: `${this.$store.state.winter.winter_workshop_filter.service_id.product} (${product.serviceName})`,
                 // price: product.price,
                 // name: product.serviceName,
-                id: 3408,
+                id: this.$store.state.winter.winter_workshop_filter.service_id.schedule_id,
                 price: price,
                 quantity,
                 discount: 0.0,
@@ -222,6 +251,17 @@ export default {
         ? qty
         : 0;
     },
+    filteredCamps(){
+       if(this.selectedMemberType == 'Member'){
+           return this.$store.state.winter.winter_camps.filter(function(item){
+                  return !item.product.includes("Non");
+           })
+       }else{
+          return this.$store.state.winter.winter_camps.filter(function(item){
+                  return item.product.includes("Non");
+           })
+       }
+    }
   },
 
   metaInfo() {

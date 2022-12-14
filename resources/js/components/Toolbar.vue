@@ -326,11 +326,11 @@ export default {
               text: "Victory Heights",
               tohref: true,
             },
-            // {
-            //   to: "/shop-camps",
-            //   text: "Summer Camps",
-            //   tohref: true,
-            // },
+            {
+              to: "/shop-camps",
+              text: "Winter Camps",
+              tohref: true,
+            },
           ],
         },
       ],

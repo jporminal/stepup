@@ -32,21 +32,21 @@ export default {
       Camps: [
         {
           text: "Multi-Skills",
-          image: "/img/camps/winter/2021/multi-skills.jpg",
+          image: "/img/camps/winter/2022/winter-camp.jpeg",
           alt: "Winter multi-skills camps",
           to: "/camps/winter/multi-skills",
         },
-        {
-          text: "Performing Arts",
-          image: "/img/camps/winter/2021/performing-arts.jpg",
-          alt: "Performing Arts",
-          to: "/camps/winter/performing-arts",
-        },
+        // {
+        //   text: "Performing Arts",
+        //   image: "/img/camps/winter/2021/performing-arts.jpg",
+        //   alt: "Performing Arts",
+        //   to: "/camps/winter/performing-arts",
+        // },
         {
           text: "Sports Winter Camp",
-          image: "/img/camps/winter/2021/sports-winter-camps.jpg",
+          image: "/img/camps/winter/2022/winter-sports-camp.jpeg",
           alt: "Sports Winter Camp",
-          to: "/camps/winter/sports-winter-camp",
+          to: "",
         },
       ],
     };
