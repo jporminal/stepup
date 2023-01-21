@@ -18,12 +18,16 @@ mix.webpackConfig({
         chunkFilename: "jsv2/[name].[chunkhash].js"
     },
     plugins: [
-        new LiveReloadPlugin(),
+        // new LiveReloadPlugin(),
         new webpack.optimize.LimitChunkCountPlugin({
             maxChunks: 10
         }),
     ]
 });
+
+mix.browserSync({
+    proxy: "http://127.0.0.1:8083/",
+})
 
 mix.js("resources/js/app.js", "public/js")
     .sass("resources/sass/app.scss", "public/css");
@@ -32,4 +36,3 @@ if (mix.inProduction()) {
     mix.version();
 }
 
-// mix.browserSync("http://127.0.0.1:8000");

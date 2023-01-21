@@ -183,34 +183,7 @@ export default {
       this.$store.commit("RECEIPT_OPEN_VIEWER", true);
     },
     import_to_xero(e) {
-      this.$store.dispatch("RECEIPT", e)
-      .then((result) => {
-          this.$store.dispatch('IMPORT_TO_XERO', {
-              token: this.$store.state.Xero.xero_token,
-                tenant_id: this.$store.state.Xero.xero_tenants,
-              xero: result.data
-          })
-          .then((result) => {
-              var snackbar = {
-                    snackbar: true,
-                    vertical: false,
-                    timeout: 2000,
-                    color: "blue ligten-2",
-                    dark: true,
-                    top: true,
-                    bottom: false,
-                    centered: true,
-                    left: false,
-                    right: false,
-                    text: "Successfully imported",
-                };
-                this.$store.commit("SNACKBAR", snackbar);
-                this.pagination();
-          }).catch((err) => {
-              console.log(err)
-          });
-      }).catch((err) => {
-          var snackbar = {
+      var snackbar = {
                     snackbar: true,
                     vertical: false,
                     timeout: 2000,
@@ -223,7 +196,27 @@ export default {
                     right: false,
                     text: "Xero token already expired bro!",
                 };
+
+      this.$store.dispatch("RECEIPT", e)
+      .then((result) => {
+          this.$store.dispatch('IMPORT_TO_XERO', {
+              token: this.$store.state.Xero.xero_token,
+                tenant_id: this.$store.state.Xero.xero_tenants,
+              xero: result.data
+          })
+          .then((result) => {
+                snackbar.color = "blue ligten-2";
+                snackbar.text = "Successfully imported";
                 this.$store.commit("SNACKBAR", snackbar);
+                this.pagination();
+              
+          }).catch((err) => {
+                snackbar.text = err.response.data.message;
+                this.$store.commit("SNACKBAR", snackbar);
+            
+          });
+      }).catch((err) => {
+            this.$store.commit("SNACKBAR", snackbar);
       })
     },
     update_receipt(e) {

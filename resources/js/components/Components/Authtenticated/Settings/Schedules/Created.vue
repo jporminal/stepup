@@ -60,7 +60,6 @@
                     v-model="$store.state.Schedules.schedule.scheduletimestart"
                     label="Time Start"
                     prepend-icon="mdi-clock-time-four-outline"
-                    readonly
                     v-bind="attrs"
                     v-on="on"
                   ></v-text-field>
@@ -97,7 +96,6 @@
                     v-model="$store.state.Schedules.schedule.scheduletimeend"
                     label="Time End"
                     prepend-icon="mdi-clock-time-four-outline"
-                    readonly
                     v-bind="attrs"
                     v-on="on"
                   ></v-text-field>
@@ -261,7 +259,7 @@ export default {
             "ENROLLMENT_SCHEDULE",
             this.$store.state.Enrollments.enrollment_schedule_filter
           );
-          this.close();
+          //this.close();
         })
         .catch((err) => {
           var snackbar = {

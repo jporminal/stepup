@@ -16,8 +16,8 @@
         </v-row>
       </v-toolbar>
       <p class="text-h6 text-center mt-2">
-        Summer Camp <br />
-        (11<sup>th</sup> July – 26<sup>th</sup> August 2022)
+        Midterm Camp <br />
+        (13<sup>th</sup> Feb – 17<sup>th</sup> Feb 2023)
       </p>
       <!-- <p class="text-h6 text-center mt-2">
         Winter Wonderland Multi-Skills Camp <br />

@@ -72,22 +72,22 @@ export default {
 
     camps: [
        {
-        title: "Winter Camp",
-        age: "5-10yrs, 3-11yrs, 7-14yrs",
-        date: "12<sup>th</sup> Dec - 30<sup>th</sup> Dec 2022",
-        src: "/img/camps/winter/2022/winter-camp.jpeg",
-        lazy: "/img/camps/winter/2022/winter-camp.jpeg",
-        alt: "Winter Camp",
-        to: {name: 'camps/winter/multi-skills'},
+        title: "Midterm Camp",
+        age: "3-10yrs, 5-9yrs",
+        date: "13<sup>th</sup> Feb - 17<sup>th</sup> Feb 2023",
+        src: "/img/camps/Midterm/2023/multi-skills-2023.jpeg",
+        lazy: "/img/camps/Midterm/2023/multi-skills-2023.jpeg",
+        alt: "Midterm Camp",
+        to: {name: 'midterm-camps'},
       },
-        {
-        title: "Winter Sports Camp",
-        age: "6-12yrs",
-        date: "12<sup>th</sup> Dec - 30<sup>th</sup> Dec 2022",
-        src: "/img/camps/winter/2022/winter-sports-camp.jpeg",
-        lazy: "/img/camps/winter/2022/winter-sports-camp.jpeg",
-        alt: "Winter Sports Camp",
-      },
+      //   {
+      //   title: "Winter Sports Camp",
+      //   age: "6-12yrs",
+      //   date: "12<sup>th</sup> Dec - 30<sup>th</sup> Dec 2022",
+      //   src: "/img/camps/winter/2022/winter-sports-camp.jpeg",
+      //   lazy: "/img/camps/winter/2022/winter-sports-camp.jpeg",
+      //   alt: "Winter Sports Camp",
+      // },
       // {
       //   title: "Mid-term Multi-Skills Camp",
       //   age: "3-10yrs (Motor City), 5-10yrs (Spring Souk)",

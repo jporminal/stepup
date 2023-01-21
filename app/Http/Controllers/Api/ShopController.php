@@ -223,6 +223,7 @@ class ShopController extends Controller
                 'class.classTypes' => 'Child'
             ])
             ->whereNotIn('class.classid', [135, 136, 137, 138, 51, 360, 359])
+            ->where('class.classname', 'not like',  "%company%")
             ->orderBy('product')
             ->distinct('class.classid', 'class.classname');
 
@@ -515,7 +516,9 @@ class ShopController extends Controller
          //summer
          //$ids = $class_ids == 'multi_skills' ? [660,661] : ($class_ids == 'performing_arts' ? [608] : [609]);
         //winter
-        $ids = $class_ids == 'multi_skills' ? [769,770,771,772,773,774,775,776,777,778] : ($class_ids == 'performing_arts' ? [772] : [769,770,771,772,773,774,775,776,777,778]);
+        //$ids = $class_ids == 'multi_skills' ? [769,770,771,772,773,774,775,776,777,778] : ($class_ids == 'performing_arts' ? [772] : [769,770,771,772,773,774,775,776,777,778]);
+        //midterm
+        $ids = $class_ids == 'multi_skills' ? [751,752,753,754,818,819] : [];
         // $ids = $class_ids == 'dtrn' ? [437, 438] : ($class_ids == 'sw' ? [439, 440] : ($class_ids == 'rad' ? [444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454] : [443]));
         // $ids = [432, 433];
         return Schedule::select(

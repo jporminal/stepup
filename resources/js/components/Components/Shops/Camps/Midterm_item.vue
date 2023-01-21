@@ -32,16 +32,11 @@ export default {
       Camps: [
         {
           text: "Midterm Camp",
-          image: "/img/camps/Midterm/2021/rainforest-adventure.jpg",
+          image: "/img/camps/Midterm/2023/multi-skills-2023.jpeg",
           alt: "Midterm Camp",
           to: "midterm-camps",
         },
-        // {
-        //   text: "Winter Workshop",
-        //   image: "/img/camps/winter/2020/winter-workshop.jpg",
-        //   alt: "Winter Workshop Camps",
-        //   to: "winter-workshop",
-        // },
+ 
       ],
     };
   },

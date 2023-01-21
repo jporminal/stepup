@@ -18,6 +18,11 @@
                 <v-btn class="success" @click="load_invoices">
                     Load Invoices
                 </v-btn>
+
+                <div class="mt-5 red--text" v-if="!$store.state.Xero.xero_token">No Xero Token. Login then press Get token.</div>
+
+
+
             </v-card-text>
             <v-card-text>
                 <my_receipts />
@@ -84,7 +89,7 @@ export default {
                     centered: true,
                     left: false,
                     right: false,
-                    text: err.response.data,
+                    text: err.response.data.message,
                 };
                 this.$store.commit("SNACKBAR", snackbar);
             });
@@ -122,7 +127,7 @@ export default {
                     centered: true,
                     left: false,
                     right: false,
-                    text: err.response.data,
+                    text: err.response.data.message,
                 };
                 this.$store.commit("SNACKBAR", snackbar);
             });

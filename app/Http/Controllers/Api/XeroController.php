@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Sale;
 use DateTime;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use XeroPHP\Models\Accounting\Invoice;
@@ -12,6 +13,10 @@ use XeroPHP\Models\Accounting\Payment;
 use XeroPHP\Models\Accounting\Account;
 use XeroPHP\Models\Accounting\LineItem;
 use XeroPHP\Models\Accounting\Contact;
+use XeroPHP\Remote\Exception\BadRequestException;
+use XeroPHP\Remote\Exception\ForbiddenException;
+use XeroPHP\Remote\Exception\InternalErrorException;
+use XeroPHP\Remote\Exception\UnauthorizedException;
 
 class XeroController extends Controller
 {
@@ -23,7 +28,8 @@ class XeroController extends Controller
     {
         $client_id = '47BAEF15304E4E4BBB0766CD7755710F'; // 47BAEF15304E4E4BBB0766CD7755710F
         $client_secret = 'tDlnifK8_SsrDOK8sFqXKIVpvbxC3uv2D0M13r1lqXMCe_6G'; // tDlnifK8_SsrDOK8sFqXKIVpvbxC3uv2D0M13r1lqXMCe_6G
-        $redirect_uri = 'https://stepup.ae/sams-xero'; // https://stepup.ae/xero_auth
+        //$redirect_uri = 'https://stepup.ae/sams-xero'; // https://stepup.ae/xero_auth
+        $redirect_uri = 'http://127.0.0.1:8083/sams-xero';
 
         $this->provider = new \Calcinai\OAuth2\Client\Provider\Xero([
             'clientId'          => $client_id,
@@ -84,12 +90,23 @@ class XeroController extends Controller
 
         $instance = $this->my_instance($token, $tenant_id);
 
-        $invoice =  $this->invoice($xero, $instance);
+        $result =  $this->invoice($xero, $instance);
 
-        if ($invoice) {
+        if ($result['success'] == true) {
+            $invoice = $result['invoice'];
             $this->update_invoice($xero['transaction']['id'], $invoice->InvoiceID);
-
             $this->update_accounts($invoice->InvoiceID, $instance, $invoice->InvoiceNumber, $invoice->Total, $xero['transaction']['id']);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Invoice imported successfully',
+                'data' => $invoice
+            ], 200);
+        }else{
+             return response()->json([
+                'success' => false,
+                'message' => $result['error']
+            ], 500);
         }
 
         // InvoiceID, Total, InvoiceNumber
@@ -132,6 +149,9 @@ class XeroController extends Controller
 
     private function invoice($item, $instance)
     {
+        try{
+
+      
         $date_today = new DateTime();
         $invoice = new Invoice($instance);
         $line_item = new LineItem($instance);
@@ -162,9 +182,82 @@ class XeroController extends Controller
             $invoice->addLineItem($line_item_2);
         }
 
+        foreach ($item['Other_services'] as $services) {
+            $line_item_2 = clone $line_item;
+            $price_exlc = $services['unit_price'] / 1.05;
+            $total = $services['unit_price'] * $services['quantity'];
+            $discount_percentage = ($services['discount'] / $total) * 100;
+
+            $line_item_2->setDescription($services['item']);
+            $line_item_2->setQuantity($services['quantity']);
+            $line_item_2->setUnitAmount($price_exlc);
+            $line_item_2->setAccountCode($services['xero']);
+            $line_item_2->setTaxType('TAX002');
+            $line_item_2->setDiscountRate($discount_percentage);
+
+            $invoice->addLineItem($line_item_2);
+        }
+
+        foreach ($item['Products'] as $services) {
+            $line_item_2 = clone $line_item;
+            $price_exlc = $services['unit_price'] / 1.05;
+            $total = $services['unit_price'] * $services['quantity'];
+            $discount_percentage = ($services['discount'] / $total) * 100;
+
+            $line_item_2->setDescription($services['item']);
+            $line_item_2->setQuantity($services['quantity']);
+            $line_item_2->setUnitAmount($price_exlc);
+            $line_item_2->setAccountCode($services['xero']);
+            $line_item_2->setTaxType('TAX002');
+            $line_item_2->setDiscountRate($discount_percentage);
+
+            $invoice->addLineItem($line_item_2);
+        }
+
         $invoice->save();
 
-        return $invoice;
+        return [
+            'success' => true,
+            'invoice' => $invoice
+        ];
+
+    }
+    catch (UnauthorizedException $exception) {
+        report($exception);
+        return [
+            "error" => "Invalid authorization credentials.",
+            "success" => false,
+        ];
+        // handle not found error
+    } catch (InternalErrorException $exception) {
+        report($exception);
+        return [
+            "error" => "An unhandled error with the Xero API. Contact the Xero API team if problems persist",
+            "success" => false,
+        ];
+    }
+    catch(ForbiddenException $exception){
+        report($exception);
+        return [
+            "error" => "User doesn't have permission to access the resource. Please login and get token",
+            "success" => false,
+        ];
+    }
+    catch (BadRequestException $exception){
+        report($exception);
+        return [
+            "error" => $exception->getMessage(),
+            "success" => false,
+        ];
+    }
+    catch(Exception $e){
+        report($e);
+        return [
+            "error" => "Internal error. Please contact IT.",
+            "success" => false,
+        ];
+    }
+
     }
 
     private function ref_token($token)

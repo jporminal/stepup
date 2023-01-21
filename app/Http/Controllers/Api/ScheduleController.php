@@ -165,6 +165,7 @@ class ScheduleController extends Controller
             'dateranges.daterangefrom AS date_start',
             'dateranges.daterangeto AS date_end',
             'weekdays.weekcount AS week_id',
+            'schedule.scheduleduration AS duration',
             DB::raw('COUNT(enroll.cid) AS total_students'),
             DB::raw('false AS selected')
         )
@@ -200,6 +201,7 @@ class ScheduleController extends Controller
             'dateranges.daterangefrom AS date_start',
             'dateranges.daterangeto AS date_end',
             'weekdays.weekcount AS week_id',
+            'schedule.scheduleduration AS duration',
             DB::raw('COUNT(enroll.cid) AS total_students'),
             DB::raw('false AS selected')
         )
@@ -223,7 +225,7 @@ class ScheduleController extends Controller
 
     private function get_settings_details()
     {
-        $lessons = Lesson::select('classid AS classid', 'classname AS classname')->whereNotIn('classid', [135, 136, 137, 138])->get();
+        $lessons = Lesson::select('classid AS classid', 'classname AS classname')->where('isVisible', 1)->whereNotIn('classid', [135, 136, 137, 138])->get();
         $others = Other_product::select('ProductID AS classid', 'ProductName AS classname')->get();
         $merged = collect($lessons)->merge($others);
 

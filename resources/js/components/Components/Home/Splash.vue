@@ -8,7 +8,7 @@
         <!-- width 1280 -->
       <v-container>
         <v-row align="center" justify="center">
-          <v-col cols="6" md="6" v-for="(img, index) in imgs" :key="index">
+          <v-col cols="8" md="8" v-for="(img, index) in imgs" :key="index">
             <v-img
               :src="img.src"
               :alt="img.alt"
@@ -59,13 +59,13 @@ export default {
     return {
       imgs: [
         {
-          src: "/img/splash/winter-camp.jpeg",
-          alt: "Winter Camp",
+          src: "/img/camps/Midterm/2023/multi-skills-2023.jpeg",
+          alt: "Mid-term Camp 2023",
         },
-         {
-          src: "/img/splash/winter-sports-camp.jpeg",
-          alt: "Winter Camp",
-        },
+        //  {
+        //   src: "/img/splash/winter-sports-camp.jpeg",
+        //   alt: "Winter Camp",
+        // },
         // {
         //   src: "/img/camps/Spring/2022/hr/multi-skill.jpg",
         //   lazy: "/img/camps/Spring/2022/lr/multi-skill.jpg",

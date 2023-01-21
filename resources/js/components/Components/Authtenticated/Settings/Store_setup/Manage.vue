@@ -110,11 +110,20 @@
                     </v-col>
                     <v-col
                         cols="12"
-                        md="6"
+                        md="5"
                     >
                         <v-text-field
                             label="Akoya Store Title"
                             v-model="$store.state.Date_ranges.store_setup.akoya_lesson_text.value"
+                        />
+                    </v-col>
+                               <v-col
+                        cols="12"
+                        md="1"
+                    >
+                        <v-checkbox
+                            label="EBD"
+                            v-model="$store.state.Date_ranges.store_setup.springsouk_lesson_ebd.value"
                         />
                     </v-col>
                     <v-col

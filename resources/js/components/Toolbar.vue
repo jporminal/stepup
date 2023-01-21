@@ -328,7 +328,7 @@ export default {
             },
             {
               to: "/shop-camps",
-              text: "Winter Camps",
+              text: "Midterm Camps",
               tohref: true,
             },
           ],

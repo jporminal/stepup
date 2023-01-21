@@ -358,9 +358,12 @@ export default {
                 // {name: 'VINCENT<br>WEB DEVELOPER', position: 'WEB DEVELOPER', image: '/img/headshots/Vinz.jpg'},
                
                 {name: 'KRISHA<br>DIGITAL MARKETING', position: 'DIGITAL MARKETING', image: '/img/headshots/Krisha.jpg'},
+                {name: 'ANJANA<br>PERSONAL ASSISTANT', position: 'PERSONAL ASSISTAN', image: '/img/headshots/Anjana.jpeg'},
                 {name: 'JOEL<br>FRONT OF HOUSE', position: 'FRONT OF HOUSE', image: '/img/headshots/Joel.jpg'},
                 {name: 'MARY<br>FRONT OF HOUSE', position: 'FRONT OF HOUSE', image: '/img/headshots/Mary.png'},
+                {name: 'SUCHITHRA<br>FRONT OF HOUSE', position: 'FRONT OF HOUSE', image: '/img/headshots/Suchithra.jpeg'},
                 {name: 'LIEZEL<br>HOUSE KEEPING', position: 'PA', image: '/img/headshots/Liezel.jpg'},
+                {name: 'JACQUILINE<br>HOUSE KEEPING', position: 'PA', image: '/img/headshots/Jacquiline.jpeg'},
             ]
         }
     },

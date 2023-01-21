@@ -28,6 +28,7 @@ export default {
             arcadia_lesson_text: { id: 0, value: '' },
             urdang_lesson_text: { id: 0, value: '' },
             motorcity_lesson_ebd: { id: 0, value: 0 },
+            springsouk_lesson_ebd:  { id: 0, value: 0 },
         }
     },
 

@@ -26,7 +26,9 @@
             >
             </v-select>
             <template v-if="Object.keys(option).length > 4">
-              <p>Price: {{ option.price | currency }}</p>
+              <p v-if="!$store.state.Date_ranges.store_setup.springsouk_lesson_ebd.value || in_array(option.product_id, [3777, 3838, 3881, 3778, 3839, 3882, 3950, 3951, 3952, 3953])">Price: {{ option.price | currency }}</p>
+              <p v-if="$store.state.Date_ranges.store_setup.springsouk_lesson_ebd.value && !in_array(option.product_id, [3777, 3838, 3881, 3778, 3839, 3882, 3950, 3951, 3952, 3953])">Price: {{ ebd(option.price) | currency }} <sup style="color: red" v-if="option.price > 0"> <del> {{ option.price | currency }} </del> 10% off EBD</sup></p>
+              <!-- <p>Price: {{ option.price | currency }}</p> -->
               <p>Available: {{ option.max_limit > 0 ? option.max_limit : 'FULL' }}</p>
               <p>Number of weeks: {{ option.max_qty }}</p>
             </template>
@@ -68,6 +70,19 @@ export default {
   },
 
   methods: {
+    in_array(value, arr) {
+      var status = false;
+
+      for (var i = 0; i < arr.length; i++) {
+        var name = arr[i];
+        if (name == value) {
+          status = true;
+          break;
+        }
+      }
+
+      return status;
+    },
     selected_option(e) {
       e.max_qty > 0 ? (e.order_quantity = 1) : (e.order_quantity = 0);
       this.option = e;
@@ -75,6 +90,9 @@ export default {
     close() {
       this.$store.commit("AKOYA", {});
       this.$store.commit("AKOYA_OPEN", false);
+    },
+    ebd(price) {
+        return price - (price * .1);
     },
     add_cart() {
       var price = this.option.price;
@@ -87,6 +105,14 @@ export default {
       var total_tax = total_price_excl * tax;
       var discount_percent = 0;
       var discount = 0;
+
+      if(this.$store.state.Date_ranges.store_setup.springsouk_lesson_ebd.value && !this.in_array(this.option.product_id, [3777, 3838, 3881, 3778, 3839, 3882, 3950, 3951, 3952, 3953])) {
+          discount = total_price - this.ebd(total_price);
+          discount_percent = 10;
+          total_price_excl = this.ebd(total_price_excl);
+          total_price = this.ebd(total_price);
+          total_tax = this.ebd(total_tax);
+      }
 
       var cart = {
         notes: "",

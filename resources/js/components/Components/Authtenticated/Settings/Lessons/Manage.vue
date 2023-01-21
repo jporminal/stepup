@@ -29,7 +29,7 @@
             <v-text-field
               label="Xero"
               v-model="$store.state.Lessons.lesson.xero"
-              type="number"
+              type="text"
             />
           </v-col>
           <v-col cols="12" md="6">

@@ -26,7 +26,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('number:week')
         ->timezone('Asia/Dubai')
-        ->dailyAt('21:00');
+        ->everyMinute();
+        //->dailyAt('21:00');
     }
 
     /**

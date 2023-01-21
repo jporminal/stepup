@@ -6,16 +6,16 @@
         <v-col cols="12" md="3">
           <v-card>
             <v-img
-              src="/img/camps/Midterm/2021/rainforest-adventure.jpg"
-              alt="Rainforest Adventure"
+              src="/img/camps/Midterm/2023/multi-skills-2023.jpeg"
+              alt="Mid-term Camp 2023"
             />
           </v-card>
         </v-col>
         <v-col cols="12" md="5">
-          <p class="display-1">Rainforest Adventure</p>
-          <p class="title">8:30AM - 2:00PM</p>
+          <p class="display-1">Midterm Camp</p>
+          <!-- <p class="title">8:30AM - 2:00PM</p>
           <p class="title">3.5yrs - 5yrs</p>
-          <p class="title">6yrs - 10yrs</p>
+          <p class="title">6yrs - 10yrs</p> -->
           <v-autocomplete
             label="Select Age"
             :items="$store.state.winter.winter_camps"
@@ -153,7 +153,7 @@ export default {
       const cart = {
         product_id: this.$store.state.winter.winter_multi_skill_filter
           .service_id.id,
-        product_image: "rainforest-adventure.jpg",
+        product_image: "multi-skills-2023.jpeg",
         product_name: this.$store.state.winter.winter_multi_skill_filter
           .service_id.product,
         product_category: "Service",

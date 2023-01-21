@@ -52,7 +52,7 @@ const Shop_arcadia = () =>
     import ("../../components/Views/Shop_arcadia.vue");
     
 const Shop_camps = () =>
-    import ("../../components/Views/Shop_camps.vue");
+    import ("../../components/Views/Shop_camp_midterm.vue");
     
 const spring_camps_multi_skills = () =>
     import ("../../components/Components/Shops/Camps/Spring/Multi_skills.vue");
@@ -75,10 +75,10 @@ const Winter_camps_multi_skills = () =>
 const Sport_winter_camp = () =>
     import ("../../components/Components/Shops/Camps/Winter/Sport_winter_camp.vue");
     
-// const Midterm_Camp = () =>
-//     import (
-//         "../../components/Components/Shops/Camps/Midterm/Halloween_2021.vue"
-//     );
+const Midterm_Camp = () =>
+    import (
+        "../../components/Components/Shops/Camps/Midterm/Midterm_camp.vue"
+    );
 
 const Sports_day = () =>
     import (
@@ -338,11 +338,11 @@ export const routes = [{
         component: Shop_arcadia
     },
 
-    // {
-    //     path: "/midterm-camps",
-    //     name: "midterm-camps",
-    //     component: Midterm_Camp
-    // },
+    {
+        path: "/midterm-camps",
+        name: "midterm-camps",
+        component: Midterm_Camp
+    },
 
     {
         path: "/sports-day",

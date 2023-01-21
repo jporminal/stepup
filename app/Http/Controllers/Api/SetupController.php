@@ -58,7 +58,8 @@ class SetupController extends Controller
             'akoya_lesson_text' => $this->setup_store('_SHOP_AKOYA_TEXT'),
             'arcadia_lesson_text' => $this->setup_store('_SHOP_ARCADIA_TEXT'),
             'urdang_lesson_text' => $this->setup_store('_SHOP_URDANG_TEXT'),
-            'motorcity_lesson_ebd' => $this->setup_store('_SHOP_MOTOR_CITY_EBD')
+            'motorcity_lesson_ebd' => $this->setup_store('_SHOP_MOTOR_CITY_EBD'),
+            'springsouk_lesson_ebd' => $this->setup_store('_SHOP_SPRING_SOUK_EBD')
         ], 200, [], JSON_NUMERIC_CHECK);
     }
 
