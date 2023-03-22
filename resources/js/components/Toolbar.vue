@@ -327,8 +327,13 @@ export default {
               tohref: true,
             },
             {
+              to: "/shop-svs",
+              text: "South View School",
+              tohref: true,
+            },
+            {
               to: "/shop-camps",
-              text: "Midterm Camps",
+              text: "Spring Camps",
               tohref: true,
             },
           ],

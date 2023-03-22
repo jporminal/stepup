@@ -29,6 +29,9 @@ export default {
             urdang_lesson_text: { id: 0, value: '' },
             motorcity_lesson_ebd: { id: 0, value: 0 },
             springsouk_lesson_ebd:  { id: 0, value: 0 },
+            svs_lessons: { id: 0, value: 0 },
+            svs_lesson_text: { id: 0, value: '' },
+            svs_lesson_ebd: { id: 0, value: 0 },
         }
     },
 

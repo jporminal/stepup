@@ -29,6 +29,7 @@ import Receipts from "./etc/store/modules/Receipt";
 import Xero from "./etc/store/modules/Xero";
 import Akoya from "./etc/store/modules/Akoya";
 import Arcadia from "./etc/store/modules/Arcadia";
+import Svs from "./etc/store/modules/Svs";
 
 Vue.use(Vuex);
 
@@ -59,7 +60,8 @@ const opts = {
         Emails,
         winter,
         Receipts,
-        Xero
+        Xero,
+        Svs
     },
 
     state,

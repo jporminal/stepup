@@ -90,7 +90,7 @@ class ScheduleController extends Controller
         $datas = Schedule::select(
             'class.classname AS name',
             DB::raw('CONCAT(attendance.attendancedate, " ", schedule.scheduletimestart) AS start'),
-            DB::raw('CONCAT(attendance.attendancedate, " ", schedule.scheduletimeend) AS end'),
+            DB::raw('CONCAT(attendance.attendancedate, " ", schedule.scheduletimeend) AS end2'),
             'schedule.schedulestudio AS studio',
             'schedule.scheduleid AS schedule_id'
         )

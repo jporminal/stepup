@@ -59,8 +59,8 @@ export default {
     return {
       imgs: [
         {
-          src: "/img/camps/Midterm/2023/multi-skills-2023.jpeg",
-          alt: "Mid-term Camp 2023",
+          src: "/img/camps/Spring/2023/spring-camp-2023.jpeg",
+          alt: "Spring Camp 2023",
         },
         //  {
         //   src: "/img/splash/winter-sports-camp.jpeg",

@@ -16,8 +16,8 @@
         </v-row>
       </v-toolbar>
       <p class="text-h6 text-center mt-2">
-        Midterm Camp <br />
-        (13<sup>th</sup> Feb – 17<sup>th</sup> Feb 2023)
+        Spring Camp <br />
+        (March 27 to April 7)
       </p>
       <!-- <p class="text-h6 text-center mt-2">
         Winter Wonderland Multi-Skills Camp <br />

@@ -112,6 +112,7 @@ class FormController extends Controller
     {
         if (auth('api')->user()->Role == 'User') {
             $id = User_meta::where(['user_id' => auth('api')->user()->id, 'meta_key' => '_parent_id'])->first();
+            dd(auth('api')->user()->id);
             $data['mom'] = Mother::find($id->meta_value);
             $data['dad'] = Father::where('mid', $id->meta_value)->first();
             $data['children'] = Child::where('mid', $id->meta_value)->paginate($request->paginate);

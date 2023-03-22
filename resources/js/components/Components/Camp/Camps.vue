@@ -72,13 +72,13 @@ export default {
 
     camps: [
        {
-        title: "Midterm Camp",
-        age: "3-10yrs, 5-9yrs",
-        date: "13<sup>th</sup> Feb - 17<sup>th</sup> Feb 2023",
-        src: "/img/camps/Midterm/2023/multi-skills-2023.jpeg",
-        lazy: "/img/camps/Midterm/2023/multi-skills-2023.jpeg",
-        alt: "Midterm Camp",
-        to: {name: 'midterm-camps'},
+        title: "Spring Camp",
+        age: "3-5yrs, 5-9yrs, 6-10yrs",
+        date: "March 27 to April 7",
+        src: "/img/camps/Spring/2023/spring-camp-2023.jpeg",
+        lazy: "/img/camps/Spring/2023/spring-camp-2023.jpeg",
+        alt: "Spring Camp",
+        to: {name: 'spring-camps'},
       },
       //   {
       //   title: "Winter Sports Camp",
