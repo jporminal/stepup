@@ -50,6 +50,8 @@ const Shop_akoyas = () =>
     import ("../../components/Views/Shop_akoya.vue");
 const Shop_arcadia = () =>
     import ("../../components/Views/Shop_arcadia.vue");
+const Shop_svs = () =>
+    import ("../../components/Views/Shop_svs.vue");
     
 const Shop_camps = () =>
     import ("../../components/Views/Shop_camp_midterm.vue");
@@ -339,11 +341,21 @@ export const routes = [{
     },
 
     {
+        path: "/shop-svs",
+        name: "south-view-school",
+        component: Shop_svs
+    },
+
+    {
         path: "/midterm-camps",
         name: "midterm-camps",
         component: Midterm_Camp
     },
-
+    {
+        path: "/spring-camps",
+        name: "spring-camps",
+        component: Midterm_Camp
+    },
     {
         path: "/sports-day",
         name: "sports-day",

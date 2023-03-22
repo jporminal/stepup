@@ -31,10 +31,10 @@ export default {
     return {
       Camps: [
         {
-          text: "Midterm Camp",
-          image: "/img/camps/Midterm/2023/multi-skills-2023.jpeg",
-          alt: "Midterm Camp",
-          to: "midterm-camps",
+          text: "Spring Camp",
+          image: "/img/camps/Spring/2023/spring-camp-2023.jpeg",
+          alt: "Spring Camp",
+          to: "spring-camps",
         },
  
       ],

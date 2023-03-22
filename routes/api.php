@@ -42,6 +42,11 @@ Route::get('MOTOR-CITY', 'Api\\ShopController@check_motor_city');
 Route::get('MOTOR-CITY-FILTER/{id}', 'Api\\ShopController@motor_city_filter');
 Route::get('MOTOR-CITY/{id}', 'Api\\ShopController@motor_city');
 
+// svs
+Route::get('SVS', 'Api\\ShopController@check_svs');
+Route::get('SVS-FILTER/{id}', 'Api\\ShopController@svs_filter');
+Route::get('SVS/{id}', 'Api\\ShopController@svs');
+
 // adult classes 09022021
 Route::post('MOTOR-CITY-ADULT-CLASSES', 'Api\\ShopController@check_adult_motor_city');
 Route::post('MOTOR-CITY-ADULT', 'Api\\ShopController@adult_motor_city');

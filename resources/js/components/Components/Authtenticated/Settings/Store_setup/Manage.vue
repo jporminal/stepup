@@ -168,6 +168,37 @@
                             v-model="$store.state.Date_ranges.store_setup.urdang_lesson_text.value"
                         />
                     </v-col>
+
+                    <v-col
+                        cols="12"
+                        md="6"
+                    >
+                        <v-autocomplete
+                            :items="$store.state.Schedules.setting_details.date_ranges"
+                            item-text="daterangename"
+                            item-value="drid"
+                            v-model="$store.state.Date_ranges.store_setup.svs_lessons.value"
+                            label="SVS Store"
+                        />
+                    </v-col>
+                    <v-col
+                        cols="12"
+                        md="5"
+                    >
+                        <v-text-field
+                            label="SVS Store Title"
+                            v-model="$store.state.Date_ranges.store_setup.svs_lesson_text.value"
+                        />
+                    </v-col>
+                    <v-col
+                        cols="12"
+                        md="1"
+                    >
+                        <v-checkbox
+                            label="EBD"
+                            v-model="$store.state.Date_ranges.store_setup.svs_lesson_ebd.value"
+                        />
+                    </v-col>
                 </v-row>
             </v-card-text>
             <v-card-actions>

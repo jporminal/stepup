@@ -50,8 +50,8 @@
           <v-calendar
             ref="calendar"
             color="primary"
-            event-overlap-mode="stack"
-            event-overlap-threshold="5"
+            event-overlap-mode="column"
+            event-overlap-threshold="60"
             :now="today"
             v-model="today"
             :events="events"
@@ -59,7 +59,7 @@
             :interval-minutes="15"
             :first-interval="31"
             :interval-count="55"
-            :type="type"
+            type="day"
             @change="updateRange"
             @click:event="showEvent"
           ></v-calendar>

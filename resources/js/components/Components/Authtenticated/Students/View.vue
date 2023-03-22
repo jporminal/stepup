@@ -7,7 +7,7 @@
         <v-text-field
           class="mt-6"
           label="Filter student"
-          @input="filter_student"
+          @input="debouncedSearch"
           solo
         >
         </v-text-field>
@@ -26,11 +26,18 @@
         }"
         :mobile-breakpoint="200"
       >
+        <template v-slot:item.cid="{ item }">
+          <p>{{ item.cid}}</p>
+        </template>
+   
         <template v-slot:item.firstname="{ item }">
           <p>{{ item.firstname | toUpper }}</p>
         </template>
         <template v-slot:item.lastname="{ item }">
           <p>{{ item.lastname | toUpper }}</p>
+        </template>
+          <template v-slot:item.parentfullname="{ item }">
+          <p>{{ item.motherfirstname}} {{ item.motherlastname}}</p>
         </template>
         <template v-slot:item.dob="{ item }">
           <p>{{ item.dateofbirth | date }}</p>
@@ -88,6 +95,7 @@
   </div>
 </template>
 <script>
+import debounce from 'lodash/debounce';
 export default {
   name: "student-view",
 
@@ -102,6 +110,13 @@ export default {
       options: {},
       headers: [
         {
+          text: "ID",
+          value: "cid",
+          align: "center",
+          sortable: false,
+        },
+   
+        {
           text: "First Name",
           value: "firstname",
           align: "center",
@@ -110,6 +125,12 @@ export default {
         {
           text: "Family Name",
           value: "lastname",
+          align: "center",
+          sortable: false,
+        },
+             {
+          text: "Parent",
+          value: "parentfullname",
           align: "center",
           sortable: false,
         },
@@ -165,23 +186,30 @@ export default {
       },
       deep: true,
     },
+
   },
 
   methods: {
     editItem(e) {
-      this.$store
-        .dispatch("GET_STUDENT_ID", {
-          firstname: e.firstname,
-          lastname: e.lastname,
-        })
-        .then((result) => {
-          this.$store
-            .dispatch("ENROLLMENT_CHILD", result.data.cid)
+       this.$store
+            .dispatch("ENROLLMENT_CHILD", e.cid)
             .then((res) => {
               this.$store.commit("ENROLLMENT_CHILD_EDIT", true);
             })
             .catch((err) => {});
-        });
+      // this.$store
+      //   .dispatch("GET_STUDENT_ID", {
+      //     firstname: e.firstname,
+      //     lastname: e.lastname,
+      //   })
+      //   .then((result) => {
+      //     this.$store
+      //       .dispatch("ENROLLMENT_CHILD", result.data.cid)
+      //       .then((res) => {
+      //         this.$store.commit("ENROLLMENT_CHILD_EDIT", true);
+      //       })
+      //       .catch((err) => {});
+      //   });
     },
 
     enroll(e) {
@@ -201,14 +229,15 @@ export default {
     },
 
     view_enrollment(e) {
-      this.$store
-        .dispatch("GET_STUDENT_ID", {
-          firstname: e.firstname,
-          lastname: e.lastname,
-        })
-        .then((result) => {
-          this.$store.dispatch("GET_ENROLLMENT", result.data.cid);
-        });
+      this.$store.dispatch("GET_ENROLLMENT", e.cid);
+      // this.$store
+      //   .dispatch("GET_STUDENT_ID", {
+      //     firstname: e.firstname,
+      //     lastname: e.lastname,
+      //   })
+      //   .then((result) => {
+      //     this.$store.dispatch("GET_ENROLLMENT", result.data.cid);
+      //   });
     },
 
     pagination() {
@@ -231,6 +260,7 @@ export default {
           page: 1,
           per_page: 10,
         };
+        this.$store.commit("STUDENT_LOADING", true);
         this.$store.dispatch(
           "STUDENT_FILTER",
           this.$store.state.Students.student_filter
@@ -255,6 +285,9 @@ export default {
       let age = Math.floor(difference / 31557600000);
       return age;
     },
+    debouncedSearch: debounce(function(query) {
+        this.filter_student(query);
+    }, 1000)
   },
 };
 </script>

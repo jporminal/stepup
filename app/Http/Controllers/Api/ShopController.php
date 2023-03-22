@@ -147,6 +147,36 @@ class ShopController extends Controller
         return $this->other_offer($id, $date_range, $status);
     }
 
+    //SVS
+    public function check_svs(Request $request)
+    {
+        $date_range = $this->date_range('_SHOP_SVS');
+        $status = '';
+        return ['products' => $this->check_services($request->per_page, $date_range, $status, $request->filter), 'categories' => $this->categories('service')];
+        // status = Foremarke
+    }
+
+    public function svs_filter($id)
+    {
+        $date_range = $this->date_range('_SHOP_SVS');
+        $status = '';
+        return $this->service_filter($id, $date_range, $status);
+    }
+
+    public function svs_city($id)
+    {
+        $date_range = $this->date_range('_SHOP_SVS');
+        $status = '';
+        return $this->services($id, $date_range, $status);
+    }
+
+    public function svs($id)
+    {
+        $date_range = $this->date_range('_SHOP_SVS');
+        $status = '';
+        return $this->services($id, $date_range, $status);
+    }
+
     // Urdang
     public function check_urdang(Request $request)
     {
@@ -518,7 +548,7 @@ class ShopController extends Controller
         //winter
         //$ids = $class_ids == 'multi_skills' ? [769,770,771,772,773,774,775,776,777,778] : ($class_ids == 'performing_arts' ? [772] : [769,770,771,772,773,774,775,776,777,778]);
         //midterm
-        $ids = $class_ids == 'multi_skills' ? [751,752,753,754,818,819] : [];
+        $ids = $class_ids == 'multi_skills' ? [820,821,822,823,824,825] : [];
         // $ids = $class_ids == 'dtrn' ? [437, 438] : ($class_ids == 'sw' ? [439, 440] : ($class_ids == 'rad' ? [444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454] : [443]));
         // $ids = [432, 433];
         return Schedule::select(

@@ -7,6 +7,7 @@ use App\Mother;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\CheckoutController;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -66,35 +67,53 @@ class CustomerController extends Controller
 
     private function students($per_page)
     {
+    
+
         return Child::select(
+            'children.cid',
             'children.firstname AS firstname',
             'children.lastname AS lastname',
             'children.dateofbirth AS dateofbirth',
-            'children.nationality AS nationality'
+            'children.nationality AS nationality',
+            'mother.motherfirstname AS motherfirstname',
+            'mother.motherlastname AS motherlastname',
+            DB::raw('CONCAT(children.firstname, " ", children.lastname) AS fullname')
         )
             ->leftJoin('verifications', 'verifications.mid', '=', 'children.mid')
+            ->leftJoin('mother', 'children.mid', '=', 'mother.mid')
             ->where('children.firstname', '<>', '')
             ->where('verifications.verificationStatus', 2)
-            ->orderBy('children.firstname')
+            ->orderBy('fullname')
             ->distinct()
             ->paginate($per_page);
     }
 
     private function student_filter($filter, $per_page)
     {
+
+     //  dd($filter);
+
+
+
         return Child::select(
+            'children.cid',
             'children.firstname AS firstname',
             'children.lastname AS lastname',
             'children.dateofbirth AS dateofbirth',
-            'children.nationality AS nationality'
+            'children.nationality AS nationality',
+            'mother.motherfirstname AS motherfirstname',
+            'mother.motherlastname AS motherlastname',
+            DB::raw('CONCAT(children.firstname, " ", children.lastname) AS fullname')
         )
             ->leftJoin('verifications', 'verifications.mid', '=', 'children.mid')
-            ->where('children.firstname', 'LIKE', '%' . $filter . '%')
-            ->orWhere('children.lastname', 'LIKE', '%' . $filter . '%')
+            ->leftJoin('mother', 'children.mid', '=', 'mother.mid')
+            ->whereRaw("CONCAT(children.firstname, ' ', children.lastname) like '%{$filter}%'")
+            //->where('children.firstname', 'LIKE', '%' . $filter . '%')
+            //->where('children.lastname', 'LIKE', '%' . $filter . '%')
             ->where('children.firstname', '<>', '')
             ->where('verifications.verificationStatus', 2)
-            ->orderBy('children.firstname')
-            ->distinct()
+            ->orderBy('fullname')
+           // ->distinct()
             ->paginate($per_page);
     }
 
