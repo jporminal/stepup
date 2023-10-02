@@ -16,8 +16,8 @@
         </v-row>
       </v-toolbar>
       <p class="text-h6 text-center mt-2">
-        Spring Camp <br />
-        (March 27 to April 7)
+          October Half Term Camp 2023 <br />
+        (October 16 to October 20)
       </p>
       <!-- <p class="text-h6 text-center mt-2">
         Winter Wonderland Multi-Skills Camp <br />

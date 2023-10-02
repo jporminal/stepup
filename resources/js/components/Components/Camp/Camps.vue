@@ -22,7 +22,7 @@
     <v-card-text>
         <v-row align="center" justify="center">
           <v-col cols="12" md="4" v-for="camp in camps" :key="camp.title">
-            
+
               <v-card
                 :img="camp.src"
                 :alt="camp.alt"
@@ -72,13 +72,13 @@ export default {
 
     camps: [
        {
-        title: "Spring Camp",
-        age: "3-5yrs, 5-9yrs, 6-10yrs",
-        date: "March 27 to April 7",
-        src: "/img/camps/Spring/2023/spring-camp-2023.jpeg",
-        lazy: "/img/camps/Spring/2023/spring-camp-2023.jpeg",
-        alt: "Spring Camp",
-        to: {name: 'spring-camps'},
+        title: "Midterm Camp",
+        age: "3-5yrs, 6-10yrs, 5-10yrs",
+        date: "October 16 to October 20",
+        src: "/img/camps/Midterm/2023/halloween_2023.jpeg",
+        lazy: "/img/camps/Midterm/2023/halloween_2023.jpeg",
+        alt: "Modeterm Camp",
+        to: {name: 'midterm-camps'},
       },
       //   {
       //   title: "Winter Sports Camp",
@@ -89,24 +89,24 @@ export default {
       //   alt: "Winter Sports Camp",
       // },
       // {
-      //   title: "Mid-term Multi-Skills Camp",
+      //   title: "Summer Multi-Skills Camp",
       //   age: "3-10yrs (Motor City), 5-10yrs (Spring Souk)",
-      //   date: "17<sup>th</sup> Oct - 21<sup>st</sup> Oct 2022",
-      //   src: "/img/camps/Midterm/2022/multi-skills.jpeg",
-      //   lazy: "/img/camps/Midterm/2022/lr/multi-skills.jpeg",
-      //   alt: "Mid-term Multi Skills Camp",
+      //   date: "",
+      //   src: "/img/camps/summer/2023/summer-camp-2023.jpeg",
+      //   lazy: "/img/camps/summer/2023/summer-camp-2023.jpeg",
+      //   alt: "Summer Multi Skills Camp",
       //   to: '',
-      //   to: {name: 'MidtermMultiSkills'},
+      //   to: {name: 'summer-camps'},
       // },
       // {
-      //   title: "Mid-term Performing Arts Camp",
-      //   age: "7yrs - 13yrs",
-      //   date: "17<sup>th</sup> Oct - 21<sup>st</sup> Oct 2022",
-      //   src: "/img/camps/Midterm/2022/performing-arts.jpeg",
-      //   lazy: "/img/camps/Midterm/2022/lr/performing-arts.jpeg",
-      //   alt: "Mid-term Performing Arts Camp",
+      //   title: "Summer Performing Arts Camp",
+      //   age: "6yrs - 11yrs",
+      //   date: "",
+      //   src: "/img/camps/summer/2023/performing-arts-camp-2023.jpeg",
+      //   lazy: "/img/camps/summer/2023/performing-arts-camp-2023.jpeg",
+      //   alt: "Summer Performing Arts Camp",
       //   to: '',
-      //   to: {name: 'MidtermPerformingArts'},
+      //   to: {name: 'summer-camps'},
       // },
       // {
       //   title: "Mid-term Sport Camp",
@@ -117,7 +117,7 @@ export default {
       //   alt: "Mid-term Break Sport Camp",
       //   to: '',
       // },
-      
+
     ],
     camp: {},
     hover: false

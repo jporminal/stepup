@@ -26,6 +26,13 @@
                     v-model.number="$store.state.Lessons.lesson_price.quantity"
                     type="number"
                 />
+
+                <v-text-field
+                    v-if="$store.state.Lessons.lesson_price.id == 0"
+                    label="Duplicate x times"
+                    v-model.number="$store.state.Lessons.lesson_price.duplicate"
+                    type="number"
+                />
             </v-card-text>
             <v-card-actions>
                 <v-spacer></v-spacer>

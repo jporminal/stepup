@@ -26,8 +26,8 @@
             >
             </v-select>
             <template v-if="Object.keys(option).length > 4">
-              <p v-if="!$store.state.Date_ranges.store_setup.springsouk_lesson_ebd.value || in_array(option.product_id, [3777, 3838, 3881, 3778, 3839, 3882, 3950, 3951, 3952, 3953])">Price: {{ option.price | currency }}</p>
-              <p v-if="$store.state.Date_ranges.store_setup.springsouk_lesson_ebd.value && !in_array(option.product_id, [3777, 3838, 3881, 3778, 3839, 3882, 3950, 3951, 3952, 3953])">Price: {{ ebd(option.price) | currency }} <sup style="color: red" v-if="option.price > 0"> <del> {{ option.price | currency }} </del> 10% off EBD</sup></p>
+              <p v-if="!$store.state.Date_ranges.store_setup.springsouk_lesson_ebd.value || in_array(option.product_id, productIdExcludedInEBD)">Price: {{ option.price | currency }}</p>
+              <p v-if="$store.state.Date_ranges.store_setup.springsouk_lesson_ebd.value && !in_array(option.product_id, productIdExcludedInEBD)">Price: {{ ebd(option.price) | currency }} <sup style="color: red" v-if="option.price > 0"> <del> {{ option.price | currency }} </del> 10% off EBD</sup></p>
               <!-- <p>Price: {{ option.price | currency }}</p> -->
               <p>Available: {{ option.max_limit > 0 ? option.max_limit : 'FULL' }}</p>
               <p>Number of weeks: {{ option.max_qty }}</p>
@@ -66,6 +66,7 @@ export default {
         quantities: [],
         order_quantity: 0,
       },
+        productIdExcludedInEBD: [5279,5278, 5277, 5281,5249,5280,5165,5179,5199,5166,5180,5200,5167,5181]
     };
   },
 
@@ -106,7 +107,7 @@ export default {
       var discount_percent = 0;
       var discount = 0;
 
-      if(this.$store.state.Date_ranges.store_setup.springsouk_lesson_ebd.value && !this.in_array(this.option.product_id, [3777, 3838, 3881, 3778, 3839, 3882, 3950, 3951, 3952, 3953])) {
+      if(this.$store.state.Date_ranges.store_setup.springsouk_lesson_ebd.value && !this.in_array(this.option.product_id, this.productIdExcludedInEBD)) {
           discount = total_price - this.ebd(total_price);
           discount_percent = 10;
           total_price_excl = this.ebd(total_price_excl);

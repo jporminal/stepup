@@ -3,21 +3,31 @@
     <snackbar />
     <v-card-text>
       <v-row justify="center">
-        <v-col cols="12" md="3">
+        <v-col cols="6" md="3">
           <v-card>
             <v-img
-              src="/img/camps/Spring/2023/spring-camp-2023.jpeg"
-              alt="Spring Camp 2023"
+              src="/img/camps/Midterm/2023/halloween_2023.jpeg"
+              alt="Summer Camp 2023"
             />
           </v-card>
+
         </v-col>
+<!--        <v-col cols="6" md="3">-->
+<!--            <v-card>-->
+<!--             <v-img-->
+<!--              src="/img/camps/summer/2023/performing-arts-camp-2023.jpeg"-->
+<!--              alt="Summer Camp 2023"-->
+<!--            />-->
+<!--          </v-card>-->
+
+<!--        </v-col>-->
         <v-col cols="12" md="5">
-          <p class="display-1">Spring Camp</p>
+          <p class="display-1">October Half Term Camp 2023</p>
           <!-- <p class="title">8:30AM - 2:00PM</p>
           <p class="title">3.5yrs - 5yrs</p>
           <p class="title">6yrs - 10yrs</p> -->
           <v-autocomplete
-            label="Select Age"
+            label="Select Age & Camp"
             :items="$store.state.winter.winter_camps"
             v-model="$store.state.winter.winter_multi_skill_filter.service_id"
             @change="selected_age"
@@ -153,7 +163,7 @@ export default {
       const cart = {
         product_id: this.$store.state.winter.winter_multi_skill_filter
           .service_id.id,
-        product_image: "spring-camp-2023.jpeg",
+        product_image: "halloween_2023.jpeg",
         product_name: this.$store.state.winter.winter_multi_skill_filter
           .service_id.product,
         product_category: "Service",

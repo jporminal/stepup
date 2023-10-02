@@ -5,20 +5,9 @@
     persistent
   >
     <v-card>
-      <template v-for="term in terms">
-        <div :key="term.text">
-          <v-card-subtitle>
-            <h1 class="display-1 text-center" v-html="term.text" />
-          </v-card-subtitle>
-          <v-card-text>
-            <ol>
-              <li v-for="(li, index) in term.lis" :key="index" v-html="li"></li>
-            </ol>
-          </v-card-text>
-        </div>
-      </template>
 
       <v-card-text>
+          <div v-html="terms"></div>
         <span class="font-weight-bold">
           I agree to fulfil the obligations set forth to StepUp Academy and will
           ensure all school terms in which I/my child attends are accounted for
@@ -41,54 +30,59 @@ export default {
 
   data() {
     return {
-      terms: [
-        {
-          text: "<strong><u>ONLINE CLASS CONDITIONS</u></strong>",
-          lis: [
-            "Access will only be given to those students who have fully paid for the term",
-            "All fees made for online classes from the period April 2020 onwards, until classes resume inside the studio are all non-refundable and transferable",
-            "You will be able to do a total of x1 make up class throughout the term should you miss a class. All make-up classes will only be able to be done on the last week of each month",
-            "Any students wishing to do a trial in a different class, will only be able to during the last week of the month",
-            "All classes will need to be signed up to through the website, and prices and qty cannot be adjusted or amended",
-            "All payments will be done on a monthly basis and will charged pro rata until the end of the month",
-            "Registrations will need to be done every month",
-            "The online class will commence when the teacher starts the video. Please note there could be some delays, as classes will be run back to back, so we ask you to please be patient in this case",
-            "To minimize the risk of disruption and distraction, all student’s camera’s will be muted by the teacher. If they have a question, they should just pause what they are doing and raise their hand. Then the teacher will then give them permission to un-mute",
-            "The online classes will show best on a laptop or iPad, you can also do it through your TV (we advise you to have a play around before the online class starts)",
-            "To make the teacher’s video image the main one, please go to the upper right-hand corner of their picture box and click the 3 dots. Scroll down to “pin video”. This will then make the teachers video the main one on your screen",
-            "All students must be in their full correct uniform with their hair also done (the same as they would for their regular classes in the studio)",
-            "Students must have some water close by to them, for when and if there is a water break",
-            "Students will be doing their regular class work as well as learning new things and will also be doing their regular class stretching, they do, as well as any strengthening and conditioning work they do in class.",
-            "Only students must be taking part in the class, there should be no siblings/parents/nannies etc…",
-            "Parents should check and approve the space which the student shall be using prior to the online class commencing",
-            "If you have any pets at home, please ensure they are not able to enter the area where the student is doing the online class",
-            "There should be NO photos or videos taken by anyone other than the instructor if needed",
-            "Students should remain silent throughout the class. If they have a question, then they can pause what they are doing and raise their hands (as they would in class). The teacher will instruct the class if there is to be a group discussion etc… If a student is being disruptive then they will be removed from the online class",
-            "The online classes are not a time for parents to start asking the teacher questions, if you have any questions then please contact us through the contact page on our website www.stepup.ae",
-            "StepUp Academy and all it’s teachers will not be held responsible should the student injure themselves whilst taking part in the online classes. Taking part in the online class is subject to your choice and risk",
-            "For all younger students (2-4years old) we request that the parents stay with them and help them follow along and join in with them",
-            "In case of any sound, picture or connection interruption, these things are totally out of our control, and therefore StepUp Academy and its teachers will not be responsible or delay the class etc... should this happen",
-            "Classes with under 3 students registered may be cancelled, and you will be asked to transfer to a different day/time/teacher. This can happen with immediate effect, but parents will be contacted",
-            "Please only join the online classes if you agree to the above. If you are joining our online video, then it means you agree to all points mentioned in this document",
-          ],
-        },
-        {
-          text:
-            "<br><br><strong><u>COVID-19 HOME DELIVERY TERMS & CONDITIONS</u></strong>",
-          lis: [
-            "There will be free delivery on all orders which reach a minimum of 150.00 AED",
-            "Orders which are under 150.00 AED will have an automatic 30.00 AED delivery charge applied at the checkout",
-            "All orders will be prepared and bagged up every Thursday",
-            "If you order on a Friday, then you will need to wait for the next delivery slot, which will be the following Saturday and not the next day",
-            "All orders will be delivered every Saturday between 10:00am – 4:00pm. Delivery slots will be scheduled in advance to ensure someone is home to confirm receipt of the delivery",
-            "Deliveries will require immediate confirmation that they have been received and the goods delivered match what you ordered online. This will need to be done via WhatsApp, so we request you all to save the number in your phones prior to delivery – 055 855 2797",
-            "Deliveries will be dropped outside the front door and doorbell rang/door knocked. If the order is not retrieved, then the driver will return the order back to StepUp Academy, and it will be re-sent for delivery again the following weekend",
-            "If the delivery address is an apartment, someone will need to come outside to the main entrance of the building to collect it. You will receive a call when they are outside",
-            "The home delivery service is only with-in Dubai",
-            "There is a strict no returns, no exchange, no refund, no credit notes for stock items during the COVID-19 period – Therefore please be sure on sizing when you are ordering",
-          ],
-        },
-      ],
+        terms: `<br><br>
+             <h3><u>Payment and Registration Policy</u></h3>
+              <ol>
+                <li>A one-time registration fee of 150dhs is due at the time of registration for any class at StepUp Academy (SUA). The registration fee will become invalid if you are absent for more than 3 terms or longer.</li>
+                <li>A maximum of 2 trial classes are allowed for all SUA classes, once 2 classes have been attended, registration for the remainder of the term is required. The price of trial class shall depend on the class. Classes are not on a pay-as-you go basis.</li>
+                <li>Methods of payment accepted in our Motor City and Springs Souk branch are cash, card or cheques made payable to StepUp Academy. Bank transfer is available upon request. It is your responsibility to provide a copy of the transfer advice slip as we cannot trace payments. Payment methods accepted vary for external venues, please check with the centre accordingly.</li>
+                <li>If fees are not settled before the class, then SUA reserves the right to exclude that student from the class. Fees are required before or on the first day of class. Any unpaid fees will result in non-participation until the fees are settled.</li>
+                <li>In case of a dishonoured cheque, a bank fee of 100 AED for each returned cheque may apply after being assessed.</li>
+                <li>Class space can only be guaranteed once the full fees and documentation have been completed and received.</li>
+                <li>SUA management reserves the right to refuse re-admission into the school if there are any outstanding balances.</li>
+                <li>It is the responsibility of the person filling out the registration form to provide a spell checked, current email address, correct contact numbers, and that they are updated with us if need be. Important information on classes, examinations and shows will be sent to this email account.</li>
+                <li>SUA reserves the right to make changes and exceptions to the fees policy, at our discretion, at any time.</li>
+            </ol>
+            <br>
+            <h3><u>Refund Policy</u></h3>
+            <ol>
+                  <li>Class fees are non-refundable. Exceptions may be made if there is proof there is a valid medical reason as to why the student cannot attend the class. In this situation we can make an exception to freeze the account and have it transferred to the following term only. If this is the case, then the fees must be used by the end of the following term and cannot be carried over.</li>
+                  <li>Missed classes are non-refundable and cannot be carried over to a new term. If you inform us in advance that you are not able to make the class, we can allow a make up class to be taken. We will advise you which classes, days and times your child can attend for a make-up class, this may be in an alternate dance style. Make up lessons must be booked in advance through our reception team, for safety reasons you cannot just show up on the day. A maximum of 2 make up classes can be redeemed during a term. After 2 make-up classes, you forfeit your space in your chosen class and it will be offered to other students on the waiting list.</li>
+                  <li>Should classes be required to be cancelled for reasons beyond our control (for example a short notice private holiday announcement, changing of private holiday dates, closure of any of our locations, global pandemics, notification from any of the governments/ministry’s etc… and more) then students will be eligible to attend a make up lessons, our reception team will be in touch via email should this be the case. These classes will not be refunded.</li>
+                  <li>Any payments made towards school trips, annual shows, examinations, uniforms, events etc… are all non-refundable and un transferable.</li>
+                  <li>Any refunds which take place, will be after any VAT, Credit Charges have been deducted.</li>
+                  <li>Any fees paid for any examinations, end of year shows, events etc… are all non-refundable.</li>
+              </ol>
+<br>
+            <h3><u>Photos, videos and CCTV</u></h3>
+            <ol>
+                <li>On occasion, photos and videos may be taken within classes, performances or preparation for examinations of students. I consent that these photos or videos may be taken and used for social media, advertising or promotional purposes without prior notification or compensation to myself or my child. If you do not agree to the use of photography of your child or yourself, kindly email us to inform us on salesandmarketing@stepup.ae</li>
+                <li>I am aware that there are CCTV cameras in all the studios, reception and waiting areas of SUA Motor City and Springs Souk branch. By signing this agreement, I acknowledge and consent to the use of CCTV within SUA of myself and my child.</li>
+                <li>I understand that I am not able to and cannot request to see any CCTV footage. If there is a specific reason in which I want to view something, then I know I must go through the correct authorities and let them handle it.</li>
+                <li>I am aware that for any annual showcases, photos and videos will be taken and available for option to purchase by parents.</li>
+            </ol>
+<br>
+            <h3><u>Classes and Examinations</u></h3>
+            <ol>
+                <li>I understand that I am not permitted to sit in and watch my child’s class, and that all parents must remain outside the studio/room until the class is finished and students are brought out. SUA will hold “Open Day” classes where parents can sit in and watch the duration of the class. Parents will be informed when these are taking place.</li>
+                <li>I am aware that the correct uniform and footwear must be worn to attend the classes. Uniforms must be purchased and worn by the third class my child attends.</li>
+                <li>I understand that I do not have the right to stipulate which level class I/my child should be in. All classes have either an age limit or they state that they are arranged by ability. This means the teacher decides which class you/your child is eligible for. The teacher’s decision is the final decision and management will support this.</li>
+                <li>I am aware that to take part in any annual exams, recitals or shows throughout the year that I/my child must purchase the correct attire, otherwise I/my child shall not be able to take part under any circumstances. I also understand that I need to do the required sign up procedure within the time frames given by SUA and that such events will have additional costs involved.</li>
+                <li>When examination decisions start to take place, I am aware that the only request I can make is that my child’s does not take part in it. The final decision is down to the teacher in charge and based on an assessment, if your child is not chosen to take the examination then there will be a valid reason which you can discuss with the teacher. However, the final choice is down to the teacher and management will support this.</li>
+                <li>I am aware that sometimes teachers may arrive late due to un-foreseen situations. However, if a class needs to be cancelled due to this, StepUp Academy shall make sure all customers are compensated accordingly if need be.</li>
+                <li>Classes are scheduled at a usual 30, 45 or 60 minute time slot. This timing also allows for a short period at the start and end of each class for registration to take place and for class handover management.</li>
+                <li>Students must be picked up at the class end time, teachers are only responsible for students during the designated time slot of the class. Please call our reception team if you will be running late.</li>
+                <li>I am aware that all the programmes come with a risk of injury due to the nature of the classes and waive all claims against StepUp Academy, Owners, Management, Teachers & Staff members.</li>
+                <li>All fees for classes, events, shows, exams, stock items are non-refundable – please check the “Refund Policy”.</li>
+            </ol>
+<br>
+            <h3><u>General</u></h3>
+            <ol>
+                <li>StepUp Academy management reserves the right to add, modify and/or amend the terms & conditions from time to time at its absolute discretion.</li>
+                <li>StepUp Academy follows a zero tolerance against abusive behaviour aimed at any of their staff members or customers. In such cases, StepUp Academy management shall hold the rights to decide if they stay members or are asked kindly to leave the centre.</li>
+                <li>I am aware that the SUA reception staff are not responsible if my child leaves the SUA premises before or after class.</li>
+                <li>I have read and accepted the terms & conditions laid down.</li>
+            </ol>`,
     };
   },
 

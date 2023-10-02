@@ -67,7 +67,7 @@ class CustomerController extends Controller
 
     private function students($per_page)
     {
-    
+
 
         return Child::select(
             'children.cid',
@@ -124,6 +124,15 @@ class CustomerController extends Controller
             ->where('children.lastname', 'LIKE', '%' . $lastname . '%')
             ->where('verifications.verificationStatus', 2)
             ->first();
+    }
+
+    public function get_student_by_id(Request $request){
+        $cid = $request->cid;
+        return Child::leftJoin('verifications', 'verifications.mid', '=', 'children.mid')
+            ->where('children.cid', '=',  $cid)
+            ->where('verifications.verificationStatus', 2)
+            ->first();
+
     }
 
     private function parent($per_page)

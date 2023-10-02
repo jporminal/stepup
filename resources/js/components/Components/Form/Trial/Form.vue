@@ -1,5 +1,6 @@
 <template>
     <v-card>
+        <snackbar />
       <v-toolbar color="blue lighten-2" dark flat>
         <v-row>
           <v-col class="d-flex justify-space-around">
@@ -10,7 +11,7 @@
         </v-row>
       </v-toolbar>
 
-      <v-form ref="form" v-model="valid">
+      <v-form v-if="!success" ref="form" v-model="valid">
         <v-card flat>
           <v-card-text>
             <template
@@ -63,6 +64,7 @@
                           label="Date of Birth"
                           prepend-icon="mdi-event"
                           readonly
+                          :rules="[(v) => !!v || 'Date of birth is required']"
                           v-bind="attrs"
                           v-on="on"
                           append-icon="*"
@@ -233,6 +235,15 @@
           </v-btn>
         </v-card-actions>
       </v-form>
+
+    <v-form v-if="success" class="text-center">
+        <h1>Thank you for using our online enrollment form</h1>
+        <p>Please check your email for confirmation of your enrollment</p>
+
+
+    </v-form>
+
+
     </v-card>
 </template>
 <script>
@@ -242,6 +253,11 @@ export default {
     components: {
         terms: () => import("../Enrollment/tcs_terms_condition"),
         cov: () => import("../Enrollment/tcs_covid"),
+        snackbar: () => import("../../Snackbar/Global_view.vue"),
+    },
+    mounted(){
+
+
     },
 
     data() {
@@ -250,6 +266,7 @@ export default {
             loading: false,
             item_combos: ['Yes', 'No'],
             genders: ["Male", "Female"],
+            success: false
         }
     },
 
@@ -267,25 +284,21 @@ export default {
                 form: this.$store.state.Enrollments.enrollment
             })
             .then((result) => {
+                this.success = true;
                 var snackbar = {
                     snackbar: true,
                     vertical: true,
-                    timeout: 2000,
-                    color: "blue lighten-2",
+                    timeout: 5000,
+                    color: "green lighten-2",
                     dark: true,
                     top: true,
                     bottom: false,
-                    centered: true,
+                    centered: false,
                     left: false,
-                    right: false,
-                    text: "Thank you for using our online enrollment",
+                    right: true,
+                    text: "Enrollment Submitted",
                 };
-                // this.send_mail_to_parent(result.data.password);
-                // this.send_mail_to_reception();
                 this.$store.commit("SNACKBAR", snackbar);
-                setTimeout(() => {
-                    window.location.reload()
-                }, 10000);
             }).catch((err) => {
                 var snackbar = {
                     snackbar: true,
@@ -302,6 +315,8 @@ export default {
                     "Sorry, We have encounter network error. Please try to reload your browser. Thank you :)",
                 };
                 this.$store.commit("SNACKBAR", snackbar);
+                this.loading = false;
+                this.success = false;
             });
         },
 

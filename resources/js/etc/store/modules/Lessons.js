@@ -15,7 +15,8 @@ export default {
         lesson_upload_image: false,
         lesson_images: [],
         lesson_prices: [],
-        lesson_price: {},
+        lesson_price: {
+        },
         lesson_price_open: false,
         lesson_price_item_open: false,
         lesson_parameters: [],

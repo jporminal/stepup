@@ -6,7 +6,7 @@
           <v-row class="fill-height" align="center" justify="center">
             <v-col cols="12">
               <h1 class="text-center display-2">
-                Term 2 2022 - 2023 Schedules
+                Term 1 2023 - 2024 Schedules
               </h1>
             </v-col>
             <v-col cols="12">
@@ -29,6 +29,12 @@
                         ? '550px'
                         : '240px'
                     " -->
+            <v-col cols="12">
+                <h1 class="text-center ">
+                  Motor City
+                </h1>
+            </v-col>
+
 
             <template v-for="(schedule, i) in schedules">
               <v-col :key="i" cols="12" md="4">
@@ -36,7 +42,7 @@
                   <v-card
                     :elevation="hover ? 12 : 2"
                     hover
-                    :img="schedule.path"
+                    :img="getImagePath(schedule.path)"
                     :alt="schedule.alt"
                     :height="
                       $vuetify.breakpoint.xl
@@ -51,14 +57,95 @@
                     "
                     @click="openDialog(schedule)"
                   >
+                    <v-card-title
+                      v-if="schedule.isRamadan"
+                      style="font-size: 14px;
+                      float: right;
+                      color: white;
+                      padding: 6px;
+                      background-color: #ff000096;">Ramadan Timings</v-card-title>
                   </v-card>
                 </v-hover>
               </v-col>
             </template>
+
+            <v-col cols="12">
+                <h1 class="text-center ">
+                  Springs Souk
+                </h1>
+            </v-col>
+
+             <template v-for="(schedule, i) in springSouk">
+              <v-col :key="i" cols="12" md="4">
+                <v-hover v-slot:default="{ hover }">
+                  <v-card
+                    :elevation="hover ? 12 : 2"
+                    hover
+                    :img="getImagePath(schedule.path)"
+                    :alt="schedule.alt"
+                    :height="
+                      $vuetify.breakpoint.xl
+                        ? '400'
+                        : $vuetify.breakpoint.lg
+                        ? '255'
+                        : $vuetify.breakpoint.md
+                        ? '200'
+                        : $vuetify.breakpoint.sm
+                        ? '550px'
+                        : '260px'
+                    "
+                    @click="openDialog(schedule)"
+                  >
+                    <v-card-title
+                      v-if="schedule.isRamadan"
+                      style="font-size: 14px;
+                      float: right;
+                      color: white;
+                      padding: 6px;
+                      background-color: #ff000096;">Ramadan Timings</v-card-title>
+                  </v-card>
+                </v-hover>
+              </v-col>
+            </template>
+
+            <v-col cols="12">
+                <h1 class="text-center ">
+                  Other Locations
+                </h1>
+                <span>South View School, SAFA Community School, Fitness First Lakes, Victory Heights Primary School, Repton Al Barsha</span>
+            </v-col>
+
+          <template v-for="(schedule, i) in otherLocations">
+              <v-col :key="i" cols="12" md="4">
+                <v-hover v-slot:default="{ hover }">
+                  <v-card
+                    :elevation="hover ? 12 : 2"
+                    hover
+                    :img="getImagePath(schedule.path)"
+                    :alt="schedule.alt"
+                    :height="
+                      $vuetify.breakpoint.xl
+                        ? '400'
+                        : $vuetify.breakpoint.lg
+                        ? '255'
+                        : $vuetify.breakpoint.md
+                        ? '200'
+                        : $vuetify.breakpoint.sm
+                        ? '550px'
+                        : '260px'
+                    "
+                    @click="openDialog(schedule)"
+                  >
+
+                  </v-card>
+                </v-hover>
+              </v-col>
+            </template>
+
           </v-row>
           <v-dialog v-model="isOpen">
             <v-card>
-              <v-img :src="schedule.path" class="mx-auto">
+              <v-img :src="getImagePath(schedule.path)" class="mx-auto">
                 <v-btn
                   absolute
                   dark
@@ -96,30 +183,34 @@ export default {
       schedules: [
         {
           title: "Motorcity Schedule",
-          path: "/img/schedules/01012023/v4/motor-city-ballet.jpeg", 
-          lazy: "/img/schedules/01012023/v4/motor-city-ballet.jpeg",
+          path: "/img/schedules/08232023/motor-city-1.jpeg",
+          lazy: "/img/schedules/08232023/motor-city-1.jpeg",
           alt: "StepUp Academy Motor City Schedules",
+          isRamadan: false,
           id: "#",
         },
         {
           title: "Motorcity Schedule",
-          path: "/img/schedules/01012023/v4/motor-city-company.jpeg",
-          lazy: "/img/schedules/01012023/v4/motor-city-company.jpeg",
+          path: "/img/schedules/08232023/motor-city-2.jpeg",
+          lazy: "/img/schedules/08232023/motor-city-2.jpeg",
           alt: "StepUp Academy Motor City Schedules",
+          isRamadan: false,
           id: "#",
         },
         {
           title: "Motorcity Schedule",
-          path: "/img/schedules/01012023/v4/motor-city-street-jazz.jpeg",
-          lazy: "/img/schedules/01012023/v4/motor-city-street-jazz.jpeg",
+          path: "/img/schedules/08232023/motor-city-3.jpeg",
+          lazy: "/img/schedules/08232023/motor-city-3.jpeg",
           alt: "StepUp Academy Motor City Schedules",
+          isRamadan: false,
           id: "#",
         },
         {
-          title: "Motorcity Adult Classes",
-          path: "/img/schedules/01012023/v4/motor-city-adult.jpeg",
-          lazy: "/img/schedules/01012023/v4/motor-city-adult.jpeg",
-          alt: "StepUp Academy Motorcity Adult Classes",
+          title: "Motorcity Schedule",
+          path: "/img/schedules/08232023/motor-city-4.jpeg",
+          lazy: "public/img/schedules/08232023/motor-city-4.jpeg",
+          alt: " Academy Motor City Schedules",
+          isRamadan: false,
           id: "#",
         },
       // {
@@ -129,58 +220,69 @@ export default {
       //     alt: "Private Singing Lessons (Trinity)",
       //     id: "#",
       //   },
-
+      ],
+      springSouk:[
         {
           title: "Spring Souk Schedule",
-          path: "/img/schedules/01012023/v4/spring.jpeg",
-          lazy: "/img/schedules/01012023/v4/spring.jpeg",
+          path: "/img/schedules/08232023/spring-souk-1.jpeg",
+          lazy: "/img/schedules/08232023/spring-souk-1.jpeg",
           alt: "StepUp Academy Spring Souk Schedules",
+          isRamadan: false,
           id: "#",
         },
         {
           title: "Spring Souk Adult Classes",
-          path: "/img/schedules/01012023/v4/spring-souk-adult.jpeg",
-          lazy: "/img/schedules/01012023/v4/spring-souk-adult.jpeg",
-          alt: "StepUp Academy Spring Souk Adult Classes",
+          path: "/img/schedules/08232023/spring-souk-2.jpeg",
+          lazy: "/img/schedules/08232023/spring-souk-2.jpeg",
+          alt: "StepUp Academy Spring Souk Schedules",
+          isRamadan: false,
           id: "#",
         },
-        {
-          title: "South View Schedule",
-          path: "/img/schedules/01012023/v4/southview.jpeg",
-          lazy: "/img/schedules/01012023/v4/southview.jpeg",
-          alt: "StepUp Academy South View Schedules",
-          id: "#",
-        },
-        {
-          title: "SAFA Community School Schedule",
-          path: "/img/schedules/01012023/v4/safa.jpeg",
-          lazy: "/img/schedules/01012023/v4/safa.jpeg",
-          alt: "SAFA Community School Schedules",
-          id: "#",
-        },
-        {
-          title: "Fitness First Lakes Schedule",
-          path: "/img/schedules/01012023/v4/ff.jpeg",
-          lazy: "/img/schedules/01012023/v4/ff.jpeg",
-          alt: "Fitness First Lakes Schedules",
-          id: "#",
-        },
-        {
-          title: "Victory Heights Primary School Schedule",
-          path: "/img/schedules/01012023/v4/victory-heights.jpeg",
-          lazy: "/img/schedules/01012023/v4/victory-heights.jpeg",
-          alt: "Victory Heights Primary School Schedules",
-          id: "#",
-        },
-        {
-          title: "Repton AL Barsha Schedule",
-          path: "/img/schedules/01012023/v4/repton.jpeg",
-          lazy: "/img/schedules/01012023/v4/repton.jpeg",
-          alt: "Repton AL Barsha Schedules",
-          id: "#",
-        },
-
       ],
+      otherLocations:[
+            {
+              title: "South View Schedule",
+              path: "/img/schedules/08232023/svs.jpeg",
+              lazy: "/img/schedules/08232023/svs.jpeg",
+              alt: "StepUp Academy South View Schedules",
+              id: "#",
+            },
+            {
+              title: "SAFA Community School Schedule",
+              path: "/img/schedules/08232023/safa.jpeg",
+              lazy: "/img/schedules/08232023/safa.jpeg",
+              alt: "SAFA Community School Schedules",
+              id: "#",
+            },
+            // {
+            //   title: "Fitness First Lakes Schedule",
+            //   path: "/img/schedules/04242023/others/fitness-first.jpeg",
+            //   lazy: "/img/schedules/04242023/others/fitness-first.jpeg",
+            //   alt: "Fitness First Lakes Schedules",
+            //   id: "#",
+            // },
+            //  {
+            //   title: "Fitness First Meadows Schedule",
+            //   path: "/img/schedules/04242023/others/fitness-first-meadows.jpeg",
+            //   lazy: "/img/schedules/04242023/others/fitness-first-meadows.jpeg",
+            //   alt: "Fitness First Meadows Schedules",
+            //   id: "#",
+            // },
+            {
+              title: "Victory Heights Primary School Schedule",
+              path: "/img/schedules/08232023/vhps.jpeg",
+              lazy: "/img/schedules/08232023/vhps.jpeg",
+              alt: "Victory Heights Primary School Schedules",
+              id: "#",
+            },
+            {
+              title: "Repton AL Barsha Schedule",
+              path: "/img/schedules/08232023/rab.jpeg",
+              lazy: "/img/schedules/08232023/rab.jpeg",
+              alt: "Repton AL Barsha Schedules",
+              id: "#",
+            },
+      ]
     };
   },
   methods: {
@@ -188,6 +290,10 @@ export default {
       this.isOpen = true;
       this.schedule = schedule;
     },
+  getImagePath(path){
+      const today = new Date().toISOString().split('T')[0]; // gets the current date in 'YYYY-MM-DD' format
+      return path + "?date=" + today;
+  }
   },
 };
 </script>

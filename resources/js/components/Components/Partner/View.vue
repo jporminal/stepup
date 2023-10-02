@@ -8,6 +8,7 @@
             <h1 class="title">{{ details }}</h1>
           </v-col>
         </v-row>
+
         <v-responsive max-width="80%" class="mx-auto">
           <transition-group
             tag="v-row"
@@ -22,45 +23,33 @@
             >
               <v-hover>
                 <template v-slot="{ hover }">
-                  <v-card
-                    class="overflow-hidden ma-auto"
-                    :img="partner.image"
-                    :alt="partner.name"
-                    hover
-                    :height="
-                      $vuetify.breakpoint.xl
-                        ? '380'
-                        : $vuetify.breakpoint.lg
-                        ? '250'
-                        : $vuetify.breakpoint.md
-                        ? '175'
-                        : $vuetify.breakpoint.sm
-                        ? '450'
-                        : '210'
-                    "
-                    :href="partner.path"
-                    target="_blank"
-                  >
-                    <v-fade-transition>
-                      <v-overlay v-if="hover" absolute>
-                        <v-icon large> mdi-magnify </v-icon>
-                      </v-overlay>
-                    </v-fade-transition>
-                    <v-slide-y-reverse-transition>
-                      <v-footer
-                        v-if="hover"
-                        absolute
-                        class="justify-center text-center"
-                        height="75"
-                        color="#000"
-                      >
-                        <div
-                          class="heading white--text"
-                          v-html="partner.name"
-                        ></div>
-                      </v-footer>
-                    </v-slide-y-reverse-transition>
-                  </v-card>
+                    <v-card
+
+                        class="mx-auto pa-3"
+                        max-width="400"
+                    >
+                        <v-img
+                            v-if="partner.invertColor"
+                            :style="{filter: ' invert(1) hue-rotate(180deg'}"
+                            contain
+                            height="200px"
+                            :src="partner.image"
+                        >
+                        </v-img>
+                        <v-img
+                            v-else
+                            contain
+                            height="200px"
+                            :src="partner.image"
+                        >
+                        </v-img>
+
+                        <v-card-subtitle >
+                            <a :href="partner.path" target="_blank">{{partner.name }}</a>
+
+                        </v-card-subtitle>
+                    </v-card>
+
                 </template>
               </v-hover>
               <div
@@ -84,112 +73,92 @@ export default {
         "Here at StepUp Academy, we collaborate with only the best in the industry. Have a look at our current partners we are teamed up with.",
       partners: [
         {
-          name: "Fitness First",
-          image: "img/thirdparties/Fitness-First.jpg",
+          name: "Repton Al Barsha School",
+            invertColor: true,
+          image: "/img/thirdparties/repton-albarsha.png",
           alt: "",
-          path: "https://uae.fitnessfirstme.com/train-with-us/kids",
+          path: "https://www.reptonalbarsha.org/",
+        },
+          {
+              name: "Victory Heights School",
+              image: "/img/thirdparties/victory-heights.png",
+              alt: "",
+              path: "https://www.vhprimary.com",
+          },
+          {
+              name: "SAFA Community School",
+              image: "/img/thirdparties/SAFA-Community-School.jpg",
+              alt: "",
+              path: "http://www.safacommunityschool.com/",
+          },
+        {
+          name: "South View School",
+            invertColor: true,
+          image: "/img/thirdparties/south-view-school.png",
+          alt: "",
+          path: "https://southviewschool.com/",
+        },
+
+        {
+          name: "Proscenium",
+          image: "/img/thirdparties/proscenium.svg",
+          alt: "",
+          path: "https://www.proscenium.ae",
+        },
+          {
+              name: "Mini Athletics",
+              image: "/img/thirdparties/mini-athletics.png",
+              alt: "",
+              path: "https://www.miniathletics.com",
+          },
+        {
+          name: "Acrobatic Arts",
+          image: "img/thirdparties/acrobatic-arts.png",
+          alt: "",
+          path: "https://www.acrobaticarts.com",
         },
         {
-          name: "DU Gym",
-          image: "img/thirdparties/DU-Gym.jpg",
+          name: "Imperial Society of Teachers of Dancing",
+          image: "img/thirdparties/istd.png",
           alt: "",
-          path: "https://www.dugym.com/",
+          path: "https://www.istd.org/home/",
         },
-        {
-          name: "Emirates Golf Club",
-          image: "img/thirdparties/Emirates-Golf-Club.jpg",
-          alt: "",
-          path: "https://www.dubaigolf.com/emirates-golf-club.aspx",
-        },
-        {
-          name: "Foremarke School",
-          image: "img/thirdparties/Foremarke-School.jpg",
-          alt: "",
-          path: "https://www.foremarkedubai.org/",
-        },
-        {
-          name: "Littleland Nursery Dubai",
-          image: "img/thirdparties/Little-Land-Nursery.jpg",
-          alt: "",
-          path: "https://www.littlelandnursery.com/",
-        },
-        {
-          name: "Raffles Internation School(Nursery)",
-          image: "img/thirdparties/Raffles-International-School.jpg",
-          alt: "",
-          path: "https://www.rafflesnurseries.com/",
-        },
-        {
-          name: "SAFA Community School",
-          image: "img/thirdparties/SAFA-Community-School.jpg",
-          alt: "",
-          path: "http://www.safacommunityschool.com/",
-        },
-        {
-          name: "Safari Kid",
-          image: "img/thirdparties/Safari-Kid.jpg",
-          alt: "",
-          path: "http://www.safarikidasia.com/",
-        },
+
         {
           name: "Building Blocks Nursery",
-          image: "img/thirdparties/Building-Blocks.jpg",
+          image: "/img/thirdparties/Building-Blocks.jpg",
           alt: "",
           path: "https://building-blocks.ae/",
         },
         {
-          name: "Arcadia Preparatory School",
-          image: "img/thirdparties/Arcadia-Preparatory.jpg",
-          alt: "",
-          path: "https://arcadia.sch.ae",
-        },
-        {
-          name: "Home Grown School",
-          image: "img/thirdparties/Home-Grown.jpg",
-          alt: "",
-          path: "http://www.homegrownnursery.ae/",
-        },
-        {
-          name: "Kinder Dance International",
-          image: "img/thirdparties/Kinder-Dance.jpg",
-          alt: "",
-          path: "https://kinderdance.com/",
-        },
-        {
           name: "Royal Academy of Dance",
-          image: "img/thirdparties/Royal-Academy-Dance.jpg",
+          image: "/img/thirdparties/Royal-Academy-Dance.jpg",
           alt: "",
           path: "https://www.royalacademyofdance.org/",
         },
         {
           name: "International Dance Teachers Association",
-          image: "img/thirdparties/IDTA.jpg",
+          image: "/img/thirdparties/IDTA.jpg",
           alt: "",
           path: "https://www.idta.co.uk",
         },
         {
-          name: "Irish",
-          image: "img/thirdparties/Irish.jpg",
+          name: "Irish Dance",
+          image: "/img/thirdparties/Irish.jpg",
           alt: "",
           path: "#",
         },
         {
           name: "Martial Arts",
-          image: "img/thirdparties/Martial-Arts.jpg",
+          image: "/img/thirdparties/Martial-Arts.jpg",
           alt: "",
           path: "#",
         },
         {
           name: "Baby Bloom",
-          image: "img/thirdparties/Baby-Bloom.jpg",
+          image: "/img/thirdparties/Baby-Bloom.jpg",
           alt: "",
           path: "#",
-        },
-        {
-          name: "MonViso",
-          image: "img/thirdparties/Monvisio.jpg",
-          alt: "",
-          path: "https://www.monviso.com/",
         },
       ],
     };

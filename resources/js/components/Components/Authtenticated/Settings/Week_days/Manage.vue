@@ -22,12 +22,12 @@
           type="number"
         />
         <v-text-field
-          label="DAMAC HILLS 2"
+          label="Spring Souk"
           v-model.number="$store.state.Week_days.week_day.akoya"
           type="number"
         />
         <v-text-field
-          label="Arcadia"
+          label="Victory Heights"
           v-model.number="$store.state.Week_days.week_day.arcadia"
           type="number"
         />

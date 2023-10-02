@@ -229,7 +229,7 @@ class ScheduleController extends Controller
         $others = Other_product::select('ProductID AS classid', 'ProductName AS classname')->get();
         $merged = collect($lessons)->merge($others);
 
-        $data['date_ranges'] = Daterange::orderBy('drid', 'DESC')->take(15)->get();
+        $data['date_ranges'] = Daterange::orderBy('drid', 'DESC')->take(25)->get();
         $data['locations'] = Venue::whereNotIn('vid', [20])->get();
         $data['teachers'] = Staff::get();
         $data['lessons'] = $merged->toarray();

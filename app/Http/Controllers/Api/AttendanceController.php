@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Api\ScheduleController;
 use App\Http\Controllers\Api\CheckoutController;
 use App\Schedule;
+use App\Weekday;
+use DateInterval;
+use DateTime;
+use DatePeriod;
 
 class AttendanceController extends Controller
 {
@@ -150,4 +154,76 @@ class AttendanceController extends Controller
             ]);
         }
     }
+
+    public function createManualAttendace(){
+            $startDate = '2023-04-10';
+            $endDate = '2023-07-07';
+
+        
+            $begin = new DateTime($startDate);
+            $end = new DateTime($endDate);
+    
+            $end = $end->modify('+1 day');
+            $interval = new DateInterval('P1D');
+    
+            $dates =  iterator_to_array(new DatePeriod($begin, $interval, $end));
+
+            $weeknames = array_filter((array) $dates, function ($date)  {
+                return $date->format("N") === strval(1);
+            });
+    
+            $scheduleIds = [4884];
+            //dd($weeknames );
+
+            //loop scheduleids
+            foreach($scheduleIds as $scheduleId){
+                $schedule = Schedule::find($scheduleId);
+                $weekId = Weekday::find($schedule->weekid)->weekcount;
+        
+
+
+                $weeknames = array_filter((array) $dates, function ($date) use ($weekId) {
+                    return $date->format("N") === strval( $weekId );
+                });
+
+                //find enroll students with scheduleid
+                $enrolls = Enroll::where('scheduleid', $scheduleId)->get();
+
+               // dd( $weeknames);
+
+                //loop enroll students
+                foreach($enrolls as $enroll){
+                    //loop dates
+                    foreach ($weeknames as $date) {
+                        //check fi attendance exists
+                        $attendance = Attendance::where([
+                            'scheduleid' => $scheduleId,
+                            'cid' => $enroll->cid,
+                            'attendancedate' => $date->format("Y-m-d")
+                        ])->first();
+
+                        if(!$attendance){
+                            $data = new Attendance();
+                            $data->scheduleid = $scheduleId;
+                            $data->cid = $enroll->cid;
+                            $data->attendancedate = $date->format("Y-m-d");
+                            $data->attendancedatetrial = '2001-01-01';
+                            $data->attendancestatus = 0;
+                            $data->attendancedetails = '';
+                            $data->holidays = 0;
+                            $data->save();
+                        }
+                    }
+                }
+
+
+            }
+
+            return "Done";
+
+   
+    }
+
+
+
 }

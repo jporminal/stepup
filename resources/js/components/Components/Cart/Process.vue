@@ -27,6 +27,13 @@
             </div>
           </template>
         </v-checkbox>
+<!--          <v-divider></v-divider>-->
+<!--          <p>Are you enrolling a new student?</p>-->
+<!--          <v-radio-group v-model="new_student" row @change="clearEmail">-->
+<!--              <v-radio label="No" :value="false"></v-radio>-->
+<!--              <v-radio label="Yes" :value="true"></v-radio>-->
+<!--          </v-radio-group>-->
+
         <v-divider></v-divider>
         <p>Have you filled out our Online Enrollment form?</p>
         <v-radio-group v-model="filled_up_form" row @change="clearEmail">
@@ -67,6 +74,7 @@ export default {
       emailRules: [(v) => /.+@.+/.test(v) || "E-mail must be valid"],
       valid: false,
       filled_up_form: false,
+        new_student:false
     };
   },
 

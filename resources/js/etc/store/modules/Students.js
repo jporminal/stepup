@@ -69,7 +69,8 @@ export default {
                 axios
                     .post("/api/GET-STUDENT-ID", {
                         firstname: payload.firstname,
-                        lastname: payload.lastname
+                        lastname: payload.lastname,
+                        cid: payload.cid
                     })
                     .then(result => {
                         context.commit('STUDENT', result.data)

@@ -4,11 +4,11 @@
     v-model="$store.state.splash"
     :width="$vuetify.breakpoint.xs ? 350 : 1350"
   >
-    <v-card elevation="12">
+    <v-card elevation="12" dark>
         <!-- width 1280 -->
       <v-container>
         <v-row align="center" justify="center">
-          <v-col cols="8" md="8" v-for="(img, index) in imgs" :key="index">
+          <v-col cols="6" md="6" v-for="(img, index) in imgs" :key="index">
             <v-img
               :src="img.src"
               :alt="img.alt"
@@ -50,31 +50,31 @@ export default {
   created() {
      this.$store.commit("SPLASH", true);
     setTimeout(() => {
-      this.$refs.video_player.play();
+     this.$refs.video_player.play();
     }, 1000);
   },
-  
+
   name: "splash",
   data() {
     return {
       imgs: [
-        {
-          src: "/img/camps/Spring/2023/spring-camp-2023.jpeg",
-          alt: "Spring Camp 2023",
-        },
+        // {
+        //   src: "/img/splash/teeny-classes-v2.jpeg",
+        //   alt: "Teeny Classes",
+        // },
         //  {
         //   src: "/img/splash/winter-sports-camp.jpeg",
         //   alt: "Winter Camp",
         // },
+        {
+          src: "/img/camps/Midterm/2023/halloween_2023.jpeg",
+          lazy: "/img/camps/Midterm/2023/halloween_2023.jpeg",
+          alt: "Summer Multi Skills Camp",
+        },
         // {
-        //   src: "/img/camps/Spring/2022/hr/multi-skill.jpg",
-        //   lazy: "/img/camps/Spring/2022/lr/multi-skill.jpg",
-        //   alt: "Spring Break Multi Skills Camp",
-        // },
-        // {
-        //   src: "/img/camps/Spring/2022/hr/performing-arts.jpg",
-        //   lazy: "/img/camps/Spring/2022/lr/performing-arts.jpg",
-        //   alt: "Spring Break Performing Arts Camp",
+        //   src: "/img/camps/summer/2023/performing-arts-camp-2023.jpeg",
+        //   lazy: "/img/camps/Spring/2022/performing-arts-camp-2023.jpg",
+        //   alt: "Summer Performing Arts Camp",
         // },
         // {
         //   src: "/img/camps/Spring/2022/hr/sports-camp.jpg",

@@ -17,9 +17,11 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return view('test');
+    return phpinfo();
 });
 
+
+Route::get('/mattendance', 'Api\\AttendanceController@createManualAttendace');
 
 
 Route::get('{path}', 'Api\\AuthController@index')->where('path', '.*');

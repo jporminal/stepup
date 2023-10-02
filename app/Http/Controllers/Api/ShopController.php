@@ -117,7 +117,7 @@ class ShopController extends Controller
         $status = '';
         return $this->services($id, $date_range, $status);
     }
-    
+
      // adult classes 09022021
      public function check_adult_motor_city(Request $request)
      {
@@ -167,14 +167,14 @@ class ShopController extends Controller
     {
         $date_range = $this->date_range('_SHOP_SVS');
         $status = '';
-        return $this->services($id, $date_range, $status);
+        return $this->services($id, $date_range, $status, 'svs');
     }
 
     public function svs($id)
     {
         $date_range = $this->date_range('_SHOP_SVS');
         $status = '';
-        return $this->services($id, $date_range, $status);
+        return $this->services($id, $date_range, $status, 'svs');
     }
 
     // Urdang
@@ -206,7 +206,7 @@ class ShopController extends Controller
         $status = 'Foremarke';
         return $this->services($id, $date_range, $status, 'foremarke');
     }
-    
+
     // Akoya
     public function check_akoya(Request $request)
     {
@@ -236,7 +236,7 @@ class ShopController extends Controller
         $status = '';
         return $this->services($id, $date_range, $status, 'arcadia');
     }
-    
+
     private function check_services($per_page, $date_range, $status, $filter)
     {
         $services = Lesson::select(
@@ -252,8 +252,8 @@ class ShopController extends Controller
                 'class.isVisible' => 1,
                 'class.classTypes' => 'Child'
             ])
-            ->whereNotIn('class.classid', [135, 136, 137, 138, 51, 360, 359])
-            ->where('class.classname', 'not like',  "%company%")
+            //->whereNotIn('class.classid', [135, 136, 137, 138, 51, 360, 359])
+            //->where('class.classname', 'not like',  "%company%")
             ->orderBy('product')
             ->distinct('class.classid', 'class.classname');
 
@@ -269,7 +269,7 @@ class ShopController extends Controller
 
         return $service;
     }
-    
+
     private function check_service_adults($date_range, $status, $class_ids, $unli) //09022021
     {
         return Schedule::select(
@@ -295,7 +295,7 @@ class ShopController extends Controller
             ->orderBy('product', 'ASC')
             ->whereIn('class.classid', $class_ids)
             ->get();
-        
+
     }
 
     private function service_filter($id, $date_range, $status)
@@ -330,6 +330,7 @@ class ShopController extends Controller
         // irish
         $singleQty = array(189, 190, 191, 372, 373, 374);
         $exam = array(101);
+        $custom_week = array(859,860,861,1010,1013,1015,1016,1021,1000);
         $services = Lesson::find($id);
         $services['category'] = 'Service';
         if(in_array($id, $singleQty)) {
@@ -358,7 +359,7 @@ class ShopController extends Controller
                     'class.classid' => $id,
                     'class.isVisible' => 1
                 ])
-                
+
                 ->groupBy('weekdays.numberofweek', 'weekdays.upcoming', 'weekdays.akoya', 'weekdays.arcadia', 'schedule.scheduleid', 'dateranges.daterangename', 'class.classname', 'schedule.scheduletimestart', 'schedule.scheduletimeend', 'weekdays.weekname', 'schedule.schedulestudentlimit',  'class.price', 'dateranges.daterangefrom', 'dateranges.daterangeto', 'weekdays.weekcount', 'schedule.schedulenotes', 'venue.venuename', 'staff.staffname')
                 ->get();
         } else if (in_array($id, $exam)) {
@@ -387,17 +388,48 @@ class ShopController extends Controller
                     'class.classid' => $id,
                     'class.isVisible' => 1
                 ])
-                
+
                 ->groupBy('weekdays.numberofweek', 'weekdays.upcoming', 'weekdays.akoya', 'weekdays.arcadia', 'schedule.scheduleid', 'dateranges.daterangename', 'class.classname', 'schedule.scheduletimestart', 'schedule.scheduletimeend', 'weekdays.weekname', 'schedule.schedulestudentlimit',  'class.price', 'dateranges.daterangefrom', 'dateranges.daterangeto', 'weekdays.weekcount', 'schedule.schedulenotes', 'venue.venuename', 'staff.staffname')
                 ->get();
-        } else {
+        }
+        else if (in_array($id, $custom_week)){
             $services['option_name'] = Schedule::select(
                 'schedule.scheduleid AS product_id',
                 DB::raw('CONCAT(dateranges.daterangename, "-", class.classname, "(", schedule.scheduletimestart, "-", schedule.scheduletimeend, ") ", staff.staffname , " - ", weekdays.weekname)  AS item'),
-                $max_qty == 'motor_city' ?  
-                'weekdays.numberofweek AS max_qty' : 
-                    ($max_qty == 'foremarke' ? 'weekdays.upcoming AS max_qty' : 
-                        ($max_qty == 'akoya' ? 'weekdays.akoya AS max_qty' : 
+                'weekdays.custom_time_slot AS max_qty',
+                DB::raw('schedule.schedulestudentlimit - COUNT(enroll.cid) AS max_limit'),
+                'class.price AS price',
+                'dateranges.daterangefrom AS date_start',
+                'dateranges.daterangeto AS date_end',
+                'weekdays.weekcount AS week_id',
+                'weekdays.weekname AS day',
+                DB::raw('CONCAT(venue.venuename,  " (", schedule.scheduletimestart, "-", schedule.scheduletimeend, ")" ) AS location'),
+                'schedule.schedulenotes AS notes'
+            )
+                ->leftJoin('class', 'class.classid', '=', 'schedule.classid')
+                ->leftJoin('venue', 'venue.vid', '=', 'schedule.vid')
+                ->leftJoin('dateranges', 'dateranges.drid', '=', 'schedule.drid')
+                ->leftJoin('weekdays', 'weekdays.weekid', '=', 'schedule.weekid')
+                ->leftJoin('staff', 'staff.sid', '=', 'schedule.sid')
+                ->leftJoin('enroll', 'enroll.scheduleid', '=', 'schedule.scheduleid')
+                ->where([
+                    'dateranges.daterangeclasses' => $status,
+                    'dateranges.drid' => $date_range->Setting_value,
+                    'class.classid' => $id,
+                    'class.isVisible' => 1
+                ])
+
+                ->groupBy('weekdays.numberofweek', 'weekdays.upcoming', 'weekdays.akoya', 'weekdays.arcadia', 'schedule.scheduleid', 'dateranges.daterangename', 'class.classname', 'schedule.scheduletimestart', 'schedule.scheduletimeend', 'weekdays.weekname', 'schedule.schedulestudentlimit',  'class.price', 'dateranges.daterangefrom', 'dateranges.daterangeto', 'weekdays.weekcount', 'schedule.schedulenotes', 'venue.venuename', 'staff.staffname')
+                ->get();
+        }
+        else {
+            $services['option_name'] = Schedule::select(
+                'schedule.scheduleid AS product_id',
+                DB::raw('CONCAT(dateranges.daterangename, "-", class.classname, "(", schedule.scheduletimestart, "-", schedule.scheduletimeend, ") ", staff.staffname , " - ", weekdays.weekname)  AS item'),
+                $max_qty == 'motor_city' ?
+                'weekdays.numberofweek AS max_qty' :
+                    ($max_qty == 'foremarke' ? 'weekdays.upcoming AS max_qty' :
+                        ($max_qty == 'akoya' ? 'weekdays.akoya AS max_qty' :
                             ($max_qty == 'arcadia' ? 'weekdays.arcadia AS max_qty': 'weekdays.other_time_slot AS max_qty'))),
                 DB::raw('schedule.schedulestudentlimit - COUNT(enroll.cid) AS max_limit'),
                 'class.price AS price',
@@ -420,7 +452,7 @@ class ShopController extends Controller
                     'class.classid' => $id,
                     'class.isVisible' => 1
                 ])
-                
+
                 ->groupBy('weekdays.numberofweek', 'weekdays.upcoming', 'weekdays.akoya', 'weekdays.arcadia', 'schedule.scheduleid', 'dateranges.daterangename', 'class.classname', 'schedule.scheduletimestart', 'schedule.scheduletimeend', 'weekdays.weekname', 'schedule.schedulestudentlimit',  'class.price', 'dateranges.daterangefrom', 'dateranges.daterangeto', 'weekdays.weekcount', 'schedule.schedulenotes', 'venue.venuename', 'staff.staffname')
                 ->get();
         }
@@ -472,7 +504,7 @@ class ShopController extends Controller
 
         return $services;
     }
-    
+
     private function service_adult($schedule_id,  $is_unli) // 09022021
     {
         $services = Schedule::select(
@@ -548,7 +580,7 @@ class ShopController extends Controller
         //winter
         //$ids = $class_ids == 'multi_skills' ? [769,770,771,772,773,774,775,776,777,778] : ($class_ids == 'performing_arts' ? [772] : [769,770,771,772,773,774,775,776,777,778]);
         //midterm
-        $ids = $class_ids == 'multi_skills' ? [820,821,822,823,824,825] : [];
+        $ids = $class_ids == 'multi_skills' ? [1038,1039,1040,1041,1042,1043,1044,1045] : [];
         // $ids = $class_ids == 'dtrn' ? [437, 438] : ($class_ids == 'sw' ? [439, 440] : ($class_ids == 'rad' ? [444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454] : [443]));
         // $ids = [432, 433];
         return Schedule::select(
@@ -581,7 +613,7 @@ class ShopController extends Controller
         //summer
         //$daily = $id == 660 ? [1139,1139] : ($id == 661 ? [1140, 1140] : ($id == 609 ? [1052, 1061] : ($id == 393 ? [946, 960] : [968, 982])));
         //winter
-        
+
         //daily
         $daily = [];
         $weekly = [];
@@ -642,19 +674,19 @@ class ShopController extends Controller
 
         // $daily = $id == 769 ? [1489, 1502] :
         //  ($id == 770 ? [1507, 1520] :
-        //   ($id == 771 ? [1521, 1534] : 
-        //     ($id == 772 ? [1539, 1539] : 
-        //         ($id == 773 ? [1539, 1552] : 
+        //   ($id == 771 ? [1521, 1534] :
+        //     ($id == 772 ? [1539, 1539] :
+        //         ($id == 773 ? [1539, 1552] :
         //         ($id == 772 ? [1539, 1552] : [])));
 
-        // $weekly = $id == 769 ? [1485, 1487] : 
-        //     ($id == 770 ? [1503, 1505] : 
-        //         ($id == 771 ? [1536, 1538] : 
+        // $weekly = $id == 769 ? [1485, 1487] :
+        //     ($id == 770 ? [1503, 1505] :
+        //         ($id == 771 ? [1536, 1538] :
         //             ($id == 772 ? [1554, 1556] : [])));
 
-        // $full = $id == 769 ? 1488 : 
-        //     ($id == 770 ? 1506 : 
-        //         ($id == 771 ? 1535 : 
+        // $full = $id == 769 ? 1488 :
+        //     ($id == 770 ? 1506 :
+        //         ($id == 771 ? 1535 :
         //             ($id == 772 ? 1553 : 0)));
 
         switch ($request->stat) {
@@ -719,32 +751,32 @@ class ShopController extends Controller
         $data['service_price'] = DB::table('serviceprice')->find($price_id);
         return json_encode($data);
     }
-    
+
     public function check_quantity(Request $request)
     {
         // return $request->all();
         switch ($request->form['type']) {
             case 'Product':
                 return $this->product_quantity($request->form['product_option']['id']);
-                
+
             case 'Motor City':
                 return $this->schedule_quantity($request->form['product_option']['id']);
-            
+
             case 'Foremarke':
                 return $this->schedule_quantity($request->form['product_option']['id']);
-                
+
             case 'Akoya':
                 return $this->schedule_quantity($request->form['product_option']['id']);
-                
+
             case 'Camps':
                 return $this->service_price_quantities($request->form['product_option']['option_id']);
-                
+
             case 'Others':
                 return $this->service_price_quantities($request->form['product_option']['option_id']);
-                
+
             case 'Urdang':
                 return $this->service_price_quantities($request->form['product_option']['option_id']);
-                
+
         }
     }
 

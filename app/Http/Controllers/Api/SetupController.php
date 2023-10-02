@@ -213,12 +213,19 @@ class SetupController extends Controller
             $data->quantity = $request->form['quantity'];
             $data->save();
         } else {
-            $data = new Service_price();
-            $data->classid = $request->form['classid'];
-            $data->serviceName = $request->form['serviceName'];
-            $data->price = $request->form['price'];
-            $data->quantity = $request->form['quantity'];
-            $data->save();
+            $duplicate = $request->form['duplicate'];
+            if(!$duplicate || $duplicate == 0){
+                $duplicate = 1;
+            }
+            for($i = 0; $i < $duplicate; $i++){
+                $data = new Service_price();
+                $data->classid = $request->form['classid'];
+                $data->serviceName = $request->form['serviceName'];
+                $data->price = $request->form['price'];
+                $data->quantity = $request->form['quantity'];
+                $data->save();
+            }
+          
         }
     }
 

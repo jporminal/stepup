@@ -156,43 +156,10 @@ export default {
                 'Playing an equal role in making sure all your dance classes run smoothly and taking care of all the admin duties our wonderful reception and behind the scenes team. Making up this team is our front of house, IT department, Sales and Marketing, HR, accounts, and assistants.'
             ],
             heads: [
-                // vicky
-                { name: 'Ms. Vicky<br>Executive Director', position: 'Executive Director', path: '/img/team/Vicky.jpg', headshot: '/img/headshots/Vicky.jpg', color: '#fff',
-                tabs: [
-                    {name: 'Ms. Vicky', path: 'vicky',
-                    about: [
-                        {details: 'Vicky is originally from the UK and started dancing at the age of 6 in her local dance school Sidmouth Ballet School and East Devon Dance. She trained in RAD Ballet, ISTD Tap and Modern, Street Jazz, Cheerleading and was also lucky enough to attend workshops for Irish and Spanish. Vicky’s love and interests in teaching began at the age of 14 when she would go to the local dance classes to assist and watch.<br><br>', icon: ''},
-
-                        {details: 'She successfully went onto do her RAD (Royal Academy of Dance) teachers training for 2 years, where she graduated in June 2010 with CBTS and gained her registered teacher status.<br><br>', icon: ''},
-
-                        {details: 'Vicky moved to the UAE in September 2010 and started teaching full time straight away. Since teaching here she has put students through their RAD exams and has also choreographed for many shows.<br><br>', icon: ''}
-                    ], experience: ''},
-                    {name: "Vicky's achievements / experience", path: 'vicky-achievement',
-                    about: [
-                        {details: 'Annual Triple Fantasy Dance shows – Manor Pavilion, UK', icon: 'mdi-human-handsdown'},
-                        {details: 'Annual Multiplicity Dance shows – Manor Pavilion, UK', icon: 'mdi-human-handsdown'},
-                        {details: 'Phantom of the Opera – Youth Theatre, UK', icon: 'mdi-human-handsdown'},
-                        {details: 'Chance to Dance – Northcott Theatre, UK', icon: 'mdi-human-handsdown'},
-                        {details: 'Assistant and dancing at Wayne Sleep workshop – Plymouth, UK', icon: 'mdi-human-handsdown'},
-                        {details: 'Brian Rogers Performing Arts College summer courses – Surrey, UK', icon: 'mdi-human-handsdown'},
-                        {details: 'Dance teacher at Sidmouth Ballet School & East Devon Dance – 2008-2010', icon: 'mdi-human-handsdown'},
-                        {details: 'Opening dance act for Nicki Minaj show – Meydan, Dubai', icon: 'mdi-human-handsdown'},
-                        {details: 'Dance act for New Year’s Eve (including acts such as Gorillaz, Snoop Dog, Faithless, September, Inna) – Meydan, Dubai', icon: 'mdi-human-handsdown'},
-                        {details: 'Shadow performance for the shell Formula 1 annual gala dinner – Yas Island, Abu Dhabi', icon: 'mdi-human-handsdown'},
-                        {details: 'Michel Ball sings the musicals concert – Yas Island, Abu Dhabi', icon: 'mdi-human-handsdown'},
-                        {details: 'Dubai Racing World Cup, Pre world cup party – JBR Meydan, Dubai', icon: 'mdi-human-handsdown'},
-                        {details: 'Diabetes walk – Yas Island, Abu Dhabi', icon: 'mdi-human-handsdown'},
-                        {details: 'Dubai Mall 24hour all night long flash mob 2013 & 2014 – Dubai Mall', icon: 'mdi-human-handsdown'},
-                        {details: 'Shadow performance for Dell – Dubai', icon: 'mdi-human-handsdown'},
-                        {details: 'Nutella anniversary flashmob – Dubai Mall', icon: 'mdi-human-handsdown'},
-                        {details: 'Human statue at Art Gallery – Dubai', icon: 'mdi-human-handsdown'},
-                        {details: 'Dance teacher at an established school in Dubai 2010-2012', icon: 'mdi-human-handsdown'},
-                        {details: 'Owner and teacher of Ms Vicky’s 2012-2014', icon: 'mdi-human-handsdown'}
-                    ], experience: 'Vicky took on the role of Manager at Step Up Academy in July 2014, on top of her management duties she still continues to teach popular classes at the academy.'}
-                ], sectionId: 'vicky'},
+               
 
                 //Caitlin
-                { name: 'Ms. Caitlin<br>Head of Teacher & Head of Ballet', position: 'Head of Teacher & Head of Ballet', path: '/img/team/Caitlin.jpg', headshot: '/img/headshots/CaitlinDavies.jpg', color: '#e5e5e5',
+                { name: 'Ms. Caitlin<br>Manager', position: 'Manager', path: '/img/team/Caitlin.jpg', headshot: '/img/headshots/CaitlinDavies.jpg', color: '#e5e5e5',
                 tabs: [
                     {name: 'Ms. Caitlin', path: 'caitlin',
                     about: [
@@ -223,8 +190,8 @@ export default {
             
 
 
-                //Laura
-                { name: 'Ms. Laura Davies<br>Head of IDTA', position: 'Head of IDTA', path: '/img/team/Laura.jpg', headshot: '/img/headshots/LauraDavies.jpg', color: '#fff',
+                //Laura Davies
+                { name: 'Ms. Laura Davies<br>Headteacher and Head of RAD & Acrobatic Arts', position: 'Headteacher and Head of RAD & Acrobatic Arts', path: '/img/team/Laura.jpg', headshot: '/img/headshots/LauraDavies.jpg', color: '#fff',
                 tabs: [
                     {name: 'Ms. Laura Davies', path: 'laura',
                     about: [
@@ -233,46 +200,10 @@ export default {
                         {details: ' Since graduating, Laura has danced professionally all over the world, choreographed for Sky Sports and many sports events, and also began teaching. Laura is delighted to have joined the team at Step Up and can’t wait to see what the future brings'}
                     ], experience: ''}
                 ], sectionId: 'laura'},
-
-                //Olivia
-                { name: 'Ms. Olivia<br>Vocal & Musical Theatre Teacher', position: 'Vocal & Musical Theatre Teacher', path: '/img/headshots/Olivia.jpg', headshot: '/img/headshots/Olivia.jpg', color: '#e5e5e5',
-                tabs: [
-                    {
-                    name: 'Ms. Olivia', path: 'olivia',
-                    about: [
-                        {details: 'Olivia Cloud was born in Johannesburg, South Africa. Olivia is a 24 year old trained and qualified Singer, Songwriter, Actress, Dancer, Performer and Trinity London College Examination Facilitator and Educator.<br><br>', icon: ''},
-                        {details: 'Olivia completed an intensive one year training course in Performing Arts and Musical Theatre at Stageworx School of Performing Arts in 2018, gaining her ATCL in Performance Arts and LTCL Diploma in Musical Theatre through Trinity Guildhall London College, both with Distinction. <br><br>', icon: ''},
-                        {details: 'In 2014, Olivia was a contestant on Idols South Africa Season 10 and made it to the Top 16, Which kick started her career as a recording artist in South Africa, where she has now released two hit singles, “Shake” and “Run” which are available on all major platforms. <br><br>', icon: ''},
-                        {details: 'In 2018, Olivia played ‘Rainbow Dash’ in the ‘My Little Pony’ live shows at Carnival City. She  also featured as a vocalist and dancer in ‘Born To Perform Shine’ at the Lyric Theatre. At the end of 2019, Olivia assisted Gemma Marinus (Director) with choreography and direction in the "Born To Perform" Production, a showcase of Youth Talent. <br><br>', icon: ''},
-                        {details: "During her trip to London in 2019, Olivia attended various singing and acting workshops through City Lit London, and worked intensively on her dancing at 'Pineapple Studios'. Olivia then began teaching Musical Theatre at Stageworx Performing Arts School, primarily working with Students who were taking their Trinity London College Examinations. 90% of Olivia’s students received distinctions for their exams. <br><br>", icon: ''},
-                        {details: 'At the end of 2019, Olivia was cast in Janice Honeyman’s 2019 Pantomime Spectacular “Jack And The Beanstalk” at the prestigious Joburg Theatre, as ensemble as well as understudy of the female Lead. <br><br>' , icon: ''},
-                        {details: 'In early 2020, Olivia appeared in the National Children’s Theatre’s anti bullying traveling show, which toured to many schools in Johannesburg. Due to COVID 19, the Theatre industry has taken a major hit, so Olivia has decided to go back to teaching Singing and Musical Theatre and is currently living in Dubai, Running the Musical Theatre and Vocal Department at Step Up Academy, Providing professional Vocal Coaching and Musical Theatre lessons. Olivia is also involved in the directing, coordinating and choreographing of shows and events of the Musical Theatre Company at Step Up Academy. <br><br>' , icon: ''},
-                        {details: 'Olivia is passionate about working with young, up-and-coming, passionate performers and helping them hone in their craft.” <br><br>' , icon: ''},
-                    ],
-                    experience: ''
-                    }
-                ], sectionId: 'Olivia'},
-
-                 //Beth
-                { name: 'Ms. Beth<br>Dance Teacher', position: '', path: '/img/headshots/Beth.jpg', headshot: '/img/headshots/Beth.jpg', color: '#e5e5e5',
-                tabs: [
-                    {name: 'Ms. Beth', path: 'beth',
-                    about: [
-                        {details: 'Beth hails from the United Kingdom originally but spent most of her childhood in Cape Town,South Africa. Here she trained in RAD Ballet and ISTD Modern Theatre and Tap. Returning to the UK for her professional training she attended the prestigious Hammond School where she gained a National Diploma in Professional Musical Theatre and Dance (accredited by Trinity College of London).<br><br>', icon: ''},
-                        {details: 'Upon graduation Beth performed in a number of shows across the world including, Santa Claus the Musical in Singapore, The world famous Irish Dance Show - Spirit of the Dance touring in Canada and the United States. Beth also took up a residency in the Kings Castle Theatre in Branson, Missouri performing several shows in her time there such as the ballroom sensation, Puttin’ on the Ritz and New Jersey Nights.<br><br>', icon: ''},
-                        {details: 'For the last 10 years Beth has traveled across all 7 continents working as Dance Captain and Show Company Manger onboard Cruise liners for companies such as P&O Cruises, Cunard Cruises and Holland America Line.<br><br>', icon: ''},
-                        {details: 'Whilst not performing Beth has worked across the UK as a Freelance Dance Instructor coaching exam students in ISTD Modern and Tap and RAD Ballet - in addition to holding ‘industry workshops’ to aspiring young performers.<br><br>', icon: ''},
-                        {details: 'In between all of her travel, performances and teaching , Beth has also additionally gained her teaching qualifications. She is a fully qualified Modern Theatre and Tap Teacher through the ISTD (Imperial Society of Teachers of Dancing). Additionally a fully qualified Ballet teacher through the IDTA and has gained Registered Teacher Status with RAD (Royal Academy of Dance). These qualifications ensure she is up to date and ready to enter Students in for annual examinations.<br><br>', icon: ''},
-                        {details: 'Beth also teaches Yoga and Pilates having gained her Diploma for both subjects in 2019. Currently Beth is working towards her Qualification to teach PBT (Progressive Ballet Technique) in order to assist her RAD Ballet Students in their further training.<br><br>' , icon: ''},
-                        {details: 'I am most definitely enjoying seeing the progress of my students at Step Up Academy and I love to dance alongside you all every week!.<br><br>' , icon: ''}
-                    ], experience: ''},
-                    {name: "", path: '',
-                    about: [], experience: ''}
-                ], sectionId: 'Beth'},
                 //Laura Dillon
                 { 
-                    name: 'Ms. Laura<br>Dance Teacher', 
-                    position: 'Dance Teacher', 
+                    name: 'Ms. Laura<br>Head of Commercial and Street Dance', 
+                    position: 'Head of Commercial and Street Dance', 
                     path: '/img/headshots/LauraDillon.jpg',
                     headshot: '/img/headshots/LauraDillon.jpg', 
                     color: '#e5e5e5',
@@ -304,30 +235,6 @@ export default {
                     ], 
                     sectionId: 'Laura'
                 },
-                //Vitaliy
-                { 
-                    name: 'Mr. Vitaliy<br>Head of Boys Dept & Dance Teacher', 
-             
-                    position: 'Head of Boys Dept & Dance Teacher', 
-                    path: '/img/headshots/Vitaliy.jpg', 
-                    headshot: '/img/headshots/Vitaliy.jpg', 
-                    color: '#fff',
-                    tabs: [
-                        {
-                            name: 'Mr. Vitaliy', 
-                            path: '',
-                            about: [
-                                {details: 'Vitaliy gained his dance training in his home country at the National University of Culture in Kyiv, Ukraine. Here he gained a Masters Degree in Choreography and Contemporary Dance. Vitaliy trained using the world famous Russian Ballet VnanovA method which he still practices and teaches now.<br><br>', icon: ''},
-                                {details: "Upon graduation Vitaliy went on to perform at the National Ukrainian Musical Theatre as a Dancer and Choreographer. Simultaneously Vitally was teaching at `The School of Arts' on the Crimean peninsula - here he was responsible for training students in Jazz, Ukrainian Folk Dancing, Contemporary and Choreography. In 2006 Vitaliy took his talents abroad and went on to perform in the Xua-Xia Theater, Zhen-Zhen, China in the innovative new concept show 'Elements.' <br><br>", icon: ''},
-                                {details: 'For the last 12 years Vitaliy has been working for a number of Cruise Lines across the world including, Cunard Cruises, Celebrity Cruises and Holland America Line as a Dancer and Dance Captain. Where he performed as a soloist specialising in Contemporary, Jazz, Ballet and Commercial Dance.<br><br>', icon: ''},
-                                {details: 'In 2020 Vitaliy returned to Kyiv and began teaching in several dance schools focusing on Contemporary dance and ballet. Vitaliy also taught in many fitness centres and gyms teaching classes such as Ballet Barre Fitness, Pilates, Interval Training and Dance Based Fitness Classes. <br><br>', icon: ''},
-                                {details: 'Vitaliy is enjoying bringing his wealth, knowledge, culture and experience in the performing arts industry to all the students at Step Up Academy. <br><br>', icon: ''},
-                            ],
-                            experience: ''
-                        },
-                    ], 
-                    sectionId: 'vitaliy'
-                },
                 // Lucy
                 { 
                     name: 'Ms. Lucy<br>Dance Teacher', 
@@ -351,6 +258,39 @@ export default {
                     sectionId: 'Lucy'
                 },
 
+                //Alice
+                { name: 'Ms. Alice', position: '', path: '/img/team/Alice.jpeg', headshot: '/img/team/Alice.jpeg', color: '#e5e5e5',
+                tabs: [
+                    {
+                    name: 'Ms. Alice', path: 'alice',
+                    about: [
+                        {details: 'Alice is an award winning performer and established choreographer. She was scouted at age 14 as a gifted choreographer by John Moores University in Liverpool where she was chosen to teach classes, give workshops and train students competitively.  Alice has performed and competed across the UK in a variety of arenas, theatres and TV shows (ITVs Got to Dance).  She has choreographed theatrical productions, music videos as well as performing arts showcases and 100’s of competitive routines.<br><br>', icon: ''},
+                        {details: "Alice has trained in Ballet, Tap, Street dance, Commercial, Contemporary, and Musical theatre since the age of 4. She has continued to refine her skills while attending Dolphin Dance Studios Performing Arts College of Liverpool, where she gained her IDTA (International Dance Teachers' Association) Teaching Qualification. Alice further expanded her expertise by pursuing a Master’s Degree in Dance Technique Pedagogy and Professional Practice, which she completed in 2018. Her specializations include Commercial, Contemporary, and Musical Theatre/Theatre Jazz. <br><br>", icon: ''},
+                        {details: "Alice's influence has nurtured rising stars, with her protégés securing coveted placements in further education institutions and esteemed conservatories such as Urdang, Tring, Royal Ballet School, alongside earning scholarships to renowned institutions like the Joffrey School of Hip Hop and Royal Ballet Intensives. She has  managed multiple dance schools, choreographed musical theatre productions for schools, and honed students' skills over the past decade in the MENA region. <br><br>", icon: ''},
+                        
+                        {details: 'Alice has been  in Dubai since 2017 teaching students to an exceptionally high technical standard with numerous award winning entries to various dance competitions across the region.  <br><br>', icon: ''},
+                        {details: "She has also taught across the  Level 6 Trinity diploma in dance and Musical Theatre BA programme.. <br><br>", icon: ''},
+                    ],
+                    experience: ''
+                    }
+                ], sectionId: 'Alice'},
+
+                 //Annie
+                { name: 'Ms. Annie', position: '', path: '/img/team/Annie.jpeg', headshot: '/img/team/Annie.jpeg', color: '#e5e5e5',
+                tabs: [
+                    {name: 'Ms. Annie', path: 'beth',
+                    about: [
+                        {details: 'Annie is fresh from the industry and we can’t wait for her to pass on her knowledge to our students. Annie will be teaching ISTD Tap & Modern, Lyrical, Musical Theatre, Commercial and Tech Jazz for us.<br><br>', icon: ''},
+                        {details: 'Annie has recently graduated from Performers College in Essex, England with a BA(HONS) in musical theatre and dance. She has been dancing since she was 3 and has never looked back.<br><br>', icon: ''},
+                        {details: 'While in her training she has danced with Becky Hill, Stefflon Don and ultra Natè at Wembley Stadium and has also featured as ensemble/ understudy Evil Queen in Sleeping Beauty in Chesterfield, England.  She was also selected to dance at Move It 2023 for choreographer Claudimar Neto’s Commercial piece “Midnights.”She was also Dance Captain for all 3 of her end of year shows working very closely with very current industry casting directors and choreographers (Claire Cassidy, Paul Saunders). She worked closely with both of these to choreograph and create the show. .<br><br>', icon: ''},
+                        {details: 'Annie specialises in Tap, Modern, Commercial, Tech Jazz, Musical theatre, Acting, Singing, Ballet, Lyrical & Contemporary. She is ISTD trained up to Advanced 1 at Summerscales Performing Arts, then went on to Performers College for 3 years where she graduated in May  and can’t wait to start her new adventure teaching out here in Dubai! .<br><br>', icon: ''},
+                        {details: 'She has been teaching musical theatre, singing and jazz since she was 16 and loves to teach the next generation, she cannot wait to join the Step Up academy and meet all of the lovely staff and students.<br><br>', icon: ''},
+
+                    ], experience: ''},
+                    {name: "", path: '',
+                    about: [], experience: ''}
+                ], sectionId: 'Annie'},
+
               
             ],
 
@@ -361,6 +301,7 @@ export default {
                 {name: 'ANJANA<br>PERSONAL ASSISTANT', position: 'PERSONAL ASSISTAN', image: '/img/headshots/Anjana.jpeg'},
                 {name: 'JOEL<br>FRONT OF HOUSE', position: 'FRONT OF HOUSE', image: '/img/headshots/Joel.jpg'},
                 {name: 'MARY<br>FRONT OF HOUSE', position: 'FRONT OF HOUSE', image: '/img/headshots/Mary.png'},
+                {name: 'JENESSA<br>FRONT OF HOUSE', position: 'FRONT OF HOUSE', image: '/img/headshots/Jenessa.jpeg'},
                 {name: 'SUCHITHRA<br>FRONT OF HOUSE', position: 'FRONT OF HOUSE', image: '/img/headshots/Suchithra.jpeg'},
                 {name: 'LIEZEL<br>HOUSE KEEPING', position: 'PA', image: '/img/headshots/Liezel.jpg'},
                 {name: 'JACQUILINE<br>HOUSE KEEPING', position: 'PA', image: '/img/headshots/Jacquiline.jpeg'},

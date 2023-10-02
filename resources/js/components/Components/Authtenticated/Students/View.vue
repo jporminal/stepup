@@ -29,7 +29,7 @@
         <template v-slot:item.cid="{ item }">
           <p>{{ item.cid}}</p>
         </template>
-   
+
         <template v-slot:item.firstname="{ item }">
           <p>{{ item.firstname | toUpper }}</p>
         </template>
@@ -115,7 +115,7 @@ export default {
           align: "center",
           sortable: false,
         },
-   
+
         {
           text: "First Name",
           value: "firstname",
@@ -213,11 +213,13 @@ export default {
     },
 
     enroll(e) {
+        console.log(e);
         this.$store.commit('ENROLLMENT_LOADER', true)
       this.$store
         .dispatch("GET_STUDENT_ID", {
           firstname: e.firstname,
           lastname: e.lastname,
+          cid: e.cid
         })
         .then((result) => {
           this.$store.dispatch(

@@ -7,7 +7,7 @@
         indeterminate
       ></v-progress-linear>
     </template>
-    <template v-if="products.data.length > 0">
+    <template v-if="products.data && products.data.length > 0">
       <v-container class="fill-height">
         <v-row align="center" justify="center">
           <v-col

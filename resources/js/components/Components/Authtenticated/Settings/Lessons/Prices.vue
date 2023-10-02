@@ -70,7 +70,8 @@ export default {
                 id: 0,
                 price: 0.0,
                 quantity: 0,
-                serviceName: "Regular"
+                serviceName: "Regular",
+                duplicate: 1
             };
             this.$store.commit("LESSON_PRICE", add);
             this.$store.commit("LESSON_PRICE_ITEM_OPEN", true);

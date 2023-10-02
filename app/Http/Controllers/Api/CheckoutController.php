@@ -32,6 +32,7 @@ class CheckoutController extends Controller
     }
 
     public function update_checkout(Request $request)
+
     {
         // return $request->all();
         $last_id = $request->last_id;
@@ -121,8 +122,11 @@ class CheckoutController extends Controller
     private function update_sale($id, $status)
     {
         $data = Sale::find($id);
-        $data->Status = $status;
-        $data->save();
+        if( $data ){
+            $data->Status = $status;
+            $data->save();
+        }
+
     }
 
     private function update_credit($mid, $total)
@@ -167,6 +171,14 @@ class CheckoutController extends Controller
                 break;
             case 'Urdang':
                 $this->service_price($product);
+                $is_exist = $this->enroll_student($product);
+                $this->save_attendance($product, $is_exist);
+                break;
+            case 'SVS':
+                $is_exist = $this->enroll_student($product);
+                $this->save_attendance($product, $is_exist);
+                break;
+            case 'Arcadia':
                 $is_exist = $this->enroll_student($product);
                 $this->save_attendance($product, $is_exist);
                 break;

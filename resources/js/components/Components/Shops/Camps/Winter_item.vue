@@ -18,6 +18,7 @@
       </v-container>
     </v-card-text>
   </v-card>
+    <h1>Test</h1>
 </template>
 <script>
 export default {
@@ -32,7 +33,7 @@ export default {
       Camps: [
         {
           text: "Multi-Skills",
-          image: "/img/camps/winter/2022/winter-camp.jpeg",
+          image: "/img/camps/Midterm/2023/halloween_2023.jpeg",
           alt: "Winter multi-skills camps",
           to: "/camps/winter/multi-skills",
         },
@@ -42,12 +43,12 @@ export default {
         //   alt: "Performing Arts",
         //   to: "/camps/winter/performing-arts",
         // },
-        {
-          text: "Sports Winter Camp",
-          image: "/img/camps/winter/2022/winter-sports-camp.jpeg",
-          alt: "Sports Winter Camp",
-          to: "",
-        },
+        // {
+        //   text: "Sports Winter Camp",
+        //   image: "/img/camps/winter/2022/winter-sports-camp.jpeg",
+        //   alt: "Sports Winter Camp",
+        //   to: "",
+        // },
       ],
     };
   },

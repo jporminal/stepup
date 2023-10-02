@@ -121,7 +121,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('POS-LOCATION-REPORT', 'Api\\ReportController@get_locations');
     Route::post('POS-TEACHER-REPORT', 'Api\\ReportController@get_teacher_reports');
 
-   
+
 
     // Schedule Controller
     Route::post('SCHEDULE', 'Api\\ScheduleController@get_schedule');
@@ -143,7 +143,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('GET-VENUES/{search}', 'Api\\SetupController@get_filtered_venues');
 
     Route::get('STAFFS', 'Api\\SetupController@get_staffs');
-    Route::get('STAFFS/{search}', 'Api\\SeMOTOR-CITY?tupController@get_staff_filter');
+    Route::get('STAFFS/{search}', 'Api\\SetupController@get_staff_filter');
     Route::get('STAFF/{id}', 'Api\\SetupController@get_staff');
     Route::post('STAFFS', 'Api\\SetupController@store_staff');
 
@@ -172,7 +172,7 @@ Route::middleware('auth:api')->group(function () {
     // Customer Controller
     Route::get('STUDENTS', 'Api\\CustomerController@get_student');
     Route::get('STUDENTS/{search}', 'Api\\CustomerController@get_student_filter');
-    Route::post('GET-STUDENT-ID', 'Api\\CustomerController@get_id');
+    Route::post('GET-STUDENT-ID', 'Api\\CustomerController@get_student_by_id');
     Route::post('ENROLL-STUDENT-BY-ID', 'Api\\CustomerController@enroll_student');
     Route::get('PARENTS', 'Api\\CustomerController@get_parent');
     Route::get('PARENTS/{search}', 'Api\\CustomerController@get_parent_filter');

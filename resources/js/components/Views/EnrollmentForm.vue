@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-container>
+
       <v-row align="center" justify="center">
         <v-col :cols="$vuetify.breakpoint.mdAndUp ? '10' : '12'">
           <div v-if="$vuetify.breakpoint.mdAndUp">
